@@ -1,9 +1,6 @@
 ---
 layout: slide
 title: Algorithms Design Techniques
-tags:
-- Algorithms
-- Presentations
 published: true
 date: 2015-09-26 00:25:00
 ---
@@ -11,7 +8,7 @@ date: 2015-09-26 00:25:00
 # Algorithm Design Techniques
 
 1. How are the different approaches solves the same problems?
-1. How are the different problems solved by the same approaches?
+2. How are the different problems solved by the same approaches?
 
 > Presented by : Enes Kemal Ergin
 
