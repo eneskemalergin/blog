@@ -6,9 +6,9 @@ keywords: blog programming student resume technology presentations
 tagline: Python and Data Science come together for Biology
 logo: /images/me.jpg
 
-url: 
+url:
 
-paginate: 5
+paginate: 10
 paginate_path: "blog/page:num"
 
 markdown: redcarpet
