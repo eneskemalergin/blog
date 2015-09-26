@@ -9,4 +9,4 @@ tw: <span class="fa fa-twitter fa-lg"></span>
 ---
 # Projects
 
-Currently in Construction
+> Under the Construction
