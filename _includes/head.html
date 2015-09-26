@@ -1,0 +1,43 @@
+<head>
+  <!-- Main/Important Meta -->
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} &#8226; {{ site.name }}</title>
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon" href="{{ site.logo }}"/>
+  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="{{ site.url }}/favicon.ico" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/normalize.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/solarized.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+  <!-- Meta information -->
+  <meta name="author" content="{{ site.author }}">
+  <meta name="description" content="{{ site.description }}"/>
+  <meta name="keywords" content="{% if page.keywords %}{{page.keywords}} {% endif %}{{site.keywords}}">
+
+  <!-- Open Graph tags (Facebook meta-info) -->
+  <meta property="og:title" content="{{ page.title }} - {{ site.name }}"/>
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}"/>
+  <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}{{ site.logo }}"/>
+  <meta property="og:description" content="{% if page.description %}{{page.description}}{% else %}{{site.description}}{% endif %}"/>
+  <meta property="og:site_name" content="{{ site.title }}"/>
+  <meta property="og:see_also" content="{{site.url}}"/>
+
+  <!-- Twitter meta-info -->
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:url" content="{{site.url}}{{page.url}}"/>
+  <meta name="twitter:title" content="{{page.title}} - {{site.name}}"/>
+  <meta name="twitter:description" content="{% if page.description %}{{page.description}}{% else %}{{site.description}}{% endif %}"/>
+  <meta name="twitter:image" content="{{site.url}}{{site.baseurl}}{{site.logo}}"/>
+
+  <!-- Various Javascript -->
+  {% include hn-script.html %}
+  {% include twitter-script.html %}
+  {% include analytics.html %}
+</head>
