@@ -1,2 +1,2 @@
 # eneskemalergin.github.io
-My Blog
+My personal blog 
