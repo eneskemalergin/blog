@@ -7,7 +7,7 @@ tags:
 ---
 
 
-In this small tutorial I will talk about biological concepts with theory and implementation in Python
+In this small tutorial I will talk about biological concepts with theory and implementation in Python, you can reach the IPython Notebook version from this [link](https://github.com/eneskemalergin/eneskemalergin.github.io/blob/master/ipython/Biology_with_Python.ipynb)
 
 
 Before we go into the implementation, we should cover the theoretical side of the biology. This beginning part will be for the programmers who has a little background on biology and to remind them, if you don't know anything about biology you should go to this [post](https://www.biostars.org/p/3066/#3070). If you have good amount of information about the theoretical part of the Biology, you may skip this reminder part and go directly to the implementations...
