@@ -33,14 +33,14 @@ Neural networks as we defined in machine learning, they need __test data__ to le
 - Then inputs are multiplyed by weights which effects the output
 - Output result only 0 or 1, determined by the following;
 
-$$
+```
 \begin{eqnarray}
   \mbox{output} & = & \left\{ \begin{array}{ll}
       0 & \mbox{if } \sum_j w_j x_j \leq \mbox{ threshold} \\
       1 & \mbox{if } \sum_j w_j x_j > \mbox{ threshold}
       \end{array} \right.
 \tag{1}\end{eqnarray}
-$$
+```
 
 - By varying weight and treshold, we can get different models of decision making
 - Each neuron/node in a neural network have a different decisions to make
@@ -48,15 +48,23 @@ $$
 - Perceptron has only 1 output.
 
 Let's simplfy the way we describe it.  
+
+```
 $$w \cdot x \equiv \sum_j w_j x_j$$
+```
 
 - Let's moce the treshold to the otherside of the inequality and replace it by what's known as the perceptron's bias,
+
+```
 $$
 b \equiv
 -\mbox{threshold}
 $$
+```
 
 Now we have:
+
+```
 $$\begin{eqnarray}
   \mbox{output} = \left\{
     \begin{array}{ll}
@@ -65,6 +73,7 @@ $$\begin{eqnarray}
     \end{array}
   \right.
 \tag{2}\end{eqnarray}$$
+```
 
 > __Bias__: is measure of how easy it is to get the perceptron output a 1.
 
@@ -82,14 +91,20 @@ Small changes in sigmoid neurons' weight and bias won't cause huge changes. It h
 Inputs can have values between 0 and 1, real numbers like, 0.65245... Also the output may get float numbers as well.
 
 Since sigmoid neurons are derived from perceptrons the function will be ```sigmoid(w.x+b)``` and functional,
+
+```
 $$\begin{eqnarray}
   \sigma(z) \equiv \frac{1}{1+e^{-z}}.
 \tag{3}\end{eqnarray}$$
+```
 
 Explicitly:
+
+```
 $$\begin{eqnarray}
   \frac{1}{1+\exp(-\sum_j w_j x_j-b)}.
 \tag{4}\end{eqnarray}$$
+```
 
 Sigmoid Function
 ![Sigmoid Function](http://eneskemalergin.github.io/images/sigmoidfunction.png)
@@ -102,14 +117,16 @@ If sigma function had infact been a step functions then the sigmoid neuron would
 
 - By using sigma function we smoothed out perceptron.
 
+```
 $$
 \begin{eqnarray}
   \Delta \mbox{output} \approx \sum_j \frac{\partial \, \mbox{output}}{\partial w_j}
   \Delta w_j + \frac{\partial \, \mbox{output}}{\partial b} \Delta b,
 \tag{5}\end{eqnarray}
 $$
+```
 
-$$ \Delta \mbox{output}$$ is a linear function of the changes $$\Delta w_j$$ and $$\Delta b$$ in the weight and bias.
+```$$ \Delta \mbox{output}$$``` is a linear function of the changes ```$$\Delta w_j$$``` and ```$$\Delta b$$``` in the weight and bias.
 
 Biggest difference between perceptron and sigmoid neurons is that sigmoid won't jump 0 to 1 real numbers are possible.
 
