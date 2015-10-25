@@ -28,7 +28,7 @@ Neural networks as we defined in machine learning, they need __test data__ to le
 - They are called artificial neural networks, and they are very basic design of neural network
 - Gets multiple binary inputs and produces single output.
 
-![Single Perceptron](perceptron.png)
+![Single Perceptron](http://eneskemalergin.github.io/images/perceptron.png)
 
 - Then inputs are multiplyed by weights which effects the output
 - Output result only 0 or 1, determined by the following;
