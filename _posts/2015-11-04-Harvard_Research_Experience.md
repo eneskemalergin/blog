@@ -18,7 +18,8 @@ There will be an outline where you can simply click and go to notebook viewer to
 Outline
 ---
 
-1. [Day 1]()
+1. [Day 1](https://github.com/eneskemalergin/Research_Log/blob/master/1st_Day.ipynb)
+2. []()
 
 
 Again, share your thoughts with me by commenting below...
