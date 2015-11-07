@@ -19,8 +19,8 @@ Outline
 ---
 
 1. [Day 1](https://github.com/eneskemalergin/Research_Log/blob/master/1st_Day.ipynb)
-2. []()
-
+2. [Day 2](https://github.com/eneskemalergin/Research_Log/blob/master/2nd_Day.ipynb)
+3. []()
 
 Again, share your thoughts with me by commenting below...
 
