@@ -18,9 +18,11 @@ There will be an outline where you can simply click and go to notebook viewer to
 Outline
 ---
 
-1. [Day 1](https://github.com/eneskemalergin/Research_Log/blob/master/1st_Day.ipynb)
-2. [Day 2](https://github.com/eneskemalergin/Research_Log/blob/master/2nd_Day.ipynb)
-3. []()
+1. [Day 1](http://nbviewer.ipython.org/github/eneskemalergin/Research_Log/blob/master/1st_Day.ipynb)
+2. [Day 2](http://nbviewer.ipython.org/github/eneskemalergin/Research_Log/blob/master/2nd_Day.ipynb)
+3. [Day 3](http://nbviewer.ipython.org/github/eneskemalergin/Research_Log/blob/master/3rd_Day.ipynb)
+4. []()
+
 
 Again, share your thoughts with me by commenting below...
 
