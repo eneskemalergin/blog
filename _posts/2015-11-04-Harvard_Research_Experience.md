@@ -24,6 +24,9 @@ Outline
 4. []()
 
 
+> EDIT: I could not find any time to write log nowadays, if you are coming here everyday and seeing that I did nothing, I am sorry to disappoint you. The day I am writing is day 14 :( (11/18/15). I will complete the rest as soon as possible. Thank you for your patience.
+
+
 Again, share your thoughts with me by commenting below...
 
 > Until next time, be safe...
