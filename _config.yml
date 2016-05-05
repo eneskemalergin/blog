@@ -12,7 +12,7 @@ paginate: 10
 paginate_path: "blog/page:num"
 
 markdown: redcarpet
-highlighter: pygments
+highlighter: rogue
 permalink: pretty
 
 exclude: ["CNAME", "README.md", "Gemfile", "Gemfile.lock", "LICENSE"]
