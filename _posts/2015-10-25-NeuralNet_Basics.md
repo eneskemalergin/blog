@@ -10,7 +10,7 @@ tags:
 
 Hello all today I will start deep learning series by starting with the Neural Networks Basics. Understanding of neural networks is the key to deep learning. So if you cannot get some thing or you find fallacies, please let me know. Here it comes...
 
-> Also if you want to see the ipython version and download it here is the [link](https://raw.githubusercontent.com/eneskemalergin/eneskemalergin.github.io/master/ipython/Basic_NeuralNets.ipynb)
+> Also if you want to see the ipython version you can view it from this  [link](https://github.com/eneskemalergin/Blog-Notebooks/blob/master/Basic_NeuralNets.ipynb), and download it from this [link](https://raw.githubusercontent.com/eneskemalergin/Blog-Notebooks/master/Basic_NeuralNets.ipynb)
 
 ## Introduction
 We humans are really good at recognizing and making sense of objects around us by simply looking at them, and we do this instantly without realizing it. But the same task is not as easy as for computers. They cannot understand what they have given by defining some conditions easily.
