@@ -10,7 +10,7 @@ tags:
 
 Now I am continuing to my bioinformatics cookbook tutorial series. Today's topic is to perform basic sequence analysis which is the basics of Next Generation Sequencing.
 
-Before we start there is a Ipython notebook version of this tutorial as well. You can view it from [here](https://github.com/eneskemalergin/eneskemalergin.github.io/blob/master/ipython/Basic_Sequence_Analysis.ipynb) and download from [here](https://raw.githubusercontent.com/eneskemalergin/eneskemalergin.github.io/master/ipython/Basic_Sequence_Analysis.ipynb) (Just save it with .ipynb extension)
+Before we start there is a Ipython notebook version of this tutorial as well. You can view it from [here](https://github.com/eneskemalergin/Blog-Notebooks/blob/master/ipython/Basic_Sequence_Analysis.ipynb) and download from [here](https://raw.githubusercontent.com/eneskemalergin/Blog-Notebooks/master/ipython/Basic_Sequence_Analysis.ipynb) (Just save it with .ipynb extension)
 
 We will do some basic sequence analysis on DNA sequences. FASTA files are our main target on this, also Biopython as a main library of Python.
 
