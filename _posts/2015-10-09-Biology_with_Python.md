@@ -272,7 +272,7 @@ pyplot.show() # Show it
 ```
 
 
-![png](https://github.com/eneskemalergin/eneskemalergin.github.io/blob/master/images/Biology_with_Python_10_0.png)
+![png](http://eneskemalergin.github.io/images/Biology_with_Python_10_0.png)
 
 
 ## 5. Protein hydrophobicity plot
@@ -323,7 +323,7 @@ pyplot.show()
 ```
 
 
-![png](https://github.com/eneskemalergin/eneskemalergin.github.io/blob/master/images/Biology_with_Python_12_0.png)
+![png](http://eneskemalergin.github.io/images/Biology_with_Python_12_0.png)
 
 
 ## 6. Measuring Repetitiveness
@@ -386,7 +386,7 @@ pyplot.show()
 ```
 
 
-![png](https://github.com/eneskemalergin/eneskemalergin.github.io/blob/master/images/Biology_with_Python_14_0.png)
+![png](http://eneskemalergin.github.io/images/Biology_with_Python_14_0.png)
 
 
 ## 7. Protein Isoelectric Point
@@ -583,9 +583,3 @@ print(proteinObj.seq)
 
     RecName: Full=Hemoglobin subunit beta; AltName: Full=Beta-globin; AltName: Full=Hemoglobin beta chain; Contains: RecName: Full=LVV-hemorphin-7; Contains: RecName: Full=Spinorphin;
     MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH
-
-
-
-```python
-
-```
