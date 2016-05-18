@@ -11,7 +11,7 @@ tags:
 
 > [Free Course from Data Camp](https://www.datacamp.com/courses/kaggle-r-tutorial-on-machine-learning)
 
-> [Notebook version](https://raw.githubusercontent.com/eneskemalergin/eneskemalergin.github.io/master/ipython/Kaggle_Introduction_R.ipynb)
+> [Notebook version](https://raw.githubusercontent.com/eneskemalergin/Blog-Notebooks/master/ipython/Kaggle_Introduction_R.ipynb)
 
 In this tutorial we will use R and Kaggle's Titanic competition using Machine Learning Algorithms.
 
