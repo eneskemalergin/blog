@@ -1,7 +1,11 @@
 ---
-title: "Classification with Nearest Neighbors"
-author: "eneskemalergin"
-date: "May 24, 2016"
+layout: post
+title: Classification with Nearest Neighbors
+tags:
+- R language
+- Machine Learning
+- kNN
+- Classification
 ---
 
 Nearest neighbor classifiers are defined by their characteristic of classifying unlabeled examples by assigning them the class of the most similar labeled examples. They might look very simple and unimportant but nearest neighbor methods are very powerful tools. Very successful for; 
