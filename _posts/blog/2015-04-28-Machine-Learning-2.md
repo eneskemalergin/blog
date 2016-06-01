@@ -1,10 +1,13 @@
 ---
 layout: post
 title: Machine Learning - Lesson 2
-tags:
-- Machine Learning
-- Python 
-published: true
+modified:
+categories: blog
+excerpt:
+tags: ["Machine Learning", "Python"]
+image:
+  feature:
+date: 2015-04-28
 ---
 
 ## Content of Naive Bayes
