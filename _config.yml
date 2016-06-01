@@ -69,3 +69,14 @@ owner:
     ad-client:
     ad-slot:
   bing-verify:
+
+
+# slider commands
+startslide: "<section data-markdown><script type='text/template'>"
+nextslide: "</script></section><section data-markdown><script type='text/template'>"
+endslide: "</script></section>"
+
+startvertical: "<section>"
+endvertical: "</section>"
+
+nextvertical: "</script></section></section><section><section data-markdown><script type='text/template'>"
