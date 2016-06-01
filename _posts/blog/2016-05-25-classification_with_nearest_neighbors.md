@@ -44,7 +44,7 @@ kNN starts with training dataset with examples that are classified into several 
 
 To illustrate this process, let's make a small table of foods and their tastes, to make a small tasting prediction. Keeping it very simple we will create a data.frame consists of ingredients name, two features of each ingredient; sweetness and crunchiness, and food type:
 
-```{r}
+```r
 ingredient <- c("apple", "bacon", "banana", "carrot", "celery", "cheese")
 sweetness <- c(10, 1, 10, 7, 3, 1)
 crunchiness <- c(9, 4, 1, 10, 10, 1)
@@ -55,7 +55,7 @@ View(tasting_df)
 
 The kNN algorithm treats the features as coordinates in a multidimensional feature space. We have two features sweetness anc crunchiness, so our feature space is two-dimensional. Now we can add them into a scatterplot with the labes on them:
 
-```{r}
+```r
 plot(tasting_df$sweetness, tasting_df$crunchiness, xlab="how sweet the food tastes", ylab = "how cruncy the food is")
 text(tasting_df$sweetness, tasting_df$crunchiness, labels=ingredient, cex= 0.7, pos=3)
 ```
@@ -72,7 +72,7 @@ With that grouping have done, we can locate a new foods group easily by looking 
 
 Let's say our new food is tomato and it's features are sweetness = 6 and crunchiness = 4, let's make a new column to store distance to the tomato value
 
-```{r}
+```r
 tasting_df$distance_to_tomato <- sqrt((6-tasting_df$sweetness)^2 + (4-tasting_df$crunchiness)^2)
 View(tasting_df)
 ```
@@ -145,7 +145,7 @@ Data is coming from UCI's machine learning repository, [link to repo](http://arc
 
 The breast cancer data includes 569 examples of cancer biopsies, each with 32 features. One feature is an identification number, another is the cancer diagnosis, and 30 are numeric-valued laboratory measurements. The diagnosis is coded as M to indicate malignant or B to indicate benign.
 
-```{r}
+```r
 # To download the file from internet
 download.file(url='https://raw.githubusercontent.com/stedy/Machine-Learning-with-R-datasets/master/wisc_bc_data.csv',destfile='wisc_bc_data.csv',method='curl')
 ```
@@ -154,13 +154,13 @@ download.file(url='https://raw.githubusercontent.com/stedy/Machine-Learning-with
 
 We will first get the ```csv``` file, and put it to data frame called ```wbcd```
 
-```{r}
+```r
 wbcd <- read.csv("./wisc_bc_data.csv", stringsAsFactors = FALSE)
 ```
 
 Now we have the data as ```csv``` format, then we can examine the data
 
-```{r}
+```r
 str(wbcd)
 ```
 
@@ -170,20 +170,20 @@ __Implications:__
 
 To drop the variable ```id``` which is located in first columne
 
-```{r}
+```r
 wbcd <- wbcd[-1]
 # Now you will see we have 31 variables left.
 ```
 
 - ```diagnosis``` variable is our first interest by just guessing out of looking at the data. This has two options: benign(B) or malignant(M) mass. To see the distribution of B and M values execute the following command:
 
-```{r}
+```r
 table(wbcd$diagnosis)
 ```
 
 In many machine learning tasks requires the target feature is coded as a factor. So we have to _recode_ the ```diagnosis``` variable.
 
-```{r}
+```r
 # Converting factors with details
 wbcd$diagnosis <- factor(wbcd$diagnosis, levels=c("B", "M"),
                          labels=c("Benign", "Malignant"))
@@ -194,7 +194,7 @@ round(prop.table(table(wbcd$diagnosis)) * 100, digits = 1)
 
 The remaining 30 features are all numeric, and as expected, consists of three different measurements of ten characteristics. For now we will only take a closer look at three of the features:
 
-```{r}
+```r
 # showing the summary of 3 features to point out something...
 summary(wbcd[c("radius_mean", "area_mean", "smoothness_mean")])
 ```
@@ -206,7 +206,7 @@ In the summary you will see that huge numbers in ```radius_mean``` and ```area_m
 Since we have to normalize more than 2 variables it is wise to create a function ```normalize``` to get things done more efficient.
 
 
-```{r}
+```r
 # min-max normalization function
 normalize <- function(x){
   return ((x - min(x)) / (max(x) - min(x)))
@@ -217,9 +217,9 @@ normalize <- function(x){
 
 We can now apply our function to the numeric features in our data frame. Rather than normalizing each of the 30 numeric variables individually, we will use one of R's functions to automate the process.
 
-```lapply()``` function of R takes a list and applies a function to each element of the list.
+The ```lapply()``` function of R takes a list and applies a function to each element of the list.
 
-```{r}
+```r
 # applying the same function to all 30 numeric variables
 wbcd_n <- as.data.frame(lapply(wbcd[2:31], normalize))
 
@@ -234,7 +234,7 @@ summary(wbcd_n$area_mean)
 Since we are making a learner, it is not very interesting to predict what we already know. A more interesting question will be "how well our learner performs on a dataset of unlabeled(B or M) data?" However we don't have a data that is unlabeled, in this case. But we can test our learners prediction accuracy by splitting up the currenc data into 2: training and test datasets. We will feed the model with training data and keep the test data away from the model, so it cannot cheat.
 
 
-```{r}
+```r
 # We will split it 469 to 100
 wbcd_train <- wbcd_n[1:469, ]
 wbcd_test <- wbcd_n[470:569, ]
@@ -244,7 +244,7 @@ wbcd_test <- wbcd_n[470:569, ]
 
 For training the kNN model, we will need to store these class labels in factor vectors, divided to the training and test datasets:
 
-```{r}
+```r
 # Takes the diagnosis factor for each datasets.
 wbcd_train_labels <- wbcd[1:469, 1]
 wbcd_test_labels <- wbcd[470:569, 1]
@@ -255,25 +255,25 @@ After we are done with data prep phase of the kNN, now we are ready to build our
 
 To classify our test instances we will use a kNN implementation from the ```class``` package.
 
-```{r}
+```r
 # If it's not installed
 # install.packages("class")
 library(class)
 ```
 
-```knn()``` function in ```class``` package provides a standard, classic implementation of the kNN algorithm. Syntax of the knn classification is:
+The ```knn()``` function in ```class``` package provides a standard, classic implementation of the kNN algorithm. Syntax of the knn classification is:
 
-```
+```r
 p <- knn(train, test, class, k)
-- train: is train data
-- test: is test data
-- class: is factor vector with the class for each row in the training data
-- k: is an integer indicating the number of nearest neigbors
+# - train: is train data
+# - test: is test data
+# - class: is factor vector with the class for each row in the training data
+# - k: is an integer indicating the number of nearest neigbors
 ```
 
 Now let's try ```knn()``` with k=21 which is roughly the square root of 469 and being odd will make sure that you won't get tie.
 
-```{r}
+```r
 wbcd_test_pred  <- knn(train=wbcd_train, test=wbcd_test,
                        cl=wbcd_train_labels, k=21)
 wbcd_test_pred
@@ -287,7 +287,7 @@ You probably guessed, we will compare the ```wbcd_test_pred``` vector with ```wb
 
 We can use the ```CrossTable()``` function in the ```gmodels``` package, which makes comparison easier and prettier.
 
-```{r}
+```r
 # install.packages("gmodels")
 library(gmodels)
 CrossTable(x=wbcd_test_labels, y=wbcd_test_pred,
@@ -305,7 +305,7 @@ A total of 2 percent, that is, 2 out of 100 masses were incorrectly classified b
 
 ##### Transformation - z-score standardization
 
-```{r}
+```r
 wbcd_z <- as.data.frame(scale(wbcd[-1]))
 wbcd_train <- wbcd_z[1:469, ]
 wbcd_test <- wbcd_z[470:569, ]
