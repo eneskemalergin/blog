@@ -56,9 +56,8 @@ Neural networks as we defined in machine learning, they need __test data__ to le
 
 Let's simplfy the way we describe it.  
 
-```
-$$w \cdot x \equiv \sum_j w_j x_j$$
-```
+//[$$w \cdot x \equiv \sum_j w_j x_j //]
+
 
 - Let's moce the treshold to the otherside of the inequality and replace it by what's known as the perceptron's bias,
 
@@ -133,7 +132,7 @@ $$
 $$
 ```
 
-```$$ \Delta \mbox{output}$$``` is a linear function of the changes ```$$\Delta w_j$$``` and ```$$\Delta b$$``` in the weight and bias.
+The ```$$ \Delta \mbox{output}$$``` is a linear function of the changes ```$$\Delta w_j$$``` and ```$$\Delta b$$``` in the weight and bias.
 
 Biggest difference between perceptron and sigmoid neurons is that sigmoid won't jump 0 to 1 real numbers are possible.
 
