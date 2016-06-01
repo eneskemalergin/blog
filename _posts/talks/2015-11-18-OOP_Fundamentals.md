@@ -2,6 +2,7 @@
 layout: presentation
 title: OOP Fundamentals
 theme: blood
+categories: talks
 published: true
 ---
 

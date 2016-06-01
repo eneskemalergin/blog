@@ -2,6 +2,7 @@
 layout: presentation
 title: Presentations with IPython
 theme: moon
+categories: talks
 published: true
 ---
 {{site.startvertical}}

@@ -3,6 +3,7 @@ layout: presentation
 title: Algorithms Design Techniques
 theme: sky
 published: true
+categories: talks
 date: 2015-09-26 00:25:00
 ---
 {{site.startvertical}}
