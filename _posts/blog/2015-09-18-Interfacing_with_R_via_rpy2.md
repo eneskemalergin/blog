@@ -33,7 +33,7 @@ Being all necessary info give we can start the step-by-step tutorial:
 
 ## Import ```rpy2``` and Read file
 
-```Python
+```python
 # Calls the rpy2 with the module called robjects
 import rpy2.robjects as robjects
 
@@ -52,7 +52,7 @@ seq_data = read_delim('sequence.index', header=True, stringsAsFactors=False)
 
 Using ```rpy2``` we can pass atomic objects without conversion. We also can convert argument names seamlessly with a dot of course. Finally we can get the object for python namespace
 
-```Python
+```python
 # Printing the information in beautiful pythonic way.
 print ('This dataframe has %d columns and %d rows' % (seq_data.ncol, seq_data.nrow))
 print (seq_data.colnames) # see using R methods with dot
@@ -62,7 +62,7 @@ print (seq_data.colnames) # see using R methods with dot
 # print (my_cols)
 ```
 
-- In the code above seq_data object is a data frame. Sounds familiar? Yes it is one of the main data structures in R. Also data frame is in Python's Pandas library as well. Data frame is like a table that we all make in excel. sequence of rowsm where each column has the same types.
+- In the code above seq_data object is a data frame. Sounds familiar? Yes it is one of the main data structures in R. Also data frame is in Python's Pandas library as well. Data frame is like a table that we all make in excel. sequence of rows where each column has the same types.
 
 - As you seen in the code above we are using R functions directly such as ```ncol``` and ```colnames```. Now look at the output, if you done everything correct until this point you will see vector with 26 elements in it. ([26] means that btw :) )  
 
@@ -71,7 +71,7 @@ print (seq_data.colnames) # see using R methods with dot
 ## Clean Data
 Why we need clean data? Because it's more hygienic, NO! To be able to analyze and interpret the given dataset, we have to clean it. By clean I mean making the types same, getting rid of the missing ones, or corrupted info...
 
-```Python
+```python
 # Calling the integer checking function built-in R
 as_integer = robjects.r('as.integer')
 # Calling the match function from R
@@ -92,13 +92,13 @@ print(seq_data[my_col-1][:3])
 
 In here we will create a variable in the R namespace called ```seq.data``` with the content of the data frame from the Python namespace. Note that after whis operation, both objects will be independent.
 
-```Python
+```python
 robjects.r.assign('seq.data', seq_data)
 ```
 ## Using ggplot2 from R
 Even if you can use Python plotting libraries and function R has its own built-in plotting functions. But not fancy as ggplot2.
 
-```Python
+```python
 # We should import another library to call ggplot2
 import rpy2.robjects.lib.ggplot2 as ggplot2
 ```
@@ -107,7 +107,7 @@ If you get an error which is saying something like this: ```rpy2.rinterface.RRun
 
 So, to be able to plot our results we will need an output image base and then we will code through to the result. We need ```png()``` function from R to complete the base.
 
-```Python
+```python
 # Make the base of an output picture
 robjects.r.png('out.png')
 # Again calling some libraries

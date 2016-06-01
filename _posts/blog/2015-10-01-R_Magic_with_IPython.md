@@ -37,7 +37,7 @@ $ jupyter notebook
 
 It will open notebook main interface, click new and open a new notebook. When you get the new notebook go to the cell one and type the following
 
-```Python
+```python
 import rpy2.robjects.lib.ggplot2 as ggplot2
 %load_ext rpy2.ipython
 ```
