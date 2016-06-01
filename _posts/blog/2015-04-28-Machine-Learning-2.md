@@ -43,6 +43,7 @@ clf.fit(X, Y)
 # Gives the prediction of given array.
 print(clf.predict([[-0.8, -1]]))
 ```
+
 #### Methods
 
 - fit(X,y): fits the GaussianNB according to X and y
