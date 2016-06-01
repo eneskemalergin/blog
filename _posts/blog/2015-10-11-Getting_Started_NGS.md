@@ -38,7 +38,7 @@ In the example above, you see in the first line starts with ```>``` we have the 
 
 __FASTQ__:
 
-```FASTQ``` format is a text-based bioinformatics file format to store both a biological sequence and its corresponding quality scores.
+The ```FASTQ``` format is a text-based bioinformatics file format to store both a biological sequence and its corresponding quality scores.
 
 A ```FASTQ``` file normally uses four lines per sequence:
 
@@ -64,7 +64,7 @@ Let's go ahead and talk about how to reach the databases and get data from them 
 
 ### GenBank and NCBI
 
-Even if you have your own data to analyze, you will need other datas from internet or from other researchers results time to time. __NCBI(National Center of Biotechnology Information) has an extensive database on sequences called "```GenBank```", in this blog post we will learn how to access that database and get data from it. Also I will put other databases for you that you can try.
+Even if you have your own data to analyze, you will need other datas from internet or from other researchers results time to time. __NCBI__(National Center of Biotechnology Information) has an extensive database on sequences called "```GenBank```", in this blog post we will learn how to access that database and get data from it. Also I will put other databases for you that you can try.
 
 For this task we will use ```BioPython``` library of Python, since it has very large options and already defined functions to make our life easier. ```Biopython``` provides an interface to ```Entrez```, the data retrieval system made available by ```NCBI```.
 
@@ -72,13 +72,13 @@ For this task we will use ```BioPython``` library of Python, since it has very l
 
 - Let's Access with Entrez and call libraries
 
-```Python
+```python
 from Bio import Entrez, SeqIO # These are the libraries we will use
 Entrez.email = "your@email.goes.here" # You should give your email, and store it in Entrez.email
 ```
 - We will now try to find the ```Cholroquine Resistance Transporter``` (CRT) gene in ```Plasmodium falciparum``` (the parasite that causes the deadliest form of malaria) on the nucleotide database:
 
-```Python
+```python
 # Defining the search criteria
 # We put which database to look for
 # and which terms to look for
@@ -96,7 +96,7 @@ Note that the standard search will limit the number of record references to 20, 
 
 - Let's now try to retrieve all these records. The following query will download all matching nucleotide sequences from ```GenBank```.
 
-```Python
+```python
 # Take the id's of the records
 id_list = rec_list['IdList']
 # Get them with defined id_list
@@ -109,14 +109,15 @@ There are several ways around this. One way is to make a more restrictive query 
 
 - Let's read and parse the result:
 
-```Python
+```rython
 recs = list(SeqIO.parse(hdl, 'gb'))
 ```
+
 As you realized we converted it into list, that we can use the result as many times as we want. This saves time, bandwidth, and server usage if you plan to iterate many times over. The disadvantage is that it will allocate memory for all records.
 
 - We will now just concentrate on a single record:
 
-```Python
+```python
 for rec in recs:
   if rec.name == 'KM288867':
     break
@@ -126,7 +127,7 @@ The ```rec``` variable now has our record of interest. The ```rec.description```
 
 - Let's now extract some sequence features, which contain information such as gene products and exon positions on the sequence:
 
-```Python
+```python
 for feature in rec.features:
   if feature.type == 'gene': # If the feature type is gene
     print(feature.qualifiers['gene']) # print it's name
@@ -139,7 +140,7 @@ for feature in rec.features:
 
 We will now look at the annotations on the record, which is mostly metadata that is not related to the sequence position:
 
-```Python
+```python
 # Prints the names and values of annotations in the record.
 for name, value in rec.annotations.items():
   print('%s=%s' % (name, value))
@@ -150,7 +151,7 @@ sequence = rec.seq
 
 There are also other databases that we can use like,  __short read archive (SRA)__. Other useful one is called __PubMed__, which includes a list of scientific and medical citations, abstracts, even full texts.
 
-```Python
+```python
 from Bio import Medline # Import necessary library
 refs = rec.annotations['references'] # get the annotations with reference key word
 for ref in refs:
