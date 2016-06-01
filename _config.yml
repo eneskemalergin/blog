@@ -1,11 +1,11 @@
 # Site wide configuration
 
-title: Enes Kemal Ergin
+title: Enes Kemal Ergin's Blog
 locale: en_US
-description: "|description|"
-logo: site-logo.png
+description: "Python | R | Bioinformatics | Big Data | Machine Learning "
+logo: EKE-logo.jpg
 search: true
-url: ""
+url:
 
 # Jekyll configuration
 
@@ -49,11 +49,11 @@ titlecase: true
 # Site owner
 owner:
   name: Enes Kemal Ergin
-  avatar: bio-photo.jpg
+  avatar: me.jpg
   email: eneskemalergin@gmail.com
-  disqus-shortname:
+  disqus-shortname: eneskemalergin
   twitter: eneskemalergin
-  facebook:
+  facebook: eneskemalergin
   github: eneskemalergin
   stackexchange: #http://stackoverflow.com/users/123456/username
   linkedin: eneskemalergin
@@ -64,7 +64,7 @@ owner:
   weibo: #userid
   google:
     plus: eneskemalergin
-    analytics:
+    analytics: UA-61953718-1
     verify:
     ad-client:
     ad-slot:
