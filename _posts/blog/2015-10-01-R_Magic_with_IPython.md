@@ -1,10 +1,16 @@
 ---
 layout: post
 title: R Magic with IPython
-tags:
-- Bioinformatics
-- Python
-- R Language
+excerpt:
+categories: blog
+tags: ["Bioinformatics", "Python", "R"]
+image:
+  feature: so-simple-sample-image-5.jpg
+  credit: WeGraphics
+  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+published: true
+comments: true
+share: true
 ---
 
 IPython, anything flashed? If you are not familiar with IPython, I highly recommend you to learn it, since it's a great tool for reproducible science. Also with extensive features you will increase you productivity with huge rates.
