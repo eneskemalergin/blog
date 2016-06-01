@@ -27,7 +27,7 @@ Naive Bayses learners and classifiers can be extremely fast compared to more sop
 
 #### Example Usage
 
-```Python
+~~~Python
 
 # Calling numpy as np
 import numpy as np
@@ -43,8 +43,7 @@ clf.fit(X, Y)
 
 # Gives the prediction of given array.
 print(clf.predict([[-0.8, -1]]))
-
-```
+~~~
 
 #### Methods
 
