@@ -36,13 +36,13 @@ I did not use one tool for a big task, instead I combined more than 2-3 tools to
 
 Human genome data is 3.3gb and in ```fasta``` format. As you may remember from my previous posts, fasta format has description lines for describing the following sequence, starts with ">". In the original file it has a lot of things with this specific word "chromosome". That was what I needed. first thing was to check description lines, if they are usable or not.
 
-```Bash
+```bash
 grep > humangenome38.fa
 ```
 
 This small line gave me all the lines that has ```>``` inside. I saw that it had more than what I needed
 
-```Bash
+```bash
 grep > humangenome38.fa | wc
 ```
 
@@ -50,7 +50,7 @@ That line takes every line that has ```>``` inside, and get the count of it. ```
 
 Then I should get only those it has chromosome 1/2/3/.../Y inside of it. I solved this problem with using [bioawk](http://ged.msu.edu/angus/tutorials-2012/monday-june-11-links.html) tool
 
-```Bash
+```bash
 ./bioawk -cfastx 'BEGIN{while((getline k <"chrID.txt")>0)i[k]=1}{if(i[$name])print ">"$name"\n"$seq}' hg38.fa
 ```
 
@@ -58,7 +58,7 @@ This line only takes sequences and save description as ```>chr1```.
 
 Here are more scripts that you can use:
 
-```Bash
+```bash
 # How to modify the HumanGenome38 form that task asks for
 
 # Get all the necessary id's with in the
@@ -131,7 +131,7 @@ awk '/^>/{print ">chr" ++i; next}{print}' < HumanGenome38.fa
 bedtools
 ---
 
-```Bash
+```bash
 # Bedtools Tool usage commands
 
 
