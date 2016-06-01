@@ -211,7 +211,7 @@ The next example script is designed to find a particular smaller sub-sequence wi
 
 Here is simple example of how to find a fixed sub-sequence within a larger sequence:
 
-```Python
+```python
 seq = 'AGCTCGCTCGCTGCGTATAAAATCGCATCGCGCGCAGC'
 position1 = seq.find('TATAAA')
 position2 = seq.find('GAGGAG')
