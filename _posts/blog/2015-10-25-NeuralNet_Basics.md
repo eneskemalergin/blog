@@ -45,7 +45,7 @@ Neural networks as we defined in machine learning, they need __test data__ to le
   \mbox{output} & = & \left\{ \begin{array}{ll}
       0 & \mbox{if } \sum_j w_j x_j \leq \mbox{ threshold} \\
       1 & \mbox{if } \sum_j w_j x_j > \mbox{ threshold}
-      \end{array} \right.
+      \end{array} \right
 \tag{1}\end{eqnarray}
 \\]
 
@@ -75,7 +75,7 @@ Now we have:
       0 & \mbox{if } w\cdot x + b \leq 0 \\
       1 & \mbox{if } w\cdot x + b > 0
     \end{array}
-  \right.
+  \right
 \tag{2}\end{eqnarray}
 \\]
 
