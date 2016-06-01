@@ -1,25 +1,30 @@
 ---
 layout: post
 title: Classification with Nearest Neighbors
-tags:
-- R language
-- Machine Learning
-- kNN
-- Classification
+excerpt:
+categories: blog
+tags: ["R", "Machine Learning", "kNN", "Classification"]
+image:
+  feature: so-simple-sample-image-5.jpg
+  credit: WeGraphics
+  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+published: true
+comments: true
+share: true
 ---
 
-Nearest neighbor classifiers are defined by their characteristic of classifying unlabeled examples by assigning them the class of the most similar labeled examples. They might look very simple and unimportant but nearest neighbor methods are very powerful tools. Very successful for; 
+Nearest neighbor classifiers are defined by their characteristic of classifying unlabeled examples by assigning them the class of the most similar labeled examples. They might look very simple and unimportant but nearest neighbor methods are very powerful tools. Very successful for;
 
 - Predicting persons choices by looking at the choices, that person already decided on,
 - Identifying patterns in genetic data, for use in detecting specific proteins or diseases,
 - Computer vision applications.
 
 these classifiers are well-suited for classification tasks where relationships among the features and the target classes are
-- numerous, 
-- complicated, 
+- numerous,
+- complicated,
 - or items of similar class type tend to be fairly homogeneous.
 
->  if a concept is difficult to define, but you know it when you see it, then nearest neighbors might be appropriate. 
+>  if a concept is difficult to define, but you know it when you see it, then nearest neighbors might be appropriate.
 
 ### The kNN Algorithm
 
@@ -31,11 +36,11 @@ these classifiers are well-suited for classification tasks where relationships a
 - Weaknesses
   - Does't produce a model (limits the ability to find novel insights in relationships among features)
   - Slow classification phase
-  - Requires large amount of memory 
+  - Requires large amount of memory
   - Nominal features and missing data require additional processing
 
 
-kNN starts with training dataset with examples that are classified into several categories, as labeled by a nominal(categorical-[such as gender]) variable. Assume that we have a test dataset containing unlabeled examples that otherwise have the same features as the training data. For each record in the test dataset, kNN identifies ```k``` records in the training data that are the "nearest" in similarith, where k is an integer specified in advance. The unlabeled test instance is assigned the class of the majority of the k nearest neighbors. 
+kNN starts with training dataset with examples that are classified into several categories, as labeled by a nominal(categorical-[such as gender]) variable. Assume that we have a test dataset containing unlabeled examples that otherwise have the same features as the training data. For each record in the test dataset, kNN identifies ```k``` records in the training data that are the "nearest" in similarith, where k is an integer specified in advance. The unlabeled test instance is assigned the class of the majority of the k nearest neighbors.
 
 To illustrate this process, let's make a small table of foods and their tastes, to make a small tasting prediction. Keeping it very simple we will create a data.frame consists of ingredients name, two features of each ingredient; sweetness and crunchiness, and food type:
 
@@ -72,35 +77,35 @@ tasting_df$distance_to_tomato <- sqrt((6-tasting_df$sweetness)^2 + (4-tasting_df
 View(tasting_df)
 ```
 
-When you view the ```tasting_df``` again, you will see the new column at the end. To classify the tomato as a vegetable, protein or fruit, we'll begin by assigning the tomato, the food type of its single nearest neighour. This is called 1NN classification(k=1). 
+When you view the ```tasting_df``` again, you will see the new column at the end. To classify the tomato as a vegetable, protein or fruit, we'll begin by assigning the tomato, the food type of its single nearest neighour. This is called 1NN classification(k=1).
 
 If we use the kNN algorithm with k=3 instead, it performs a vote among the tree nearest neighbors: orange, grape, and nuts. Because the majority class among these neighbors is fruit (2 of the 3 votes), the tomato again is classified as a fruit.
 
 ### Choosing an appropriate k
-Choosing an approproate k determines how well model will generalize to future data. 
+Choosing an approproate k determines how well model will generalize to future data.
 
-> The balance between overfitting and underfitting the training data is a problem known as the __bias-variance tradeoff__. 
+> The balance between overfitting and underfitting the training data is a problem known as the __bias-variance tradeoff__.
 
 - Large ```k``` reduces the impact or variance caused by noisy data. It has risk of ignoring small but important patterns
 
 If we take larger k, as we have the number of observations, we will have always the majority of voters. __The model always predict the majority vote.__
 
-- Smallest ```k``` allows noisy data or outliers, to unduly influence the classification of examples. 
+- Smallest ```k``` allows noisy data or outliers, to unduly influence the classification of examples.
 
 For example, suppose that some of the training examples were accidentally mislabeled. Any unlabeled example that happens to be nearest to the incorrectly labeled neighbor will be predicted to have the incorrect class, even if the other nine nearest neighbors would have voted differently.
 
 
-> In practice, choosing ```k``` depends on the difficulty of the concept to be learned and the number of records in the training data. Typically, ```k``` is set somewhere between 3 and 10. One common practice is to set ```k``` equal to the square root of the number of training examples. 
+> In practice, choosing ```k``` depends on the difficulty of the concept to be learned and the number of records in the training data. Typically, ```k``` is set somewhere between 3 and 10. One common practice is to set ```k``` equal to the square root of the number of training examples.
 
 
 Such rules may not always work as the best result. Alternative approach is to test multiple ```k``` to get optimum result. __On the other hand, unless the data is very noisy, larger and more representative training datasets can make the choice of ```k``` less important, because even subtle concepts will have a sufficiently large pool of examples to vote as neares neighbors.__
 
 ### Preparing data for use with kNN
 
-Using features is not straight forward as we did before with calculating distance. Weight of each feature has a great impact on resulting values as well. We have to rescale the feature determinants to use it with minimilized form. Traditional method of rescaling features for kNN is __min-max normalization.__ 
+Using features is not straight forward as we did before with calculating distance. Weight of each feature has a great impact on resulting values as well. We have to rescale the feature determinants to use it with minimilized form. Traditional method of rescaling features for kNN is __min-max normalization.__
 
 #### Min-Max Normalization
-- Transforms a feature such that all of its values fall in a range between 0 and 1. 
+- Transforms a feature such that all of its values fall in a range between 0 and 1.
 - Formula to calculate min-max normalization as follows:
 
 ```
@@ -111,19 +116,19 @@ new_X = (X - min(X)) / (max(X) - min(X))
 
 
 #### z-score standardization
-- This is another common way of transformation. 
+- This is another common way of transformation.
 - Formula to calculate as follows:
 
 ```
 new_X = (X-mean(X)) / sd(X)
 ```
-- This way rescales each of a feature's values in terms of how many standard deviations they fall above or below the mean value. 
-- Resulting value is called __z-score__. 
+- This way rescales each of a feature's values in terms of how many standard deviations they fall above or below the mean value.
+- Resulting value is called __z-score__.
 - Unlike, min-max they don't have predefined min and max limit, they have unbounded range to negative and positive.
 
 
 
-> The Euclidean distance formule is not defined for nominal data. To calculate the distance between nominal features, we need to convert them into a numeric format. 
+> The Euclidean distance formule is not defined for nominal data. To calculate the distance between nominal features, we need to convert them into a numeric format.
 
 Solution to this problem is __dummy coding__, where value of 1 indicated one category, and 0 indicates the other. For instance we can convert genders into numeric format by assigning 1 to male and 0 to female.
 
@@ -132,7 +137,7 @@ Convenient aspect of dummy coding is that the distance between dummy coded featu
 
 ### Diagnosing breast cancer with the kNN algorithm
 
-Machine learning can be used to identify the cancer cells, which improves the efficiency of the detection process done by the doctors. 
+Machine learning can be used to identify the cancer cells, which improves the efficiency of the detection process done by the doctors.
 
 #### Step 1: Collecting Data
 
@@ -161,7 +166,7 @@ str(wbcd)
 
 __Implications:__
 
-- ```id``` variable is unique for each patient in the data but not useful for our classification task, so we can exclude it. 
+- ```id``` variable is unique for each patient in the data but not useful for our classification task, so we can exclude it.
 
 To drop the variable ```id``` which is located in first columne
 
@@ -176,14 +181,14 @@ wbcd <- wbcd[-1]
 table(wbcd$diagnosis)
 ```
 
-In many machine learning tasks requires the target feature is coded as a factor. So we have to _recode_ the ```diagnosis``` variable. 
+In many machine learning tasks requires the target feature is coded as a factor. So we have to _recode_ the ```diagnosis``` variable.
 
 ```{r}
 # Converting factors with details
 wbcd$diagnosis <- factor(wbcd$diagnosis, levels=c("B", "M"),
                          labels=c("Benign", "Malignant"))
 
-# Showing the percentage of values 
+# Showing the percentage of values
 round(prop.table(table(wbcd$diagnosis)) * 100, digits = 1)
 ```
 
@@ -198,7 +203,7 @@ In the summary you will see that huge numbers in ```radius_mean``` and ```area_m
 
 ##### Transformation - normalizing numeric data
 
-Since we have to normalize more than 2 variables it is wise to create a function ```normalize``` to get things done more efficient. 
+Since we have to normalize more than 2 variables it is wise to create a function ```normalize``` to get things done more efficient.
 
 
 ```{r}
@@ -212,7 +217,7 @@ normalize <- function(x){
 
 We can now apply our function to the numeric features in our data frame. Rather than normalizing each of the 30 numeric variables individually, we will use one of R's functions to automate the process.
 
-```lapply()``` function of R takes a list and applies a function to each element of the list. 
+```lapply()``` function of R takes a list and applies a function to each element of the list.
 
 ```{r}
 # applying the same function to all 30 numeric variables
@@ -246,9 +251,9 @@ wbcd_test_labels <- wbcd[470:569, 1]
 ```
 
 #### Step 3 - Training a Model on the Data
-After we are done with data prep phase of the kNN, now we are ready to build our model. __The process of training a kNN simply involvels storing the input data in a structured format.__ 
+After we are done with data prep phase of the kNN, now we are ready to build our model. __The process of training a kNN simply involvels storing the input data in a structured format.__
 
-To classify our test instances we will use a kNN implementation from the ```class``` package. 
+To classify our test instances we will use a kNN implementation from the ```class``` package.
 
 ```{r}
 # If it's not installed
@@ -260,7 +265,7 @@ library(class)
 
 ```
 p <- knn(train, test, class, k)
-- train: is train data 
+- train: is train data
 - test: is test data
 - class: is factor vector with the class for each row in the training data
 - k: is an integer indicating the number of nearest neigbors

@@ -1,9 +1,16 @@
 ---
 layout: post
 title: ConvNets Explained
-tags:
-- Deep Learning
-- CNNs
+excerpt:
+categories: blog
+tags: ["Deep Learning", "CNNs"]
+image:
+  feature: so-simple-sample-image-5.jpg
+  credit: WeGraphics
+  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+published: true
+comments: true
+share: true
 ---
 
 Summation from: [CS231 by Andrej Karpathy](http://cs231n.github.io/convolutional-networks/)

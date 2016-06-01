@@ -1,11 +1,16 @@
 ---
 layout: post
-title: "Naive Bayes for Classification"
-tags:
-- R language
-- Machine Learning
-- naive Bayes
-- Classification
+title: Naive Bayes for Classification
+excerpt:
+categories: blog
+tags: ["R", "Machine Learning", "naive Bayes", "Classification"]
+image:
+  feature: so-simple-sample-image-5.jpg
+  credit: WeGraphics
+  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+published: true
+comments: true
+share: true
 ---
 
 In this part of our machine learning path, we will look at probabilistic learning. Probabilistic methods use data of past events to extrapolate future events. In weather forecasting, precipitation is typically predicted using terms such as "70 percent chance of rain". 70 percent chance of rain therefore implies that in 7 out of 10 past cases with similar weather patterns, precipitation occured.

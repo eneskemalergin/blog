@@ -1,10 +1,16 @@
 ---
 layout: post
 title: Data Preparation for one specific Bioinformatics task
-tags:
-- Python
-- Bash
-- Bioinformatics
+excerpt:
+categories: blog
+tags: ["NumPy", "Python", "Bash"]
+image:
+  feature: so-simple-sample-image-5.jpg
+  credit: WeGraphics
+  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+published: true
+comments: true
+share: true
 ---
 
 Hello folks, in this post I will share how I prepare data for the project that I am currently working on.

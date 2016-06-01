@@ -1,11 +1,16 @@
 ---
 layout: post
 title: Solving Kaggle's Titanic with R
-tags:
-- R Language
-- Machine Learning
-- Decision Trees
-- Random Forest
+excerpt:
+categories: blog
+tags: ["R", "Machine Learning", "Decision Trees", "Random Forest"]
+image:
+  feature: so-simple-sample-image-5.jpg
+  credit: WeGraphics
+  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+published: true
+comments: true
+share: true
 ---
 
 

@@ -1,9 +1,16 @@
 ---
 layout: post
 title: Getting Started with Next Generation Sequencing
-tags:
-- Bioinformatics
-- Python
+excerpt:
+categories: blog
+tags: ["Bioinformatics", "Python"]
+image:
+  feature: so-simple-sample-image-5.jpg
+  credit: WeGraphics
+  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+published: true
+comments: true
+share: true
 ---
 
 Here I am, with you again. Today's post will be about the the getting started part of ```Next Generation Sequencing```. Let's start with defining what is Next-generation Sequencing:
@@ -146,7 +153,7 @@ There are also other databases that we can use like,  __short read archive (SRA)
 ```Python
 from Bio import Medline # Import necessary library
 refs = rec.annotations['references'] # get the annotations with reference key word
-for ref in refs: 
+for ref in refs:
   if ref.pubmed_id != '':
     print(ref.pubmed_id)
     handle = Entrez.efetch(db='pubmed', id=[ref.pubmed_id], rettype='medline', retmode='text')
