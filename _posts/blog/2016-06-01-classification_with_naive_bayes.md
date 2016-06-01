@@ -65,7 +65,7 @@ We can describe relationships between dependent events using __Bayes' theorem__.
 
 > Notation ```P(A|B)``` can be read as the probability of event A given that B is occured.
 
-```P(A|B)``` is also known as __conditional probability__, since the probability of A is dependent on what happend with event B.
+The ```P(A|B)``` is also known as __conditional probability__, since the probability of A is dependent on what happend with event B.
 
 ```
 P(A|B) = ( P(B|A)* P(A) )/ P(B) = P (A ∩ B) / P(B)
@@ -78,7 +78,7 @@ Addition to that we get word "Winner" is located in incoming message. The probab
 __Posterior probability__ measures how likely the message is to be spam, we can think of it as the left side of the equation.
 
 ```
-P(spam|Winner) = ( P(Winner|spam)*P(spam) ) / P(Winner)
+P(spam|Winner) = ( P(Winner|spam) * P(spam) ) / P(Winner)
 ```
 
 This is pretty much how commercial spam filters work nowadays, although they consider a much larger number of words simultaneously when computing the frequency and likelihood tables.
@@ -116,7 +116,7 @@ Let's try and see how well our spam filtering on SMS will do...
 
 The [source](https://raw.githubusercontent.com/brenden17/sklearnlab/master/spam/sms_spam.csv) contains text of SMS messages along with a label indicating whether the message is unwanted. __Junk are labeled as spam, and others labeled as ham.__
 
-```{r}
+```r
 # Getting the data from github source
 download.file(url="https://raw.githubusercontent.com/brenden17/sklearnlab/master/spam/sms_spam.csv", destfile="sms_spam.csv", method="curl")
 ```
@@ -124,7 +124,7 @@ download.file(url="https://raw.githubusercontent.com/brenden17/sklearnlab/master
 
 ### Step 2 - Exploring and Preparing the Data
 
-```{r}
+```r
 # adding the downloaded data to R
 sms_raw <- read.csv("./sms_spam.csv", stringsAsFactors = FALSE)
 str(sms_raw) # We have 2 variables, type and text
@@ -132,7 +132,7 @@ str(sms_raw) # We have 2 variables, type and text
 
 The ```type``` variable is currently a character vector. Since this is a categorical variable, it would be better to convert it to a factor:
 
-```{r}
+```r
 # Convert it to factor
 sms_raw$type <- factor(sms_raw$type)
 str(sms_raw$type)
@@ -144,7 +144,7 @@ Text data is really messy consists of words, numbers, spaces, and punctuation. W
 
 The ```tm``` package is really helpful tool for text mining and character manipulation on strings.
 
-```{r}
+```r
 # install.packages("tm")
 library(tm) # calling tm package
 ```
@@ -152,7 +152,7 @@ library(tm) # calling tm package
 
 First thing to do for processing text data is creating collection of texts, which is called __corpus__. It's simply putting together all the SMS messages in one vector
 
-```{r}
+```r
 sms_corpus <- Corpus(VectorSource(sms_raw$text))
 inspect(corpus_clean[1:3])
 ```
@@ -164,7 +164,7 @@ inspect(corpus_clean[1:3])
 Now we have a vector to work on. Before going into splitting the text into words step, we should perform cleaning on the text. (hello!, HELLO, Hello,... must be hello)
 
 
-```{r}
+```r
 # tm_map() is transforming with mapping
 corpus_clean <- tm_map(sms_corpus, content_transformer(tolower)) # all to lowercase
 corpus_clean <- tm_map(corpus_clean, content_transformer(removeNumbers)) # get rid of all numbers
@@ -172,7 +172,7 @@ corpus_clean <- tm_map(corpus_clean, content_transformer(removeNumbers)) # get r
 
 In text data analysis, it a good practice to remove words like, "to, and, but, or". These are known as __stop words__ and R has them predefined.
 
-```{r}
+```r
 corpus_clean <- tm_map(corpus_clean, content_transformer(removeWords), stopwords()) # remove all stopwords
 corpus_clean <- tm_map(corpus_clean, content_transformer(removePunctuation)) # removes all punctuation
 corpus_clean <- tm_map(corpus_clean, content_transformer(stripWhitespace)) # removes additional white space
@@ -186,7 +186,7 @@ The final thing to do is to split messages into individual components through a 
 As you might have guessed, ```tm``` package provides functionality to tokenize the SMS message corpus. ```DocumentTermMatrix()``` function will take a corpus and create a data structure called a __sparse matrix__.
 
 
-```{r}
+```r
 sms_dtm <- DocumentTermMatrix(corpus_clean)
 ```
 
@@ -194,7 +194,7 @@ sms_dtm <- DocumentTermMatrix(corpus_clean)
 
 For all the machine learning tasks we have to split the data into to parts test and train data. We'll divide data into two portions: 75 percent training, 25 percent testing data.
 
-```{r}
+```r
 #Splitting raw data frame
 sms_raw_train <- sms_raw[1:4169, ]
 sms_raw_test <- sms_raw[4170:5559, ]
@@ -216,7 +216,7 @@ prop.table(table(sms_raw_test$type))
 ##### Visualizing text data - Word Cloud
  A word cloud is a way to visually depict the frequency at which words appear in text data. We will use ```wordcloud``` package to create this type of diagram.
 
-```{r}
+```r
 # install.packages("wordcloud")
 library(wordcloud)
 
@@ -226,7 +226,7 @@ wordcloud(sms_corpus_train, min.freq = 40, random.order = FALSE)
 
 We can also compare the clouds for SMS spam and ham using wordcloud diagram.
 
-```{r}
+```r
 # subset spam ones
 spam <- subset(sms_raw_train, type=="spam")
 
@@ -244,7 +244,7 @@ The last thing to do in the data preparation process is to transform the sparse 
 Now we have around 7k features, since each word is a feature itself. We will reduce it by eliminating any words appear in less than five SMS message, or less than about 0.1 percent of records in the training data.
 
 
-```{r}
+```r
 # finding frequent words in more than 5 SMS using tm function
 sms_dict <- c(findFreqTerms(sms_dtm_train, 5) )
 
@@ -259,7 +259,7 @@ The training and test data now includes around 1200 features corresponding only 
 
 Naive Bayes classifier is typically trained on data with categorical features. This poses a problem since the cells in the sparse matrix indicate a count of the times a word appears in a message. We should change this to a factor variable that simply indicates yes or no depending on wheather the words appears at all. Now let's define a function to do this job.
 
-```{r}
+```r
 convert_counts <- function(x) {
   x <- ifelse(x > 0, 1, 0)
   x <- factor(x, levels=c(0,1), labels=c("'No'", "'Yes'"))
@@ -280,7 +280,7 @@ After getting usable data format for our model, now we can setup our model to fi
 
 Naive Bayes implementation in R can be found in ```e1071``` package:
 
-```{r}
+```r
 # install.packages("e1071")
 library(e1071)
 ```
@@ -291,7 +291,7 @@ The structure of the function ```naiveBayes()```:
 
 __Building the classifier:__
 
-```m <- naiveBayes(train, class, laplace=0)```
+The syntax: ```m <- naiveBayes(train, class, laplace=0)```
 
 - _train_ is a data frame or matrix containing training data
 - _class_ is a factor vector with the class for each row in the training data
@@ -299,7 +299,7 @@ __Building the classifier:__
 
 __Making predictions:__
 
-```p <- predict(m, test, type="class")```
+The syntax: ```p <- predict(m, test, type="class")```
 
 - _m_ is a model trained by the ```naiveBayes()``` function
 - _test_ is a data frame or matrix containing test data with the same features as the training data used to build the classifier
@@ -308,7 +308,7 @@ __Making predictions:__
 
 Now let's build our model:
 
-```{r}
+```r
 sms_classifier <- naiveBayes(sms_train, sms_raw_train$type)
 ```
 
@@ -319,13 +319,13 @@ The classifier that we trained has been named ```sms_classifier```, we will use 
 
 The ```predict()``` function is used to make the predictions:
 
-```{r}
+```r
 sms_test_pred <- predict(sms_classifier, sms_test)
 ```
 
 To compare the predicted values to the actual values, we'll use the ```CrossTable()``` function in the ```gmodels``` package.
 
-```{r}
+```r
 library(gmodels)
 CrossTable(sms_test_pred, sms_raw_test$type,
            prop.chisq = FALSE, prop.t=FALSE,
