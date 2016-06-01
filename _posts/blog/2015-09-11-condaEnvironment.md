@@ -1,12 +1,17 @@
 ---
 layout: post
 title: Creating conda Environment
-tags:
-- Bioinformatics
-- Python
-- Terminal
+excerpt:
+categories: blog
+tags: ["Bioinformatics", "Python", "Terminal"]
+image:
+  feature: so-simple-sample-image-5.jpg
+  credit: WeGraphics
+  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 published: true
 date: 2015-09-11 12:00:00
+comments: true
+share: true
 ---
 
 In this small tutorial we will create a virtual conda environment to be able to start your Bioinformatics work with Python.
