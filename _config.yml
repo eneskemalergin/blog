@@ -1,11 +1,11 @@
 # Site wide configuration
 
-title: Site Title
+title: Enes Kemal Ergin
 locale: en_US
-description: Describe your website here.
+description: "|description|"
 logo: site-logo.png
 search: true
-url: http://localhost:4000
+url: ""
 
 # Jekyll configuration
 
@@ -48,22 +48,22 @@ titlecase: true
 
 # Site owner
 owner:
-  name: Your Name
+  name: Enes Kemal Ergin
   avatar: bio-photo.jpg
-  email: you@email.com
+  email: eneskemalergin@gmail.com
   disqus-shortname:
-  twitter: #username
-  facebook: #username
-  github: #username
+  twitter: eneskemalergin
+  facebook:
+  github: eneskemalergin
   stackexchange: #http://stackoverflow.com/users/123456/username
-  linkedin: #username
-  instagram: #username
+  linkedin: eneskemalergin
+  instagram: eneskemalergin
   flickr: #username
   tumblr: #username
   pinterest: #username
   weibo: #userid
   google:
-    plus: #username
+    plus: eneskemalergin
     analytics:
     verify:
     ad-client:
