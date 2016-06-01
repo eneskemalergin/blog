@@ -3,7 +3,7 @@ layout: post
 title: Creating conda Environment
 excerpt:
 categories: blog
-tags: ["Bioinformatics", "Python", "Terminal"]
+tags: ["Bioinformatics", "Python", "R", "Terminal"]
 image:
   feature: so-simple-sample-image-5.jpg
   credit: WeGraphics

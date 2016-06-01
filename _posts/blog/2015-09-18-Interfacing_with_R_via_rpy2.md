@@ -1,13 +1,17 @@
 ---
 layout: post
 title: Interfacing with R via rpy2
-tags:
-- Bioinformatics
-- Python
-- Terminal
-- R Language
+excerpt:
+categories: blog
+tags: ["Bioinformatics", "Python", "Terminal"]
+image:
+  feature: so-simple-sample-image-5.jpg
+  credit: WeGraphics
+  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 published: true
 date: 2015-09-18 23:00:00
+comments: true
+share: true
 ---
 
 Hey friends, todays post will blow your mind away! You may shocked from the title of the post already, because I did. Since I know R and Python basics <and a little more maybe> I can compare them easily. R has very powerful built-in function for statistics, data analysis, etc. But most importantly R has a library called Bioconductor which is huge in Bioinformatics area. This library ```rpy2``` will allow us to use Bioconductor easily.  
