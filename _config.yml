@@ -1,26 +1,71 @@
-name: Enes Kemal Ergin
-author: eneskemalergin
-title: Enes Kemal Ergin's Blog
-description: Python | Bioinformatics | Big Data | Machine Learning
-keywords: blog programming student resume technology presentations
-tagline: Python and Data Science come together for Biology
-logo: /images/me.jpg
+# Site wide configuration
 
-url:
+title: Site Title
+locale: en_US
+description: Describe your website here.
+logo: site-logo.png
+search: true
+url: http://localhost:4000
 
-paginate: 10
-paginate_path: "blog/page:num"
+# Jekyll configuration
 
-
-# Dependencies
-markdown: kramdown
+permalink:   /:categories/:title/
+markdown:    kramdown
 highlighter: rouge
+sass:
+  sass_dir: _sass
+  style: compressed
+gems:
+  - jekyll-sitemap
+  - jekyll-gist
 
-# Permalinks
-permalink: pretty
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..2
+  enable_coderay: false
+
+mathjax: true
+
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", ".less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "vendor"]
 
 
-exclude: ["CNAME", "README.md", "Gemfile", "Gemfile.lock", "LICENSE"]
+# Octopress
 
-disqus: eneskemalergin
-analytics: UA-61953718-1
+# Default extensions
+post_ext: md
+page_ext: md
+
+# Found in _templates/
+post_layout: post
+page_layout: page
+
+# Format titles with titlecase?
+titlecase: true
+
+
+# Site owner
+owner:
+  name: Your Name
+  avatar: bio-photo.jpg
+  email: you@email.com
+  disqus-shortname:
+  twitter: #username
+  facebook: #username
+  github: #username
+  stackexchange: #http://stackoverflow.com/users/123456/username
+  linkedin: #username
+  instagram: #username
+  flickr: #username
+  tumblr: #username
+  pinterest: #username
+  weibo: #userid
+  google:
+    plus: #username
+    analytics:
+    verify:
+    ad-client:
+    ad-slot:
+  bing-verify:

@@ -1,44 +1,12 @@
 ---
-title: Home
-layout: base
+layout: page
+title: Latest Posts
+excerpt: "A simple and clean responsive Jekyll theme for words and photos."
+search_omit: true
 ---
-<div class="wrapper">
-    <header>
-        <div class="logo-container">
-          <a class="logo" href="{{ page.baseurl }}" style="background-image: url('{{ site.baseurl }}{{ site.logo }}')"></a>
-        </div>
 
-        <div class="author-container"><h1>{{ site.name }}</h1></div>
-
-        <hr>
-        <ul class="fa-ul main-list">
-            <li class="main-list-item">
-                <a href="https://github.com/eneskemalergin">GitHub</a>
-                <span class="fa fa-github fa-lg main-list-item-icon"></span>
-            </li>
-            <!--
-            <li class="main-list-item">
-                <a href="https://bitbucket.org/brenns10">Bitbucket</a>
-                <span class="fa fa-bitbucket fa-lg main-list-item-icon"></span>
-            </li>
-            <li class="main-list-item">
-                <a href="https://stackoverflow.com/users/820319/brenns10">StackOverflow</a>
-                <span class="fa fa-stack-overflow fa-lg main-list-item-icon"></span>
-            </li>
-          -->
-            <li class="main-list-item">
-                <a href="https://twitter.com/eneskemalergin">Twitter</a>
-                <span class="fa fa-twitter fa-lg main-list-item-icon"></span>
-            </li>
-        </ul>
-    </header>
-    <main>
-      <div class="content">
-        <h2>About Me</h2>
-
-        {% capture biosketch %}{% include biosketch.md %}{% endcapture %}
-        {{ biosketch | markdownify }}
-
-      </div>
-    </main>
-</div>
+<ul class="post-list">
+{% for post in site.posts limit:10 %}
+  <li><article><a href="{{ site.url }}{{ post.url }}">{{ post.title }} <span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span>{% if post.excerpt %} <span class="excerpt">{{ post.excerpt | remove: '\[ ... \]' | remove: '\( ... \)' | markdownify | strip_html | strip_newlines | escape_once }}</span>{% endif %}</a></article></li>
+{% endfor %}
+</ul>

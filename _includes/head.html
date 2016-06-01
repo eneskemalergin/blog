@@ -1,43 +1,57 @@
-<head>
-  <!-- Main/Important Meta -->
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }} &#8226; {{ site.name }}</title>
+<meta charset="utf-8">
+<title>{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.title }}</title>
+{% if page.excerpt %}<meta name="description" content="{{ page.excerpt | strip_html }}">{% endif %}
+{% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
+{% if page.author %}
+  {% assign author = site.data.authors[page.author] %}{% else %}{% assign author = site.owner %}
+{% endif %}
 
-  <!-- Icons -->
-  <link rel="apple-touch-icon" href="{{ site.logo }}"/>
-  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="{{ site.url }}/favicon.ico" />
+{% include open-graph.html %}
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/normalize.css">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/solarized.css">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
-  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+{% if site.owner.google.verify %}<!-- Webmaster Tools verfication -->
+<meta name="google-site-verification" content="{{ site.owner.google.verify }}">{% endif %}
+{% if site.owner.bing-verify %}<meta name="msvalidate.01" content="{{ site.owner.bing-verify }}">{% endif %}
 
-  <!-- Meta information -->
-  <meta name="author" content="{{ site.author }}">
-  <meta name="description" content="{{ site.description }}"/>
-  <meta name="keywords" content="{% if page.keywords %}{{page.keywords}} {% endif %}{{site.keywords}}">
+{% capture canonical %}{{ site.url }}{% if site.permalink contains '.html' %}{{ page.url }}{% else %}{{ page.url | remove:'index.html' | strip_slash }}{% endif %}{% endcapture %}
+<link rel="canonical" href="{{ canonical }}">
+<link href="{{ site.url }}/feed.xml" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
 
-  <!-- Open Graph tags (Facebook meta-info) -->
-  <meta property="og:title" content="{{ page.title }} - {{ site.name }}"/>
-  <meta property="og:url" content="{{ site.url }}{{ page.url }}"/>
-  <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}{{ site.logo }}"/>
-  <meta property="og:description" content="{% if page.description %}{{page.description}}{% else %}{{site.description}}{% endif %}"/>
-  <meta property="og:site_name" content="{{ site.title }}"/>
-  <meta property="og:see_also" content="{{site.url}}"/>
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Twitter meta-info -->
-  <meta name="twitter:card" content="summary"/>
-  <meta name="twitter:url" content="{{site.url}}{{page.url}}"/>
-  <meta name="twitter:title" content="{{page.title}} - {{site.name}}"/>
-  <meta name="twitter:description" content="{% if page.description %}{{page.description}}{% else %}{{site.description}}{% endif %}"/>
-  <meta name="twitter:image" content="{{site.url}}{{site.baseurl}}{{site.logo}}"/>
+<!-- For all browsers -->
+<link rel="stylesheet" href="{{ site.url }}/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
 
-  <!-- Various Javascript -->
-  {% include hn-script.html %}
-  {% include twitter-script.html %}
-  {% include analytics.html %}
-</head>
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="{{ site.url }}/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="{{ site.url }}/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="{{ site.url }}/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+{% if site.mathjax == true %}
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+{% endif %}
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="{{ site.url }}/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="{{ site.url }}/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="{{ site.url }}/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.url }}/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.url }}/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.url }}/images/apple-touch-icon-144x144-precomposed.png">
