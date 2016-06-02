@@ -4,10 +4,6 @@ title: Data Preparation for one specific Bioinformatics task
 excerpt:
 categories: blog
 tags: ["NumPy", "Python", "Bash"]
-image:
-  feature: so-simple-sample-image-5.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 published: true
 comments: true
 share: true

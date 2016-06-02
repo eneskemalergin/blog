@@ -4,10 +4,6 @@ title: Creating conda Environment
 excerpt:
 categories: blog
 tags: ["Bioinformatics", "Python", "R", "Terminal"]
-image:
-  feature: so-simple-sample-image-5.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 published: true
 date: 2015-09-11 12:00:00
 comments: true

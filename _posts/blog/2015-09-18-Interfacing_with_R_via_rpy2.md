@@ -4,10 +4,6 @@ title: Interfacing with R via rpy2
 excerpt:
 categories: blog
 tags: ["Bioinformatics", "Python", "Terminal"]
-image:
-  feature: so-simple-sample-image-5.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 published: true
 date: 2015-09-18 23:00:00
 comments: true

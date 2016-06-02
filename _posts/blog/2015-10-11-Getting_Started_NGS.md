@@ -4,10 +4,6 @@ title: Getting Started with Next Generation Sequencing
 excerpt:
 categories: blog
 tags: ["Bioinformatics", "Python"]
-image:
-  feature: so-simple-sample-image-5.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 published: true
 comments: true
 share: true

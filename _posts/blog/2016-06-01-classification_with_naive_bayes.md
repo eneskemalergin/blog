@@ -4,10 +4,6 @@ title: Naive Bayes for Classification
 excerpt:
 categories: blog
 tags: ["R", "Machine Learning", "naive Bayes", "Classification"]
-image:
-  feature: so-simple-sample-image-5.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 published: true
 comments: true
 share: true
