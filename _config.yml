@@ -5,7 +5,7 @@ locale: en_US
 description: "Python | R | Bioinformatics | Big Data | Machine Learning "
 logo: EKE-logo.jpg
 search: true
-url:
+url: http://eneskemalergin.github.io/
 
 # Jekyll configuration
 
@@ -45,6 +45,8 @@ page_layout: page
 # Format titles with titlecase?
 titlecase: true
 
+comments: true
+share: true
 
 # Site owner
 owner:
