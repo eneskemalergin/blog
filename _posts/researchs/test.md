@@ -2,7 +2,7 @@
 layout: post
 title: Machine Learning - Lesson 1
 modified:
-categories: researchs
+categories: research
 excerpt:
 tags: ["Machine Learning", "Python"]
 image:
