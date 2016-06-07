@@ -1,4 +1,13 @@
-
+---
+layout: post
+title: TensorFlow Tutorial 2
+excerpt:
+categories: blog
+tags: ["Python", "Machine Learning", "TensorFlow"]
+published: true
+comments: true
+share: true
+---
 
 # Google's TensorFlow - Part 2
 
