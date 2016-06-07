@@ -1,18 +1,19 @@
 # Site navigation links
 
 - title: About
-  url: /about/
+  url: about/
 
 - title: Blog
-  url: /blog/
+  url: blog/
 
 - title: Talks
-  url: /talks/
+  url: talks/
+
 - title: Research Logs
-  url: /researchs/
+  url: researchs/
 
 - title: Tags
-  url: /tags/
+  url: tags/
 
 - title: Search
-  url: /search/
+  url: search/
