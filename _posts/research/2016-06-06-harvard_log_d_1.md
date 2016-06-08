@@ -48,20 +48,20 @@ In the meeting we also talked about the latest model's problems and how we could
 In the first session, I start installing the new tools we are going to use for following 2 months. First thing was to install TensorFlow in my macbook retina. To do that I went to github page of [TensorFlow](https://github.com/tensorflow/tensorflow), and used the setup method given [here](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/g3doc/get_started/os_setup.md) for Anaconda install, and Mac OS X.
 In the installation guide, it was recommended to use virtual environment but I skipped that part directly installed TensorFlow into my system.
 
-```BASH
+```bash
 $ pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/mac/tensorflow-0.8.0-py2-none-any.whl
 ```
 
 After Mac OS X installation is completed, I installed TensorFlow for my other laptop with Ubuntu 16.04 inside, using pretty much everything same. There are two options for Linux system installation, with GPU or without GPU. My laptop does not have GPU so I went with, without GPU option.
 
-```BASH
+```bash
 $ pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.8.0-cp27-none-linux_x86_64.whl
 ```
 
 I also need TensorFlow for my account on Orchestra Cluster. So I start installation process by creating a virtualenv, since my account in server is not admin I cannot do ```sudo```. To do this job I had to call Python module and CUDA module available in the cluster.
 
 
-```BASH
+```bash
 $ module load dev/python/2.7.6
 $ module load dev/cuda/7.5.1
 $ virtualenv name --system-site-packages # allows you to get ready  packages
