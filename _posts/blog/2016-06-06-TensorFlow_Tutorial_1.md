@@ -33,9 +33,7 @@ __Outline of the tutorial:__
 5. [Convolutional Neural Network]()
 6. [Denoising Autoencoder]()
 7. [Recurrent Neural Network (LSTM)]()
-8. [Word2vec]()
-9. [TensorBoard]()
-10. [Save and reestore net]()
+
 
 ## Basic Multiplication
 
