@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Harvard Log D-1
-date: 06/06/16
 categories: research
 tags: ["Research Log", "Harvard", "Bioinformatics"]
 published: true
