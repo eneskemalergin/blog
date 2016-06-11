@@ -8,6 +8,9 @@ image:
   credit: E.Kemal
 ---
 
-Hello my guest, you have found my blog, the one I share my technical notes with the world.
+I am Enes Kemal Ergin, an undergrad student at North American University focusing on computational biology.
+
+![](https://raw.githubusercontent.com/eneskemalergin/eneskemalergin.github.io/master/images/BD.jpg)
+
 
 > World needs more information about you....
