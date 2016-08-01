@@ -54,7 +54,8 @@ li {
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: $heading-font;
-	text-rendering: optimizeLegibility; // Fix the character spacing for headings
+	text-rendering: optimizeLegibility;// Fix the character spacing for headings
+	color: #bc002d;
 }
 h1 {
 	@include font-size(36);
