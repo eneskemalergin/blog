@@ -21,12 +21,12 @@ body {
 // COLORS =====================================================
 $body-color         : #fff;
 $text-color         : #222;
-$base-color         : #bc002d;
+$base-color         : $red;
 $comp-color         : spin($base-color, 180);
-$border-color       : #bc002d;
+$border-color       : $red;
 $white              : #fff;
 $black              : #000;
-$accent-color       : #bc002d;
+$accent-color       : $red;
 $link-color         : #222;
 
 $table-border-color           : $border-color;
