@@ -26,8 +26,8 @@ $comp-color         : spin($base-color, 180);
 $border-color       : #bc002d;
 $white              : #fff;
 $black              : #000;
-$accent-color       : #bc002d;
-$link-color         : #222;
+$accent-color       : $black;
+$link-color         : #bc002d;
 
 $table-border-color           : $border-color;
 $table-border                 : 1px solid $table-border-color;
