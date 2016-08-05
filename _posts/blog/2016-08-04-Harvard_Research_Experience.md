@@ -7,13 +7,12 @@ tags: ["My Experiences"]
 published: true
 comments: true
 share: true
+image:
+  feature: HMS_logo.png
+  credit: Harvard Medical School
+  creditlink: http://hms.harvard.edu
+
 ---
-
-Outline:
-- Talk about where I was
-- talk about churchman Lab
-- research overview
-
 
 Hello internet, I am writing this blog post on my flight back to Houston.
 
