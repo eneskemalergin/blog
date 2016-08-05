@@ -8,7 +8,7 @@ published: true
 comments: true
 share: true
 image:
-  feature: HMS_logo.png
+  feature: HMS_logo.jpg
   credit: Harvard Medical School
   creditlink: http://hms.harvard.edu
 
