@@ -5,7 +5,8 @@ excerpt: "This theme is very flexible, it's good to have words and images togeth
 modified: 2016-06-01
 image:
   feature: bg.jpg
-  credit: E.Kemal
+  credit: MwTours
+  creditlink: http://www.mwtravel.com.au/2017-15-days-cherry-blossom-and-garden-tour/
 ---
 
 I am Enes Kemal Ergin, an undergrad student at North American University focusing on computational biology.
