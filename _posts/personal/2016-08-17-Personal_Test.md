@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Test Article
+title: Finding Kemal, Self-Assessment, and New Year's Resolutions
 excerpt:
 categories: personal
 tags: ["My Experiences"]
@@ -8,5 +8,3 @@ published: true
 comments: true
 share: true
 ---
-
-This is a test article
