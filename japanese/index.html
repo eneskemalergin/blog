@@ -1,16 +1,16 @@
 ---
 layout: page
-title: 日本語
-excerpt: "Japanese part of my blog."
+title: Language Learning
+excerpt: "The part contains my notes while I learn a new language"
 search_omit: true
 image:
-  feature: japanese_bg.jpg
-  credit: MwTours
-  creditlink: http://www.mwtravel.com.au/2017-15-days-cherry-blossom-and-garden-tour/
+  feature: hello-wordle.png
+  credit: Linguistic Society of America
+  creditlink: http://www.linguisticsociety.org/content/how-many-languages-are-there-world
 ---
 
 <ul class="post-list">
-{% for post in site.categories.japanese %}
+{% for post in site.categories.language %}
   <li><article><a href="{{ site.url }}{{ post.url }}">{{ post.title }} <span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span>{% if post.excerpt %} <span class="excerpt">{{ post.excerpt | remove: '\[ ... \]' | remove: '\( ... \)' | markdownify | strip_html | strip_newlines | escape_once }}</span>{% endif %}</a></article></li>
 {% endfor %}
 </ul>
