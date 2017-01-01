@@ -4,7 +4,7 @@ title: Finding Kemal, Self-Assessment, and New Year's Resolutions
 excerpt:
 categories: personal
 tags: ["My Experiences"]
-published: true
+published: false
 comments: true
 share: true
 ---
@@ -18,8 +18,9 @@ __Reading Time:__  20 minutes
 ## Content
 
 - [Introduction](#introduction)
-- [Who am I?](#who-am-i?)
-- []()
+- [Who am I?](#who-am-i)
+  - [Strengths]()
+  - [Weaknesses]()
 
 
 ## Introduction
@@ -47,7 +48,7 @@ As always, I believe _"first, target the problem to solve a solution"_ approach.
 
 In a society that enforcing us to engrave ourselves to the several stereotypes. People who refuses to fit into these stereotypes are criticised consciously or unconsciously. To blend in to this society we are changing ourselves from what really makes us unique. Now I understand why answering this question is really hard: __"What makes you unique and special?"__  We don't really know who we are, because we are trying to be someone else, a model, a singer, a billionaire, or a hippie. :)
 
-## Who am I?
+## Who am I
 
 ![Who Am I? ](http://energeticawakenings.com/wp-content/uploads/2015/09/who-am-i-5.png)
 
@@ -69,4 +70,8 @@ __Creativity, imagination, conviction, and sensitivity are my main tools when I 
 
 __I have an unaccustomed way of understanding personalities__, that's why I can engage in conversation really good, and a good first impressions. I think that's why people think that I am an extraverted person, although I am not. __I am introvert who can socialize well because of my understanding of others, but I still need alone time with myself or someone I am totally opened myself.__
 
-__I take great care of other's feelings, and I expect the same in return.__ From very early ages, I have been hurt a lot because of this caring others. I take this personality of mine as a vulnerability, that's why __I avoid people, and I cannot trust them easily.__
+__I take great care of other's feelings, and I expect the same in return.__ From very early ages, I have been hurt a lot because of this caring others. I take this personality of mine as a vulnerability, that's why __I avoid people, and I cannot trust them easily.__ That does not mean I am an asocial, I am quite social person, but I don't give attention to people whom I don't really know and trust, except one person only. I do meet with people and be friends with them if they are honest, if they have unique personality, if they can contribute to my intellectuality, or if they share the same values with me. I know this sounds pretty irritating, who am I to decide this and act like a superior to others? But this is me, the real me.
+
+__I am not particularly good with conflict and criticism,__ my sensitivity can do everything to evade them. The problem is that I take conflicts and criticisms as personal attacks even if you are trying to help me and I could fight back when there is no way to run away from them.
+
+__I am passionate about many things__ such as, Biology, Star Wars, Computers and Computation, Books, Astronomy, and more. __My conviction to my passions can take me to new horizons easily however if the zeal gets our of hand, I would get exhausted, unhealthy and stressed.__ This semester there was one passion of mine which is the most recent and probably the biggest passion I had prevented me to focus on other things that I had to give my all attention to.
