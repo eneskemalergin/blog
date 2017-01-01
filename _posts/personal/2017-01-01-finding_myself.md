@@ -10,15 +10,16 @@ share: true
 ---
 
 
-# Finding Kemal, Self-Assessment, and New Year's Resolutions
+__Reading Time:__  20 minutes
 
+> Introduction add here
 
 
 ## Content
 
 - [Introduction](#introduction)
 - [Who am I?](#who-am-i?)
--
+- []()
 
 
 ## Introduction
