@@ -143,9 +143,9 @@ I shall,
 - Follow up my yearly academic goals for productive year
 - Becoming more rational not giving in to emotional ups and downs
 - Finishing what I started before going into a new task/project
-- Aim for the stars
+- Visit and Travel as much as possible to new cities, museums, places. 
 
 ![2017 Plan](https://raw.githubusercontent.com/eneskemalergin/eneskemalergin.github.io/master/images/2017_plan.jpg)
 
 
-PS: If you got this far, thank your for your patience. Now you know me more than most of my friends. 
+PS: If you got this far, thank your for your patience. Now you know me more than most of my friends.
