@@ -14,4 +14,4 @@ I worked on several research projects, and open source projects. In each project
 
 I am  very active on social activities, since I am the parliamentarian of Student Government in my school since 2014. I am also founder and director of Future Leaders Club at NAU since 2015. I am member of ISCB and ACM organizations.
 
-For more details you can [Click Here to download my CV](https://github.com/eneskemalergin/eneskemalergin.github.io/raw/master/files/Enes_CV_6.pdf)
+For more details you can [Click Here to download my CV ](https://github.com/eneskemalergin/My_CV/raw/master/Academic_CV.pdf)
