@@ -1,3 +1,13 @@
+---
+layout: post
+title: Introduction to Pandas 1
+excerpt:
+categories: blog
+tags: ["Python", "Data Science", "Pandas"]
+published: true
+comments: true
+share: true
+---
 
 In this post I will summarize the data structures of ```Pandas``` library. ```Pandas``` is a library written for data manipulation and analysis. It is built on top of the ```Numpy``` library and it provides features not available in ```Numpy```, so to be able to follow this tutorial you should have some basics on Python and NumPy library.
 
