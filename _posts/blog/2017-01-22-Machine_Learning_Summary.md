@@ -3,7 +3,7 @@ layout: post
 title: Machine Learning Summary Infographics
 excerpt:
 categories: blog
-tags: ["Machine Learning", "Information", "Infographics"
+tags: ["Machine Learning", "Information", "Infographics"]
 published: true
 comments: true
 share: true
