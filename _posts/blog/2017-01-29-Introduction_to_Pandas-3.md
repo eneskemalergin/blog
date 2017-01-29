@@ -11,6 +11,10 @@ share: true
 
 Hello all, I am back with another of my notes on Pandas. Today our focus will be grouping, merging and reshaping our data with Pandas. Modifiying data is very fundamental when it comes to data analysis and other core subjects requiring data cleaning.
 
+I am going to follow the official documentation [here](http://pandas.pydata.org/pandas-docs/stable/groupby.html) 
+
+If you like to follow this small tutorial in notebook format you can check out [here](https://github.com/eneskemalergin/Blog-Notebooks/blob/master/Introduction_to_Pandas-3.ipynb)
+
 ## Grouping of Data
 
 The ```groupby``` operation can be thought of as part of a process that involves the following 3 steps:

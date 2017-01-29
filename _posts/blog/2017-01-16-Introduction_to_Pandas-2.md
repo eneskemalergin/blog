@@ -14,7 +14,7 @@ Hello all, I am back with another of my notes on Pandas, Today I will focus on i
 
 In the last post while introducing data structures, I talked about basic indexing, I will show here as well for the sake of completeness.
 
-I am going to follow the official data structure documentation [here](http://pandas.pydata.org/pandas-docs/stable/indexing.html)
+I am going to follow the official documentation [here](http://pandas.pydata.org/pandas-docs/stable/indexing.html)
 
 If you like to follow this small tutorial in notebook format you can check out [here](https://github.com/eneskemalergin/Blog-Notebooks/blob/master/Introduction_to_Pandas-2.ipynb)
 
