@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Bash Scripting Tutorial 1
+title: Bash Scripting Essential
 excerpt:
 categories: blog
 tags: ["Bash", "Bioinformatics", "Terminal"]
@@ -9,7 +9,7 @@ comments: true
 share: true
 ---
 
-Hello everyone, today I am sharing some notes about shell scripting. In this part of the shell/bash scripting I am covering the essentials before getting into more serious topics like conditional statements, loops, and awk/sed tools.
+Hello everyone, today I am sharing some notes about shell scripting. In this part of the shell/bash scripting I am covering the essentials before getting into more serious topics like conditional statements, loops, and awk/sed tools. I will make a series of blogposts which will cover whole shell scripting so stay tuned...
 
 ![imperial.ac.uk](http://www.imperial.ac.uk/ImageCropToolT4/imageTool/uploaded-images/unix--tojpeg_1440498641820_x2.jpg)
 
