@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Bash Scripting Essential
+title: Bash Scripting Essentials
 excerpt:
 categories: blog
 tags: ["Bash", "Bioinformatics", "Terminal"]
