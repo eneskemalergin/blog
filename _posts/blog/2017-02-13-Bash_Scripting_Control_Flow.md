@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Bash Scripting: Control Flow
+title: Bash Scripting - Control Flow
 excerpt:
 categories: blog
 tags: ["Bash", "Terminal"]
@@ -521,9 +521,4 @@ case $first_name in
         echo 'Your name starts with some funky punctuation.'
         ;;
 esac
-```
-
-
-```python
-
 ```
