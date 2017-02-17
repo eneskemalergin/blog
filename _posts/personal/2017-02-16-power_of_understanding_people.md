@@ -4,7 +4,7 @@
  excerpt:		
  categories: personal		
  tags: ["Book Summary"]		
- published: true		
+ published: false		
  comments: true		
  share: true		
  image:
