@@ -1,14 +1,13 @@
-
-    ---
-    layout: post
-    title: Introduction to Pandas 4
-    excerpt:
-    categories: blog
-    tags: ["Python", "Data Science", "Pandas"]
-    published: true
-    comments: true
-    share: true
-    ---
+---
+layout: post
+title: Introduction to Pandas 4
+excerpt:
+categories: blog
+tags: ["Python", "Data Science", "Pandas"]
+published: true
+comments: true
+share: true
+---
 
 
 
