@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Who is Enes Kemal
+title: Welcome to My Place!
 excerpt: "This theme is very flexible, it's good to have words and images together."
 modified: 2016-06-01
 image:
@@ -8,10 +8,14 @@ image:
   credit: E.Kemal
 ---
 
-I am senior undergrad student at North American University. My major is computer science and my passion is biology, so I am focusing on the intersection between computer science and biology.
+Hi there,
 
-I worked on several research projects, and open source projects. In each project I expanded my skills and understanding of biological concepts.  
+I am a bioinformatics scientist with esoteric solutions to the problems in field of biology using power of computers and artificial intelligence. I am currently working towards my Masters + PhD in Bioinformatics at University of British Columbia, Canada. I am graduate student at Lange Lab at BC Children's Hospital Research Center working on Cancer Proteomics.
 
-I am  very active on social activities, since I am the parliamentarian of Student Government in my school since 2014. I am also founder and director of Future Leaders Club at NAU since 2015. I am member of ISCB and ACM organizations.
+There are tons of different things that excites me but biggest two is biology and computer science, that's why I choose to go forward with my education on Bioinformatics field.
+
+I write mostly about what I am interested currently that's why you can find a lot of different areas. If you want to check something specific check the tags tab. This blog is started as pure technical blog with only relevant posts then I wanted to include some other domains as well such as book summary and language learning articles.
 
 For more details you can [Click Here to download my CV ](https://github.com/eneskemalergin/My_CV/raw/master/Academic_CV.pdf)
+
+Have Fun!
