@@ -3,7 +3,7 @@ layout: post
 title: Русский Введение
 excerpt:
 categories: language
-tags: ["Russian Tutorials", "Language"]
+tags: ["Russian", "Language Tutorials"]
 published: true
 comments: true
 share: true

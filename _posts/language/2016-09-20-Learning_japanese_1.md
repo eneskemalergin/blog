@@ -3,7 +3,7 @@ layout: post
 title: 私は日本を学んでいます 1
 excerpt:
 categories: language
-tags: ["Japanese Tutorials"]
+tags: ["Japanese", "Language Tutorials"]
 published: true
 comments: true
 share: true
