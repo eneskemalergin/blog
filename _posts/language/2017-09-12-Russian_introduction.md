@@ -4,9 +4,9 @@ title: Русский Введение
 excerpt:
 categories: language
 tags: ["Russian", "Language Tutorials"]
-published: true
+published: false
 comments: true
-share: true
+share: false
 image:
   feature: russian_intro_bg.jpg
   credit: OSU Russian Studies
