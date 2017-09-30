@@ -15,10 +15,11 @@ My reading list contains names, review links, and my rating of the book.
 
 ---
 
-- [Weapons of Math Destruction](https://www.goodreads.com/book/show/28186015-weapons-of-math-destruction) by Cathy O'Neil
-- [Living Forward](https://www.goodreads.com/book/show/26266675-living-forward) by Michael Hyatt and Daniel Harkavy
-- [In Pursuit of the Unknown: 17 Equations that Changed the World](https://www.goodreads.com/book/show/18899361-in-pursuit-of-the-unknown) by Ian Steward
+- [Weapons of Math Destruction](https://www.goodreads.com/book/show/28186015-weapons-of-math-destruction) __by Cathy O'Neil__
+- [Living Forward](https://www.goodreads.com/book/show/26266675-living-forward) __by Michael Hyatt and Daniel Harkavy__
+- [In Pursuit of the Unknown: 17 Equations that Changed the World](https://www.goodreads.com/book/show/18899361-in-pursuit-of-the-unknown) __by Ian Steward__
 
+---
 
 ## 2017
 
