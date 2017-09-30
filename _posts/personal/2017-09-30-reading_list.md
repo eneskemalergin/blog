@@ -3,7 +3,7 @@
  title: My Reading List
  excerpt:		
  categories: personal		
- tags: ["Reading", "Lists"]		
+ tags: ["Reading List"]		
  published: True		
  comments: true		
  share: true		
@@ -13,13 +13,10 @@ My reading list contains names, review links, and my rating of the book.
 
 Currently Reading:
 ---
-<span align="center" style="border:1px solid red;">
-<ul>
-  <li> [Weapons of Math Destruction](https://www.goodreads.com/book/show/28186015-weapons-of-math-destruction) by Cathy O'Neil </li>
-  <li> [Living Forward](https://www.goodreads.com/book/show/26266675-living-forward) by Michael Hyatt and Daniel Harkavy </li>
-  <li> [In Pursuit of the Unknown: 17 Equations that Changed the World](https://www.goodreads.com/book/show/18899361-in-pursuit-of-the-unknown) by Ian Steward </li>
-</ul>
-</span>
+
+- [Weapons of Math Destruction](https://www.goodreads.com/book/show/28186015-weapons-of-math-destruction) by Cathy O'Neil
+- [Living Forward](https://www.goodreads.com/book/show/26266675-living-forward) by Michael Hyatt and Daniel Harkavy
+- [In Pursuit of the Unknown: 17 Equations that Changed the World](https://www.goodreads.com/book/show/18899361-in-pursuit-of-the-unknown) by Ian Steward
 
 
 2017
