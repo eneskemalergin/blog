@@ -1,6 +1,6 @@
 ---
  layout: post		
- title: Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy
+ title: Weapons of Math Destruction -  How Big Data Increases Inequality and Threatens Democracy
  excerpt:		
  categories: personal		
  tags: ["Book Summary"]		
