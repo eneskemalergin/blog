@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Comprehensive TensorFlow Tutorial 
+title: Comprehensive TensorFlow Tutorial
 excerpt:
 categories: blog
 tags: ["Python", "Machine Learning", "TensorFlow"]
@@ -20,26 +20,23 @@ TensorFlow™ is an open source software library for numerical computation using
 
 In this comprehensive tutorial, I tried to write everything explicitly as I understood from the Nathan Lintz's [tutorial](https://github.com/nlintz/TensorFlow-Tutorials) on github. I used the exact codes and explain statements. I hope this finds you well and you get valuable knowledge out of it.
 
-
-> I give you here the outline of the list of tutorials will be available in my blog, for this post you will have the first 3.
-
 __Outline of the tutorial:__
 
-0. [Basic multiplication - Here]()
-1. [Linear Regression - Here]()
-2. [Logistic Regression - Here]()
-3. [Feedforward Neural Network (Multilayer Perceptron)]()
-4. [Deep Feedforward Neural Network (Multilayer Perceptron with 2 Hidden Layers)]()
-5. [Convolutional Neural Network]()
-6. [Denoising Autoencoder]()
-7. [Recurrent Neural Network (LSTM)]()
+0. [Basic multiplication](#basic-multiplication)
+1. [Linear Regression](#linear-regression)
+2. [Logistic Regression](#logistic-regression)
+3. [Feedforward Neural Network](#Feedforward-neural-network)
+4. [Deep Feedforward Neural Network](#deep-feedforward-neural-network)
+5. [Convolutional Neural Network](#convolutional-neural-network)
+6. [Denoising Autoencoder](#denoising-autoencoder)
+7. [Recurrent Neural Network (LSTM)](#recurrent-neural-network)
 
 
 ## Basic Multiplication
 
 We first call the libraries we will use in our tutorial.
 - ```import``` statement is used to call libraries in Python
-- ```as``` helps us to use short version of libraries
+- ```as``` helps us to use libraries in shorten representations.
 
 
 ```python
@@ -272,7 +269,7 @@ with tf.Session() as sess:
 
 Not very accurate if we compare to it's other competitors but with that less line of code it is pretty awesome as well...
 
-## Feed-Forward Neural Network (Multilayer Perceptron)
+## FeedForward Neural Network
 
 Getting and preparing the data is same as we did before;
 
@@ -381,7 +378,7 @@ with tf.Session() as sess:
 
 As you can see from the accuracy above it works better than the logistic regression, at max ~0.955. Multilayer perceptron, is easily passed logistic regression around 33rd-34th epochs. However it is not the most optimized way possible to predict MNIST.
 
-## Deep Feed-forward Neural Network (with Multiple Hidden Layers)
+## Deep Feedforward Neural Network
 
 Our initializing weights functions came without a change:
 
