@@ -23,4 +23,13 @@ The book [Weapons of Math Destruction](https://www.goodreads.com/book/show/28186
 The author touches so many ethical dilemmas created by these WMDs [(__W__)eapons of (__M__)ath (__D__)estruction)] and gives reader a space to think about them. __The reason that WMDs are creating ethical dilemmas is that they penalize the poor, the ethnically diverse, or simply the non-target audience of the profit WMDs.__
 
 
-As a developer of Machine Learning technologies, I use math, statistics, and big data quite a lot. And learning that intentionally or un-intentionally misusing those methods could result in catastrophic effects in the large scale. That's why the points I get from this book is really important for me. By reverse engineering the WMDs, I get what I should be doing and be more careful to.
+As a developer of Machine Learning technologies, I use math, statistics, and data science quite a lot. And learning that intentionally or un-intentionally misusing those methods could result in catastrophic effects in the large scale. That's why the points I get from this book is really important for me. By reverse engineering the WMDs, I get what I should be doing and be more careful to.
+
+
+After giving my review about the book, let me also share some of the notes taken from the book:
+
+There are three main components that make an algorithm a WMD:
+
+- __Opacity:__ This part comes from how hidden the algorithm is, do the users know how it works, or even it's existence in the first place.
+- __Scale:__  This part comes from the effects increases exponentially to large number of people, creating a never seen before effects.
+- __Damage:__ This part comes from the results penalizing the poor, or ethnically diverse, or simply the non-target audience.
