@@ -76,3 +76,71 @@ Have you ever wonder how U.S. News rank the universities? or Have you ever wonde
 - However this nice looking competition is also resulted in increasing the tuition.
 - Between 1985 and 2013, the cost of higher education rose by more than 500 percent, nearly four times the rate of inflation.
 - This increase in the tuitions could be explained by the spending of universities to attract students, like building new stadium, dorm, gyms, etc.
+
+
+Another threat is coming from online advertising. In this section of the book author explores the how online advertising is used to create a WMD on behalf of the for-profit colleges and leave students with huge student loans.
+
+- Online advertising and predatory ads are define the genre of the WMDs.
+- Online profit college ads are targeting isolated, impatient individuals with low self-esteem.
+- With machine learning, a fast-growing domain of artificial intelligence, the computer dices into the data, following only basic instructions. The algorithm then finds patterns on its own, and then, through time, connects them with outcomes. In a sense, it learns.
+- A machine learning algorithm in contrast to Human learning, will often require millions or billions of data points to create its statistical models of cause and effect.
+- But with the internet, people across the earth have produced quadrillions of words about our lives and work, our shopping, and our friendships. By doing this, we have unwittingly built the greatest ever training corpus for natural-language machines. As we turned from paper to e-mail and social networks, machines could study our words, compare them to others, and gather something about their context.  
+- The programs "know" what a word means, at least enough to associate with certain behaviors and outcomes, at least some of the time.
+- Yet a crucial component of a WMD is that it's damaging to many people's lives, and with these types of predatory ads, the damage doesn't begin until students start taking out big loans for their tuition and fees.
+- Research created by CALDER found that diplomas from for-profit colleges were worth less in the community colleges and about the same as a high school diploma. And yet these colleges cost on average 20 percent more than flagship public universities.
+- For-profit colleges, sadly, are hardly alone in deploying predatory ads, payday load industry operates WMDs too.
+
+WMDs are also present in civil justice area, where police departments across USA using predictive software programs, and unwillingly creating WMDs. These predictive softwares are creating a vicious feedback loop that creates a huge racial profiling unknowingly.
+
+- Predictive software programs like PredPol used in budget-strapped police departments, that predicts the hot-spots, which has a potential to have a crime occur.  
+- PredPol doesn't target individual but targets the geography.
+- However when police setup the system they have choice to select either Part 1 crimes (violent crimes, like homicide, arson, assault) or Part 2 crimes (vagrancy, aggressive panhandling, selling and consuming small amounts of drug)
+- Including Part 2 crimes skew the model and creates a pernicious feedback loop.  
+- Policing itself spans new data in part 2 crime sites which justifies more policing, and our prisons are fill up with hundreds of thousands of people found guilty of victimless crimes, most of them from black and hispanic neighbors because the model feeds their neighbors. This is not color blind
+
+There is inequality even in the job applications caused by WMDs nowadays. The models that reads and predicts the availability, fitness of the applicant by looking at resumes and personality test results. It doesn't really matter if you are top-notch applicant, the machine/model could mark you with it's read flags.
+
+- A perfect SAT or a school with high ranking in USA does not help to beat the vicious feedback loop of WMD that decides which applicant to call for an interview.  
+- Personality tests are used as a criteria in algorithms, primary purpose of the test  is not to find the best employee but to exclude as many as people as cheaply as possible.  
+- 72 percent of CVs or resumes are not seen by human eyes, but by computers pulling out the skills and experiences that employee is looking for.  
+- So crafting CV and Resumes is very crucial in job specific level.
+- There are somethings that machines cannot process in cv or the algorithm is simply not built to except them, like images, or fancy fonts.  
+- Using Ariel and Courier fonts, and not including images or different inserts is the best way to avoid trashing your resume by machine.
+- WMDs are designed to cut administrative costs and to reduce the risk of bad hires (or ones that might require more training.) The objective of the filters, in short, is to save money.  
+- Naturally many hiring models attempt to calculate the likelihood that each job candidate will stick around.
+- There are different correlation to get the metric that calculate the likelihood of candidate leaving, such as type of person, or geography (the place the candidate live)
+
+Another example of WMD author uses in another section is how scheduling models are creating unbalanced schedules for people working.
+
+- _"Clopening"_, that’s when an employee works late on night to close the store or café and returns a few hours later, before down to open it.
+- These irregular schedules are a product of the data economy.
+- Scheduling tech has its roots in a powerful discipline of applied math called "operations research, or OR"
+- This means using big scheduling modes, big retailers and restaurants can twist the workers' lives to ever-more-absurd schedules without suffering from excessive churn.
+- These WMDs are massive, and it's entirely opaque. Workers don't have clue about when they'll be called to work.  
+- The model is optimized for efficiency and profitability, not for justice or the good of the "team." (Nature of the Capitalism)
+- Intelligence Systems are depended on the feedback they receive(error feedback, false positives) to delve into forensic analysis and figure out what went wrong, what was misread, what data was ignored, that's how the systems improve. However loads of WMDs from recidivism models to teacher scores, blithely generate their own reality.
+
+Calculating credit scores are also in hands of WMDs.
+
+- FICO an algorithm devised by Earl Isaac and Bill Fair, evaluates the risk that an individual would default on a loan.
+- This score was color blind and the criteria taken into account were clear and known.
+- Today we're added up to it in every conceivable was as statisticians and mathematicians patch together a mishmash of data, from our zip codes and Internet surfing patterns to our recent purchases.  
+- Many pseudoscientific  models attempt to predict our creditworthiness, giving each of us so-called e-scores, unlike FICO, they resemble, e-scores are arbitrary, unaccountable, unregulated, and often unfair-in short, they are WMDs.
+- Nasty feedback loop created by e-scores: E-scoring system will give person lives in a low-income (demographic) area  a low score thus the loans will have higher interest rate and more advertisement about credit cards, which will put the buyer into a worst place.
+- There are a lot of data points called proxies are used to calculate e-score. E-scores nourished by millions of proxies exist in the shadows.
+- Errors caused by algorithm because of the name similarity is so often, in 2013 5% of the people reported an error.
+
+
+There are couple of more examples in the book, that I won't put it here. In the book author visited different areas of life; schools, colleges, courts, workplaces, and she showed us the destructive usages of misused math as WMDs. However she also gives some ideas about how we can regulate these WMDs and possibly stop them:
+
+- Injustice, whether based in greed or prejudice, has been with us forever, and WMDs are reflecting it since the humans are the ones writing their algorithm.
+- Big Data Processes codify the past. They do not invent the future.
+- She is suggesting an oath something like Hippocratic Oath, one that focuses on the possible misuses and misinterpretations of math in the models.
+- To eliminate WMDs, we must advance beyond establishing the best practices in our data guild. To change our laws in data guild we need to reevaluate our metric of success.  
+- Nowadays, success of a model is measured in terms of profit, efficiency, or default rates.  
+- To disarm WMDs, we also need to measure their impact and conduct algorithmic audits.
+
+
+What I would take from this book is that Big Data has a huge influence in our life, but currently the way we use it and take advantage of it just increases the inequality and bias, which effects millions of people in a very depressing way. Big data is one of the strongest super powers of our century, and if we keep using it for power and profit by ignoring human rights and actual fairness we'll create a community which will never come back from. So everyone should be careful about these sinister misused models, and people who works on the industry should come up with strict regulations before it would leave an irreversible mark on our society.
+
+> This is my notes from the book. Most of the bulletin points are exactly quoted from the book. I wanted to combine my views and review about the book with exact quotations from the book, and I hope I could've achieved it.
