@@ -16,7 +16,6 @@ My reading list contains names, review links, and my rating of the book.
 ---
 
 - [Machine, Platform, Crowd: Harnessing our Digital Future](https://www.goodreads.com/book/show/32606599-machine-platform-crowd) __by Erik Brynjolfsson and Andrew McAfee__
-- [Dawn of the Jedi: Into the Void](https://www.goodreads.com/book/show/15823425-dawn-of-the-jedi) __by Tim Lebbon__
 - [Creating Life in the Lab](https://www.goodreads.com/book/show/10555982-creating-life-in-the-lab) __by Fazale Rana__
 - [Living Forward](https://www.goodreads.com/book/show/26266675-living-forward) __by Michael Hyatt and Daniel Harkavy__
 - [In Pursuit of the Unknown: 17 Equations that Changed the World](https://www.goodreads.com/book/show/18899361-in-pursuit-of-the-unknown) __by Ian Steward__
@@ -35,7 +34,7 @@ My reading list contains names, review links, and my rating of the book.
 6. [The Healthy Habit Revolution](https://www.goodreads.com/book/show/24146985-the-healthy-habit-revolution) __by Derek Doepker__, <span style="color:#C70025">Rating: 3.5 </span> , ([My Blogpost Summary](http://eneskemalergin.github.io/blog/personal/healthy_habit_development/))
 7. [Beacon 23](https://www.goodreads.com/book/show/26771521-beacon-23) __by Hugh Howey__, <span style="color:#C70025">Rating: 2.0 </span> , ([My GoodReads Review](https://www.goodreads.com/review/show/2068088322))
 8. [The Second Machine Age](https://www.goodreads.com/book/show/17986396-the-second-machine-age) __by Erik Brynjolfsson and Andrew McAfee__, <span style="color:#C70025">Rating: 5.0 </span> , ([My Blogpost Summary](http://eneskemalergin.github.io/blog/personal/second_machine_age/))
-9. [When I'm Gone](https://www.goodreads.com/book/show/27401883-when-i-m-gone) __by Emily Bleeker__, <span style="color:#C70025">Rating: 3.5 </span>
+9. [When I'm Gone](https://www.goodreads.com/book/show/27401883-when-i-m-gone) __by Emily Bleeker__, <span style="color:#C70025">Rating: 3.0 </span>
 10. [Weapons of Math Destruction](https://www.goodreads.com/book/show/28186015-weapons-of-math-destruction) __by Cathy O'Neil__, <span style="color:#C70025">Rating: 5.0 </span> ([My Blogpost Summary](http://eneskemalergin.github.io/blog/personal/weapons_of_math_destruction/))
-
+11. [Dawn of the Jedi: Into the Void](https://www.goodreads.com/book/show/15823425-dawn-of-the-jedi) __by Tim Lebbon__ <span style="color:#C70025">Rating: 3.5 </span>
 ---
