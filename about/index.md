@@ -2,7 +2,7 @@
 layout: page
 title: Welcome to My Place!
 excerpt: "This theme is very flexible, it's good to have words and images together."
-modified: 2016-06-01
+modified: 2017-10-10
 image:
   feature: bg.jpg
   credit: E.Kemal
