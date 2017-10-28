@@ -20,6 +20,22 @@ This is my blog part of my personal website. I am sharing about everything that 
 This is a larger scale project that I want to complete. In this large series of blog-post series I aim to tackle the most important and must known concepts in Bioinformatics from it's main domains like Stats, Math, CS, and Biology. I will be posting here the curriculum-like outline and it will be the ultimate blog-post series. ;) __My goal is to help people who have trouble adapting to the world of bioinformatics by delivering a concise, concrete, pellucid, and fun content, which they can read and learn faster than searching on the internet and spending hours reading books and papers.__
 
 - [Survival Stats for Bioinformatics Series](#)
+  1. [Stat Wars: Into the Data](#)
+    - Data types: Categorical, Numerical
+    - Univariate and Bivariate Data
+    - Stat Terminology
+    - Study Types
+  2. [Stat Wars: Return of Distributions](#)
+    - Univariate Distributions: Discrete and Continuous
+  3. [Stat Wars: Revenge of the Tests](#)
+    - Test on Numerical Data
+    - Test on Categorical Data
+    - Example of Statistical Analysis
+  4. [Stat Wars: A New Modeling](#)
+    - Linear Regression
+    - Multivariate Linear Regression
+  5. [Stat Wars: Bayesian](#)
+  6. [Stat Wars: Advanced Techniques](#)
 - [Survival Computer Science for Bioinformatics Series](#)
 - [Survival Math for Bioinformatics Series](#)
 - [Survival Biology for Bioinformatics Series](#)
