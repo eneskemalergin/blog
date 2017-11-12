@@ -46,9 +46,10 @@ published: true
 
 ### Epigenetic Mechanisms
 
-![Epigenomics](images/epigenomics.jpg)
 
-[NIH, CommonFund, Epigenetics](#)
+<img style="max-width: 100%;" src="{{site.baseurl}}/images/epigenomics.jpg"></img>
+
+> [NIH, CommonFund, Epigenetics](#)
 
 {{site.endslide}}
 {{site.endvertical}}
@@ -58,5 +59,6 @@ published: true
 
 ## Histone Modifications
 
+<img style="max-width: 100%;" src="{{site.baseurl}}/images/histone_modifications.png"></img>
 
-![](images/histone_modifications.png)
+> [Some Link](#)
