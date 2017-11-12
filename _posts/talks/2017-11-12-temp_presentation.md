@@ -1,6 +1,6 @@
 ---
 layout: presentation
-title: OOP Fundamentals
+title: Fantastic Histone Modifications and How to Find Them
 theme: moon
 categories: talks
 published: true
