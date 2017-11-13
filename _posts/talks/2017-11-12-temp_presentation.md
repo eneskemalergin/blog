@@ -70,25 +70,35 @@ published: true
 
 {{site.nextslide}}
 
-### What are Histone Modifications
+### Histones and Their Modifications
+
+- Histone is known for condensing of DNA functionality.
+- Chromatin structure and density of its DNA packaging effects gene expression.
+- Histone proteins affect the gene expression.
+- There are 3 well studied modifications:
+  - Acetylation
+  - Methylation
+  - Phosphorylation
 
 {{site.nextslide}}
 
-### Possible Solutions Their Understanding Offer
+### Importance of Histone Modifications
+
+- Histone proteins have key roles:
+  - Gene regulation
+  - DNA damage repair
+  - Transcription and Replication
+- Important for understanding epigenetic regulation.
 
 {{site.nextslide}}
 
-<img style="max-width: 100%;" src="{{site.baseurl}}/images/histone_modifications.png"></img>
+### Roles of Histone Modifications
 
-> [Figure 1: Histone Modifications ](#)
+<img style="max-width: 100%;" src="{{site.baseurl}}/images/talks/histone_modifications/roles_of_histone_modifications.png"></img>
 
-{{site.nextslide}}
+_(Jayani et al 2010)_
+> [](#)
 
-### Experimental Methods to Detect Histone Modifications
-
-- Mass Spectrometry
-- __Chromatin Immunoprecipitation (ChIP)__
-- ChIP followed by Mass Spectrometry
 
 {{site.endslide}}
 {{site.endvertical}}
@@ -104,9 +114,10 @@ published: true
 
 {{site.nextslide}}
 
-### Template Figure Title
+### ChIP protocol
 
-Add here a figure about ChIP
+<img
+src="{{site.baseurl}}/images/talks/histone_modifications/chip.png"></img>
 
 {{site.nextslide}}
 
@@ -355,7 +366,7 @@ There is a nice reference of full table of Histone Modifications list in the __[
 
 <img style="max-width: 100%;" src="{{site.baseurl}}/images/talks/histone_modifications/PTM_of_core_histones.png"></img>
 
-_Jayani et al 2010_
+_(Jayani et al 2010)_
 
 > [Sup Fig 1: PTMs on Core Histones](https://www.ncbi.nlm.nih.gov/pubmed/20816229)
 
