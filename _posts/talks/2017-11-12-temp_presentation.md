@@ -56,7 +56,7 @@ published: true
 
 ### Epigenetic Modifications II
 
-<img style="width: 450; height: 600" src="{{site.baseurl}}/images/talks/histone_modifications/epigenetic-mechanisms.jpg"></img>
+<img style="width:350; height:450"  src="{{site.baseurl}}/images/talks/histone_modifications/epigenetic-mechanisms.jpg"></img>
 
 > [WhatisEpigenetics, 2017](https://www.whatisepigenetics.com/type-2-diabetes-mellitus-and-epigenetics/)
 
