@@ -8,7 +8,13 @@ published: true
 
 {{site.startvertical}}
 {{site.startslide}}
-
+<style>
+body {
+  background:url("images/backgrond_hom.jpg");
+	background-position:center;
+	background-size: 100%;
+}
+</style>
 # Fantastic Histone Modifications and How to Find Them
 
 > Enes Kemal Ergin <br />
