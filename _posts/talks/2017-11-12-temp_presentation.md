@@ -56,7 +56,7 @@ published: true
 
 ### Epigenetic Modifications II
 
-<img style="width:350; height:450"  src="{{site.baseurl}}/images/talks/histone_modifications/epigenetic-mechanisms.jpg"></img>
+<img style="width:350; height:450"  src="{{site.baseurl}}/images/talks/histone_modifications/epigenetic_mechanism_DNA.png"></img>
 
 > [WhatisEpigenetics, 2017](https://www.whatisepigenetics.com/type-2-diabetes-mellitus-and-epigenetics/)
 
@@ -326,6 +326,38 @@ Make sure to compare them in sensitivity, repeat regions, genome-wide analysis c
 {{site.startslide}}
 
 ## Supplementary Slides
+
+{{site.nextslide}}
+
+### Epigenetic Mechanisms after DNA Level
+
+<img style="max-width: 100%;" src="{{site.baseurl}}/images/talks/histone_modifications/epigenetic_mechanism_supp.png"></img>
+
+{{site.nextslide}}
+
+### Histone Modifications List
+
+- __Acetylation__ (gene activation)
+- __Methylation__ (gene activation,  gene repression)
+- __Phosphorylation__ (gene activation)
+- Ubiquitination (gene activation, gene repression)
+- SUMOylation (gene repression)
+- ADP-ribosylation  
+- Deamination (gene repression)
+- Proline isomerization (gene repression)
+
+There is a nice reference of full table of Histone Modifications list in the __[cellsignal](https://www.cellsignal.com/contents/resources-reference-tables/histone-modification-table/science-tables-histone)__ website
+
+
+{{site.nextslide}}
+
+### Post-translational Modifications on Core Histones
+
+<img style="max-width: 100%;" src="{{site.baseurl}}/images/talks/histone_modifications/PTM_of_core_histones.png"></img>
+
+_Jayani et al 2010_
+
+> [Sup Fig 1: PTMs on Core Histones](https://www.ncbi.nlm.nih.gov/pubmed/20816229)
 
 {{site.nextslide}}
 
