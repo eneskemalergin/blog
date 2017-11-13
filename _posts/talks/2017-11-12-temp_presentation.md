@@ -1,7 +1,7 @@
 ---
 layout: presentation
 title: Fantastic Histone Modifications and How to Find Them
-theme: moon
+theme: white
 categories: talks
 published: true
 ---
