@@ -20,7 +20,7 @@ published: true
 
 ## Outline
 
-- Overview of Epigenomics and Epigenetic Modification
+- Overview of Epigenomics and Epigenetic Modifications
 - Histone Modifications
 - Chromatin Immunoprecipitation
 - ChIP-chip
@@ -35,29 +35,30 @@ published: true
 {{site.startvertical}}
 {{site.startslide}}
 
-## Epigenomics and Epigenetic Modification
+## Epigenomics and Epigenetic Modifications
 
 {{site.nextslide}}
 
 ### What is Epigenomics?
 
 - Study of complete set of epigenetic modifications.
+- Large scale study than a single gene study.
 - Have an important role in gene expression and regulations.
 
 {{site.nextslide}}
 
-### Epigenetic Modifications
+### Epigenetic Modifications I
 
-- DNA Methylation
-- Histone Modifications
+- Heritable changes not due to changes in DNA sequence
+- Cause of variation
 
 {{site.nextslide}}
 
-### Epigenetic Mechanism
+### Epigenetic Modifications II
 
-<img style="max-width: 100%;" src="{{site.baseurl}}/images/epigenomics.jpg"></img>
+<img style="max-width: 100%;" src="{{site.baseurl}}/images/talks/histone_modifications/epigenetic-mechanisms.jpg"></img>
 
-> [NIH-CommonFund, Epigenetics](https://commonfund.nih.gov/epigenomics/figure)
+> [WhatisEpigenetics, 2017](https://www.whatisepigenetics.com/type-2-diabetes-mellitus-and-epigenetics/)
 
 {{site.endslide}}
 {{site.endvertical}}
