@@ -94,9 +94,10 @@ published: true
 
 ### Roles of Histone Modifications
 
-<img style="max-width: 100%;" src="{{site.baseurl}}/images/talks/histone_modifications/roles_of_histone_modifications.png"></img>
+<img src="{{site.baseurl}}/images/talks/histone_modifications/roles_of_histone_modifications.png"></img>
 
 _(Jayani et al 2010)_
+
 > [](#)
 
 
@@ -112,6 +113,14 @@ _(Jayani et al 2010)_
 
 ### What is ChIP
 
+- Tool to determine DNA sequences associated with protein of interest
+- ChIP could be used for:
+  - Post-transcriptionally modified histones
+  - histone variants
+  - transcription factors
+  - chromatin modifying enzymes
+- Scope of experiment could expand to genome-wide scale.
+
 {{site.nextslide}}
 
 ### ChIP protocol
@@ -121,16 +130,10 @@ src="{{site.baseurl}}/images/talks/histone_modifications/chip.png"></img>
 
 {{site.nextslide}}
 
-### ChIP followed by Sequencing Techniques
+### ChIP Followed by Microarray and Sequencing
 
 - __ChIP-chip__ (DNA microarray)
 - __ChIP-seq__ (Next Generation Sequencing)
-
-{{site.nextslide}}
-
-### Template Figure Title
-
-Add here a figure that summarizes both techniques
 
 
 {{site.endslide}}
