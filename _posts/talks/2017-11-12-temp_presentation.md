@@ -234,7 +234,7 @@ Add a table that compares some aspects
 
 ### Figure for ChIP-seq
 
-<img src="{{site.baseurl}}/images/talks/histone_modifications/chip-seq_protocol.jpg"></img>
+<img src="{{site.baseurl}}/images/talks/histone_modifications/chip-seq_overview2.jpg"></img>
 
 {{site.nextslide}}
 
