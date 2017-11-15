@@ -230,11 +230,17 @@ Add a table that compares some aspects
 
 ### What is ChIP-seq
 
+- ChIP combined with high-throughput sequencing
+- Genome-wide profiling
+- Handling repetitiveness with high confidence
+- Greater resolution, sensitivity, and specificity
+- More common since 2007
+
 {{site.nextslide}}
 
 ### Figure for ChIP-seq
 
-<img src="{{site.baseurl}}/images/talks/histone_modifications/chip-seq_overview2.jpg"></img>
+<img src="{{site.baseurl}}/images/talks/histone_modifications/chip-seq_overview.jpg"></img>
 
 {{site.nextslide}}
 
@@ -246,7 +252,7 @@ Add a table that compares some aspects
 
 ### Be Aware of the Bias!
 
-- Explain the short read data processing and possible bias from it
+<img src="{{site.baseurl}}/images/talks/histone_modifications/short_read.jpg"></img>
 
 {{site.nextslide}}
 
@@ -298,9 +304,9 @@ Add a table that compares some aspects
 
 ## Hidden Markov Models
 
-Add the Mathematical formula here
+No Math Involved, Promise!
 
-> Well this is not helpful [Add meme maybe]
+<img src="https://media.giphy.com/media/ohdY5OaQmUmVW/giphy.gif"></img>
 
 {{site.nextslide}}
 
@@ -310,7 +316,7 @@ Explain HMM with analogy, or very simple words, figures could be very helpful
 
 {{site.nextslide}}
 
-### But Why Meme
+<img src="http://www.reactiongifs.com/r/but-why.gif"></img>
 
 {{site.nextslide}}
 
