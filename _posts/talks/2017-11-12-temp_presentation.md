@@ -238,8 +238,6 @@ Add a table that compares some aspects
 
 {{site.nextslide}}
 
-### Figure for ChIP-seq
-
 <img src="{{site.baseurl}}/images/talks/histone_modifications/ChIP-seq_overview.jpg"></img>
 
 {{site.nextslide}}
