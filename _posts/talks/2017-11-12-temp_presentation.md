@@ -148,8 +148,7 @@ src="{{site.baseurl}}/images/talks/histone_modifications/chip.png"></img>
 
 ### What is ChIP-chip
 
-- Genome-wide profiling method
-- Allows high resolution genome-wide profiles
+- High resolution genome-wide profiling
 - Has wide variety of applications
 - Has also limitations:
   - Antibody quality
@@ -165,6 +164,17 @@ src="{{site.baseurl}}/images/talks/histone_modifications/chip.png"></img>
 
 {{site.nextslide}}
 
+
+### ChIP-chip Data Processing
+
+- Hybridization quality control,  
+- Intra and Inter-array normalization  
+- Peak Detection
+- Motif Discovery
+- Genomic average profiles
+- Gene Clustering
+
+{{site.nextslide}}
 
 ### The Output of ChIP-chip
 
@@ -224,18 +234,17 @@ Add a table that compares some aspects
 
 ### Figure for ChIP-seq
 
+<img src="{{site.baseurl}}/images/talks/histone_modifications/chip-seq_protocol.jpg"></img>
+
 {{site.nextslide}}
 
 ### Data Processing in ChIP-seq
 
-- How is different from ChIP-chip
-- How these changes affect the data processing
-- Normalization
-- Mapping vs Intensity Calculations
+<img src="{{site.baseurl}}/images/talks/histone_modifications/chip-seq_bioinformatics_workflow.png"></img>
 
 {{site.nextslide}}
 
-### Be Careful for the Bias!
+### Be Aware of the Bias!
 
 - Explain the short read data processing and possible bias from it
 
