@@ -240,7 +240,7 @@ Add a table that compares some aspects
 
 ### Figure for ChIP-seq
 
-<img src="{{site.baseurl}}/images/talks/histone_modifications/chip-seq_overview.jpg"></img>
+<img src="{{site.baseurl}}/images/talks/histone_modifications/ChIP-seq_overview.jpg"></img>
 
 {{site.nextslide}}
 
@@ -304,15 +304,29 @@ Add a table that compares some aspects
 
 ## Hidden Markov Models
 
-No Math Involved, Promise!
+{{site.nextslide}}
+
+### Understanding HMM
+
+No Math Involved, well maybe __A Little__, Promise!
 
 <img src="https://media.giphy.com/media/ohdY5OaQmUmVW/giphy.gif"></img>
 
 {{site.nextslide}}
 
-### Understanding HMM
+#### Markov Models
 
-Explain HMM with analogy, or very simple words, figures could be very helpful
+<img src="{{site.baseurl}}/images/talks/histone_modifications/weather_predicting_cat.jpg"></img>
+
+{{site.nextslide}}
+
+<img src="{{site.baseurl}}/images/talks/histone_modifications/markov_model.png"></img>
+
+{{site.nextslide}}
+
+#### Hidden Markov Models
+
+<img src="{{site.baseurl}}/images/talks/histone_modifications/wheater_predicting_cat_in_box.jpg.jpg"></img>
 
 {{site.nextslide}}
 
@@ -327,6 +341,14 @@ Explain HMM with analogy, or very simple words, figures could be very helpful
 {{site.nextslide}}
 
 ### Advantages and Disadvantages of HMM
+
+- Advantages
+  - Statistical Foundation
+  - Using Raw Data Directly
+  - Variable Lengths in Input
+- Disadvantages
+  - Expressing Dependencies Between Hiddent States
+  - Unstructured Parameters
 
 {{site.endslide}}
 {{site.endvertical}}
