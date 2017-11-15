@@ -197,10 +197,14 @@ src="{{site.baseurl}}/images/talks/histone_modifications/chip.png"></img>
 
 ### HMMtiling
 
-Add figure to summarize the paper
+- Locating Transcription Factor Binding Sites (TFBS)
+- Utilizes Hidden Markov Model (HMM) to identify TFBS
 
 {{site.nextslide}}
 
+<img src="{{site.baseurl}}/images/talks/histone_modifications/HMMTiling_overview.png"></img>
+
+{{site.nextslide}}
 
 ### TileMap
 
@@ -306,7 +310,7 @@ Add a table that compares some aspects
 
 ### Understanding HMM
 
-No Math Involved, well maybe __A Little__, Promise!
+No Math Involved, Promise!
 
 <img src="https://media.giphy.com/media/ohdY5OaQmUmVW/giphy.gif"></img>
 
@@ -364,13 +368,13 @@ No Math Involved, well maybe __A Little__, Promise!
 
 | Features        | ChIP-chip       | ChIP-seq  |
 | -------------   |:-------------:| -----:|
-| Resolution      | Array Specific | Single Nucleotide - High |
-| Coverage        | Limited by Sequences on the Array |  Limited by alignability of reads |
-| Sensitivity     | Low Sensitivity | High Sensitivity |
-| Repeat Elements | Masked out   |  Can be covered |
-| Cost            | 400-800$ per array | 1000$ per lane |
-| Source of Noise | Cross Hybridization | Sequencing, GC bias, Sequencing error |
-| ChIP DNA        | Large amount needed | Low amount necessary |
+| __Resolution__      | Array Specific | Single Nucleotide - High |
+| __Coverage__        | Limited by Sequences on the Array |  Limited by alignability of reads |
+| __Sensitivity__     | Low Sensitivity | High Sensitivity |
+| __Repeat Elements__ | Masked out   |  Can be covered |
+| __Cost__            | Expensive | Relatively Cheaper |
+| __Source of Noise__ | Cross Hybridization | Sequencing, GC bias, Sequencing error |
+| __ChIP DNA__        | Large amount needed | Low amount necessary |
 
 
 {{site.endslide}}
