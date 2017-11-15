@@ -326,7 +326,7 @@ No Math Involved, well maybe __A Little__, Promise!
 
 #### Hidden Markov Models
 
-<img src="{{site.baseurl}}/images/talks/histone_modifications/weather_predicting_cat.jpg"></img>
+<img src="{{site.baseurl}}/images/talks/histone_modifications/wheater_predicting_cat_in_box.jpg"></img>
 
 {{site.nextslide}}
 
