@@ -293,8 +293,8 @@ Add figure to summarize the application
 ### Comparison of the Applications
 
 Add a table that compares some aspects
-
 {{site.endslide}}
+
 {{site.endvertical}}
 
 {{site.startvertical}}
@@ -328,13 +328,17 @@ No Math Involved, well maybe __A Little__, Promise!
 
 {{site.nextslide}}
 
+### Why HMM is Useful
+
 <img src="http://www.reactiongifs.com/r/but-why.gif"></img>
 
 {{site.nextslide}}
 
-### Why HMM is Useful
+<img src="{{site.baseurl}}/images/talks/histone_modifications/chip_seq_modeling_hmm_1.gif"></img>
 
-- Explain the usefulness of HMM in this context
+{{site.nextslide}}
+
+<img src="{{site.baseurl}}/images/talks/histone_modifications/chip_seq_modeling_hmm_2.gif"></img>
 
 {{site.nextslide}}
 
