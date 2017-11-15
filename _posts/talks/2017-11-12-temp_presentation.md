@@ -362,11 +362,15 @@ No Math Involved, well maybe __A Little__, Promise!
 
 {{site.nextslide}}
 
-### Advantages and Disadvantages of Both Techniques
-
-Show Advantages and Disadvantages in one table
-
-Make sure to compare them in sensitivity, repeat regions, genome-wide analysis compatibility
+| Features        | ChIP-chip       | ChIP-seq  |
+| -------------   |:-------------:| -----:|
+| Resolution      | Array Specific | Single Nucleotide - High |
+| Coverage        | Limited by Sequences on the Array |  Limited by alignability of reads |
+| Sensitivity     | Low Sensitivity | High Sensitivity |
+| Repeat Elements | Masked out   |  Can be covered |
+| Cost            | 400-800$ per array | 1000$ per lane |
+| Source of Noise | Cross Hybridization | Sequencing, GC bias, Sequencing error |
+| ChIP DNA        | Large amount needed | Low amount necessary |
 
 
 {{site.endslide}}
