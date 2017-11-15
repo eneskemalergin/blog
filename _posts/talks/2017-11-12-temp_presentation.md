@@ -148,20 +148,27 @@ src="{{site.baseurl}}/images/talks/histone_modifications/chip.png"></img>
 
 ### What is ChIP-chip
 
-- Information about it
+- Genome-wide profiling method
+- Allows high resolution genome-wide profiles
+- Has wide variety of applications
+- Has also limitations:
+  - Antibody quality
+  - Need for large number of cells
+  - Long, expensive and hard to troubleshoot
+
 
 {{site.nextslide}}
 
 ### Figure for ChIP-chip
 
-Add here a figure that summarizes ChIP-chip
+<img src="{{site.baseurl}}/images/talks/histone_modifications/chip-chip_overview.gif"></img>
 
 {{site.nextslide}}
 
 
 ### The Output of ChIP-chip
 
-Add here the output format as a figure
+<img src="{{site.baseurl}}/images/talks/histone_modifications/chip-chip_output.jpg"></img>
 
 {{site.endslide}}
 {{site.endvertical}}
@@ -381,4 +388,9 @@ Add figure here
 
 {{site.nextslide}}
 
-###
+### ChIP-chip Full Protocol
+
+<img src="{{site.baseurl}}/images/talks/histone_modifications/">
+
+{{site.endslide}}
+{{site.endvertical}}
