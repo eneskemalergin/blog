@@ -165,62 +165,36 @@ src="{{site.baseurl}}/images/talks/histone_modifications/chip.png"></img>
 {{site.nextslide}}
 
 
-### ChIP-chip Data Processing
+### ChIP-chip Data Analysis
 
-- Hybridization quality control,  
-- Intra and Inter-array normalization  
-- Peak Detection
-- Motif Discovery
-- Genomic average profiles
-- Gene Clustering
+- Hybridization quality control,  (__Data Processing__)
+- Intra and Inter-array normalization (__Data Processing__)  
+- Peak Detection (__Data Processing__)
+- Motif Discovery (__Data Analysis__)
+- Genomic average profiles (__Data Analysis__)
+- Gene Clustering (__Functional Analysis__)
+
+{{site.nextslide}}
+
+#### Hybridization Quality Control
+
+{{site.nextslide}}
+
+#### Array Normalization
+
+{{site.nextslide}}
+
+#### Peak Detection
+
+{{site.nextslide}}
+
+#### Motif Discovery
 
 {{site.nextslide}}
 
 ### The Output of ChIP-chip
 
 <img src="{{site.baseurl}}/images/talks/histone_modifications/chip-chip_output.jpg"></img>
-
-{{site.endslide}}
-{{site.endvertical}}
-
-{{site.startvertical}}
-{{site.startslide}}
-
-
-## Applications used ChIP-chip
-
-- HMMtiling
-- TileMap
-- Ringo
-
-{{site.nextslide}}
-
-### HMMtiling
-
-- Locating Transcription Factor Binding Sites (TFBS)
-- Utilizes Hidden Markov Model (HMM) to identify TFBS
-
-{{site.nextslide}}
-
-<img src="{{site.baseurl}}/images/talks/histone_modifications/HMMTiling_overview.png"></img>
-
-{{site.nextslide}}
-
-### TileMap
-
-Add figure to summarize the paper
-
-{{site.nextslide}}
-
-### Ringo
-
-Add figure to summarize the paper
-
-{{site.nextslide}}
-
-### Comparison of the Applications
-
-Add a table that compares some aspects
 
 {{site.endslide}}
 {{site.endvertical}}
@@ -250,11 +224,33 @@ Add a table that compares some aspects
 
 <img src="{{site.baseurl}}/images/talks/histone_modifications/chip-seq_bioinformatics_workflow.png"></img>
 
+- Quality Assesment
+- Mapping, Sorting, Duplicate Removal
+- Normalization
+- Peak Calling
+
 {{site.nextslide}}
 
-### Be Aware of the Bias!
+#### Quality Control
+
+{{site.nextslide}}
+
+#### Alignment
+Mapping - Sorting - Removing
+
+{{site.nextslide}}
+
+##### Be Aware of the Bias!
 
 <img src="{{site.baseurl}}/images/talks/histone_modifications/short_read.jpg"></img>
+
+{{site.nextslide}}
+
+#### Normalization
+
+{{site.nextslide}}
+
+#### Peak Detection
 
 {{site.nextslide}}
 
@@ -268,41 +264,6 @@ Add a table that compares some aspects
 {{site.startvertical}}
 {{site.startslide}}
 
-## Applications used ChIP-seq
-
-- HMMChrome
-- MACS
-- ODIN
-
-{{site.nextslide}}
-
-### HMMChrome
-
-Add figure to summarize the application
-
-{{site.nextslide}}
-
-### MACS
-
-Add figure to summarize the application
-
-{{site.nextslide}}
-
-### ODIN
-
-Add figure to summarize the application
-
-{{site.nextslide}}
-
-### Comparison of the Applications
-
-Add a table that compares some aspects
-{{site.endslide}}
-
-{{site.endvertical}}
-
-{{site.startvertical}}
-{{site.startslide}}
 
 ## Hidden Markov Models
 
