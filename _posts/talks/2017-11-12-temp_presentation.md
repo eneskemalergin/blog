@@ -26,8 +26,7 @@ published: true
 - ChIP-chip
 - ChIP-seq
 - Hidden Markov Chains
-- Comparing ChIP-chip and ChIP-seq
-- Summary
+- ChIP-chip vs ChIP-seq
 
 {{site.endslide}}
 {{site.endvertical}}
@@ -165,14 +164,11 @@ src="{{site.baseurl}}/images/talks/histone_modifications/chip.png"></img>
 {{site.nextslide}}
 
 
-### ChIP-chip Data Analysis
+### Data Processing in ChIP-chip 
 
-- Hybridization quality control,  (__Data Processing__)
-- Intra and Inter-array normalization (__Data Processing__)  
-- Peak Detection (__Data Processing__)
-- Motif Discovery (__Data Analysis__)
-- Genomic average profiles (__Data Analysis__)
-- Gene Clustering (__Functional Analysis__)
+- Hybridization quality control
+- Intra and Inter-array normalization
+- Peak Detection
 
 {{site.nextslide}}
 
@@ -188,9 +184,6 @@ src="{{site.baseurl}}/images/talks/histone_modifications/chip.png"></img>
 
 {{site.nextslide}}
 
-#### Motif Discovery
-
-{{site.nextslide}}
 
 ### The Output of ChIP-chip
 
@@ -224,11 +217,6 @@ src="{{site.baseurl}}/images/talks/histone_modifications/chip.png"></img>
 
 <img src="{{site.baseurl}}/images/talks/histone_modifications/chip-seq_bioinformatics_workflow.png"></img>
 
-- Quality Assesment
-- Mapping, Sorting, Duplicate Removal
-- Normalization
-- Peak Calling
-
 {{site.nextslide}}
 
 #### Quality Control
@@ -254,7 +242,7 @@ Mapping - Sorting - Removing
 
 {{site.nextslide}}
 
-### Differential Peak Calling in ChIP-seq
+##### Differential Peak Calling in ChIP-seq
 
 - Explain this concept here
 
