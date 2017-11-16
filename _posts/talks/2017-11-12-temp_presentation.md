@@ -50,14 +50,10 @@ published: true
 
 - Heritable changes not due to changes in DNA sequence
 - Cause of variation
+- Most studied:
+  - DNA Methylations
+  - Histone Modifications
 
-{{site.nextslide}}
-
-### Epigenetic Modifications II
-
-<img style="width:350; height:450"  src="{{site.baseurl}}/images/talks/histone_modifications/epigenetic_mechanism_DNA.png"></img>
-
-> [WhatisEpigenetics, 2017](https://www.whatisepigenetics.com/type-2-diabetes-mellitus-and-epigenetics/)
 
 {{site.endslide}}
 {{site.endvertical}}
@@ -88,17 +84,6 @@ published: true
   - DNA damage repair
   - Transcription and Replication
 - Important for understanding epigenetic regulation.
-
-{{site.nextslide}}
-
-### Roles of Histone Modifications
-
-<img src="{{site.baseurl}}/images/talks/histone_modifications/roles_of_histone_modifications.png"></img>
-
-_(Jayani et al 2010)_
-
-> [](#)
-
 
 {{site.endslide}}
 {{site.endvertical}}
@@ -164,26 +149,12 @@ src="{{site.baseurl}}/images/talks/histone_modifications/chip.png"></img>
 {{site.nextslide}}
 
 
-### Data Processing in ChIP-chip 
+### Data Processing in ChIP-chip
 
-- Hybridization quality control
-- Intra and Inter-array normalization
+- Array normalization
 - Peak Detection
 
 {{site.nextslide}}
-
-#### Hybridization Quality Control
-
-{{site.nextslide}}
-
-#### Array Normalization
-
-{{site.nextslide}}
-
-#### Peak Detection
-
-{{site.nextslide}}
-
 
 ### The Output of ChIP-chip
 
@@ -344,6 +315,15 @@ No Math Involved, Promise!
 
 ## Supplementary Slides
 
+
+{{site.nextslide}}
+
+### Epigenetic Mechanisms DNA Level
+
+<img style="width:350; height:450"  src="{{site.baseurl}}/images/talks/histone_modifications/epigenetic_mechanism_DNA.png"></img>
+
+> [WhatisEpigenetics, 2017](https://www.whatisepigenetics.com/type-2-diabetes-mellitus-and-epigenetics/)
+
 {{site.nextslide}}
 
 ### Epigenetic Mechanisms after DNA Level
@@ -365,6 +345,14 @@ No Math Involved, Promise!
 
 There is a nice reference of full table of Histone Modifications list in the __[cellsignal](https://www.cellsignal.com/contents/resources-reference-tables/histone-modification-table/science-tables-histone)__ website
 
+
+{{site.nextslide}}
+
+### Roles of Histone Modifications
+
+<img src="{{site.baseurl}}/images/talks/histone_modifications/roles_of_histone_modifications.png"></img>
+
+_(Jayani et al 2010)_
 
 {{site.nextslide}}
 
