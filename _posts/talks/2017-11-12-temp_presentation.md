@@ -25,8 +25,9 @@ published: true
 - Chromatin Immunoprecipitation
 - ChIP-chip
 - ChIP-seq
-- Hidden Markov Chains
 - ChIP-chip vs ChIP-seq
+- Hidden Markov Chains
+
 
 {{site.endslide}}
 {{site.endvertical}}
@@ -225,14 +226,35 @@ Mapping - Sorting - Removing
 
 #### Peak Calling
 
-- Main point for optimization for years.
--
+- Identifying regions enriched after mapping
+- Main point of optimization for years.
+- Aligner and Peak Caller compatibility
+- __Two Key Components:__
+  - Identifiy candidate peaks
+  - Test candidates statistical significance
+
+{{site.nextslide}}
+
+#### Peak Calling
+
+- __MACS__ (Poisson Distribution)
+- PeakFinder (Thresholding Principle)
+- FindPeaks (Monte Carlo Simulation)
+- __HPeak__ (Hidden Markov Model)
 
 {{site.nextslide}}
 
 ##### Differential Peak Calling in ChIP-seq
 
-- Explain this concept here
+- When multiple experiments
+- Critical to calculate the differential peak
+- __ODIN__, __THOR__ (Hidden Markov Model)
+
+<img src="{{site.baseurl}}/images/talks/histone_modifications/two_chip-seq_signals.gif"></img>
+
+{{site.nextslide}}
+
+<img src="{{site.baseurl}}/images/talks/histone_modifications/THOR_DPC.png"></img>
 
 {{site.endslide}}
 {{site.endvertical}}
@@ -376,6 +398,18 @@ There is a nice reference of full table of Histone Modifications list in the __[
 
 {{site.nextslide}}
 
+### HMMTiling for ChIP-Chip
+
+<img style="max-width: 100%;" src="{{site.baseurl}}/images/talks/histone_modifications/HMMTiling.png"></img>
+
+{{site.nextslide}}
+
+### TileMap for ChIP-Chip
+
+<img style="max-width: 100%;" src="{{site.baseurl}}/images/talks/histone_modifications/TileMap.png"></img>
+
+{{site.nextslide}}
+
 ### Extensive ChIP-seq Workflow
 
 <img style="max-width: 100%;" src="{{site.baseurl}}/images/talks/histone_modifications/chip_seq_workflow.jpg"></img>
@@ -427,7 +461,13 @@ __15-__ Guzman, C., & D’Orso, I. (2017). CIPHER: a flexible and extensive work
 
 __16-__ Nakato, R., & Shirahige, K. (2016). Recent advances in ChIP-seq analysis: from quality management to whole-genome annotation. Briefings in Bioinformatics. doi:10.1093/bib/bbw023 </br>
 __17-__ Diaz, A., Park, K., Lim, D. A., & Song, J. S. (2012). Normalization, bias correction, and peak calling for ChIP-seq. Statistical Applications in Genetics and Molecular Biology, 11(3). doi:10.1515/1544-6115.1750 </br>
+__18-__ Qin, Zhaohui S, et al. “HPeak: an HMM-Based algorithm for defining read-Enriched regions in ChIP-Seq data.” BMC Bioinformatics, vol. 11, no. 1, 2010, p. 369., doi:10.1186/1471-2105-11-369. </br>
 
+{{site.nextslide}}
+
+__19-__ Allhoff, M., et al. “Detecting differential peaks in ChIP-Seq signals with ODIN.” Bioinformatics, vol. 31, no. 6, Nov. 2015, pp. 980–980., doi:10.1093/bioinformatics/btv030. </br>
+__20-__ Allhoff, Manuel, et al. “Differential peak calling of ChIP-Seq signals with replicates with THOR.” Nucleic Acids Research, Feb. 2016, doi:10.1093/nar/gkw680. </br>
+__21-__
 
 {{site.endslide}}
 {{site.endvertical}}
