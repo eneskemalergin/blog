@@ -223,6 +223,26 @@ Mapping - Sorting - Removing
 {{site.startvertical}}
 {{site.startslide}}
 
+## ChIP-chip vs ChIP-seq
+
+{{site.nextslide}}
+
+| Features        | ChIP-chip       | ChIP-seq  |
+| -------------   |:-------------:| -----:|
+| __Resolution__      | Array Specific | Single Nucleotide - High |
+| __Coverage__        | Limited by Sequences on the Array |  Limited by alignability of reads |
+| __Sensitivity__     | Low Sensitivity | High Sensitivity |
+| __Repeat Elements__ | Masked out   |  Can be covered |
+| __Cost__            | Expensive | Relatively Cheaper |
+| __Source of Noise__ | Cross Hybridization | Sequencing, GC bias, Sequencing error |
+| __ChIP DNA__        | Large amount needed | Low amount necessary |
+
+
+{{site.endslide}}
+{{site.endvertical}}
+
+{{site.startvertical}}
+{{site.startslide}}
 
 ## Hidden Markov Models
 
@@ -282,27 +302,6 @@ No Math Involved, Promise!
 {{site.startvertical}}
 {{site.startslide}}
 
-## ChIP-chip vs ChIP-seq
-
-{{site.nextslide}}
-
-| Features        | ChIP-chip       | ChIP-seq  |
-| -------------   |:-------------:| -----:|
-| __Resolution__      | Array Specific | Single Nucleotide - High |
-| __Coverage__        | Limited by Sequences on the Array |  Limited by alignability of reads |
-| __Sensitivity__     | Low Sensitivity | High Sensitivity |
-| __Repeat Elements__ | Masked out   |  Can be covered |
-| __Cost__            | Expensive | Relatively Cheaper |
-| __Source of Noise__ | Cross Hybridization | Sequencing, GC bias, Sequencing error |
-| __ChIP DNA__        | Large amount needed | Low amount necessary |
-
-
-{{site.endslide}}
-{{site.endvertical}}
-
-{{site.startvertical}}
-{{site.startslide}}
-
 ## Thank You
 
 > Questions?
@@ -352,29 +351,43 @@ There is a nice reference of full table of Histone Modifications list in the __[
 
 <img src="{{site.baseurl}}/images/talks/histone_modifications/roles_of_histone_modifications.png"></img>
 
-_(Jayani et al 2010)_
-
 {{site.nextslide}}
 
 ### Post-translational Modifications on Core Histones
 
 <img style="max-width: 100%;" src="{{site.baseurl}}/images/talks/histone_modifications/PTM_of_core_histones.png"></img>
 
-_(Jayani et al 2010)_
+{{site.nextslide}}
 
-> [Sup Fig 1: PTMs on Core Histones](https://www.ncbi.nlm.nih.gov/pubmed/20816229)
+
+
+{{site.endslide}}
+{{site.endvertical}}
+
+{{site.startvertical}}
+{{site.startslide}}
+
+### References
+
+__1-__ Callinan, P. A., & Feinberg, A. P. (2006). The emerging science of epigenomics. Human Molecular Genetics. doi:10.1093/hmg/ddl095 </br>
+__2-__ Handy, D. E., Castro, R., & Loscalzo, J. (2011). Epigenetic Modifications: Basic Mechanisms and Role in Cardiovascular Disease. Circulation, 123(19), 2145-2156. doi:10.1161/circulationaha.110.956839 </br>
+__3-__ Lennartsson, A., & Ekwall, K. (2009). Histone modification patterns and epigenetic codes. Biochimica et Biophysica Acta (BBA) - General Subjects, 1790(9), 863-868. doi:10.1016/j.bbagen.2008.12.006 </br>
+__4-__ Jayani, R. S., Ramanujam, P. L., & Galande, S. (2010). Studying Histone Modifications and Their Genomic Functions by Employing Chromatin Immunoprecipitation and Immunoblotting. Methods in Cell Biology Nuclear Mechanics & Genome Regulation, 35-56. doi:10.1016/s0091-679x(10)98002-3 </br>
+__5-__ Collas, P. (2009). The State-of-the-Art of Chromatin Immunoprecipitation. Chromatin Immunoprecipitation Assays Methods in Molecular Biology, 1-25. doi:10.1007/978-1-60327-414-2_1 </br>
 
 {{site.nextslide}}
 
-### Mass Spectrometry Based Detection of Histone Modifications
-
-Add figure here
+__6-__ Lee, T. I., Johnstone, S. E., & Young, R. A. (2006). Chromatin immunoprecipitation and microarray-based analysis of protein location. Nature Protocols, 1(2), 729-748. doi:10.1038/nprot.2006.98 </br>
+__7-__ Cauchy, P., Benoukraf, T., & Ferrier, P. (2011). Processing ChIP-Chip Data: From the Scanner to the Browser. Methods in Molecular Biology Bioinformatics for Omics Data, 251-268. doi:10.1007/978-1-61779-027-0_12 </br>
+__8-__ Reinke, V. (2013). Transcriptional regulation of gene expression in C. elegans. WormBook, 1-31. doi:10.1895/wormbook.1.45.2 </br>
+__9-__ Newkirk, D., Biesinger, J., Chon, A., Yokomori, K., & Xie, X. (2011). AREM: Aligning Short Reads from ChIP-Sequencing by Expectation Maximization. Lecture Notes in Computer Science Research in Computational Molecular Biology, 283-297. doi:10.1007/978-3-642-20036-6_26 </br>
+__10-__ Allhoff, M., Sere, K., Chauvistre, H., Lin, Q., Zenke, M., & Costa, I. G. (2015). Detecting differential peaks in ChIP-seq signals with ODIN. Bioinformatics, 31(6), 980-980. doi:10.1093/bioinformatics/btv030 </br>
 
 {{site.nextslide}}
 
-### ChIP-chip Full Protocol
-
-<img src="{{site.baseurl}}/images/talks/histone_modifications/">
+__11-__ Meyer, I. (2004). Hidden Markov Model (HMM, Hidden Semi-Markov Models, Profile Hidden Markov Models, Training of Hidden Markov Models, Dynamic Programming, Pair Hidden Markov Models). Dictionary of Bioinformatics and Computational Biology. doi:10.1002/9780471650126.dob0318.pub2 </br>
+__12-__ Vinciotti, V. (2017). Modelling ChIP-seq Data Using HMMs. Hidden Markov Models Methods in Molecular Biology, 115-122. doi:10.1007/978-1-4939-6753-7_8 </br>
+__13-__ Ho, J. W., Bishop, E., Karchenko, P. V., Nègre, N., White, K. P., & Park, P. J. (2011). ChIP-chip versus ChIP-seq: Lessons for experimental design and data analysis. BMC Genomics, 12(1). doi:10.1186/1471-2164-12-134 </br>
 
 {{site.endslide}}
 {{site.endvertical}}
