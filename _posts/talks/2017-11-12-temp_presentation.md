@@ -226,7 +226,7 @@ Mapping - Sorting - Removing
 #### Peak Calling
 
 - Main point for optimization for years.
-- 
+-
 
 {{site.nextslide}}
 
@@ -396,19 +396,22 @@ There is a nice reference of full table of Histone Modifications list in the __[
 __1-__ Callinan, P. A., & Feinberg, A. P. (2006). The emerging science of epigenomics. Human Molecular Genetics. doi:10.1093/hmg/ddl095 </br>
 __2-__ Handy, D. E., Castro, R., & Loscalzo, J. (2011). Epigenetic Modifications: Basic Mechanisms and Role in Cardiovascular Disease. Circulation, 123(19), 2145-2156. doi:10.1161/circulationaha.110.956839 </br>
 __3-__ Lennartsson, A., & Ekwall, K. (2009). Histone modification patterns and epigenetic codes. Biochimica et Biophysica Acta (BBA) - General Subjects, 1790(9), 863-868. doi:10.1016/j.bbagen.2008.12.006 </br>
-__4-__ Jayani, R. S., Ramanujam, P. L., & Galande, S. (2010). Studying Histone Modifications and Their Genomic Functions by Employing Chromatin Immunoprecipitation and Immunoblotting. Methods in Cell Biology Nuclear Mechanics & Genome Regulation, 35-56. doi:10.1016/s0091-679x(10)98002-3 </br>
-
 
 {{site.nextslide}}
 
+__4-__ Jayani, R. S., Ramanujam, P. L., & Galande, S. (2010). Studying Histone Modifications and Their Genomic Functions by Employing Chromatin Immunoprecipitation and Immunoblotting. Methods in Cell Biology Nuclear Mechanics & Genome Regulation, 35-56. doi:10.1016/s0091-679x(10)98002-3 </br>
 __5-__ Collas, P. (2009). The State-of-the-Art of Chromatin Immunoprecipitation. Chromatin Immunoprecipitation Assays Methods in Molecular Biology, 1-25. doi:10.1007/978-1-60327-414-2_1 </br>
 __6-__ Lee, T. I., Johnstone, S. E., & Young, R. A. (2006). Chromatin immunoprecipitation and microarray-based analysis of protein location. Nature Protocols, 1(2), 729-748. doi:10.1038/nprot.2006.98 </br>
-__7-__ Cauchy, P., Benoukraf, T., & Ferrier, P. (2011). Processing ChIP-Chip Data: From the Scanner to the Browser. Methods in Molecular Biology Bioinformatics for Omics Data, 251-268. doi:10.1007/978-1-61779-027-0_12 </br>
-__8-__ Reinke, V. (2013). Transcriptional regulation of gene expression in C. elegans. WormBook, 1-31. doi:10.1895/wormbook.1.45.2 </br>
 
 {{site.nextslide}}
 
+__7-__ Cauchy, P., Benoukraf, T., & Ferrier, P. (2011). Processing ChIP-Chip Data: From the Scanner to the Browser. Methods in Molecular Biology Bioinformatics for Omics Data, 251-268. doi:10.1007/978-1-61779-027-0_12 </br>
+__8-__ Reinke, V. (2013). Transcriptional regulation of gene expression in C. elegans. WormBook, 1-31. doi:10.1895/wormbook.1.45.2 </br>
 __9-__ Newkirk, D., Biesinger, J., Chon, A., Yokomori, K., & Xie, X. (2011). AREM: Aligning Short Reads from ChIP-Sequencing by Expectation Maximization. Lecture Notes in Computer Science Research in Computational Molecular Biology, 283-297. doi:10.1007/978-3-642-20036-6_26 </br>
+
+
+{{site.nextslide}}
+
 __10-__ Allhoff, M., Sere, K., Chauvistre, H., Lin, Q., Zenke, M., & Costa, I. G. (2015). Detecting differential peaks in ChIP-seq signals with ODIN. Bioinformatics, 31(6), 980-980. doi:10.1093/bioinformatics/btv030 </br>
 __11-__ Meyer, I. (2004). Hidden Markov Model (HMM, Hidden Semi-Markov Models, Profile Hidden Markov Models, Training of Hidden Markov Models, Dynamic Programming, Pair Hidden Markov Models). Dictionary of Bioinformatics and Computational Biology. doi:10.1002/9780471650126.dob0318.pub2 </br>
 __12-__ Vinciotti, V. (2017). Modelling ChIP-seq Data Using HMMs. Hidden Markov Models Methods in Molecular Biology, 115-122. doi:10.1007/978-1-4939-6753-7_8 </br>
@@ -418,12 +421,13 @@ __12-__ Vinciotti, V. (2017). Modelling ChIP-seq Data Using HMMs. Hidden Markov 
 __13-__ Ho, J. W., Bishop, E., Karchenko, P. V., Nègre, N., White, K. P., & Park, P. J. (2011). ChIP-chip versus ChIP-seq: Lessons for experimental design and data analysis. BMC Genomics, 12(1). doi:10.1186/1471-2164-12-134 </br>
 __14-__ Carroll TS, Liang Z, Salama R, Stark R and de Santiago I (in press). “Impact of artefact removal on ChIP quality metrics in ChIP-seq and ChIP-exo data.” Frontiers in Genetics. </br>
 __15-__ Guzman, C., & D’Orso, I. (2017). CIPHER: a flexible and extensive workflow platform for integrative next-generation sequencing data analysis and genomic regulatory element prediction. BMC Bioinformatics, 18(1). doi:10.1186/s12859-017-1770-1 </br>
-__16-__ Nakato, R., & Shirahige, K. (2016). Recent advances in ChIP-seq analysis: from quality management to whole-genome annotation. Briefings in Bioinformatics. doi:10.1093/bib/bbw023 </br>
+
 
 {{site.nextslide}}
 
+__16-__ Nakato, R., & Shirahige, K. (2016). Recent advances in ChIP-seq analysis: from quality management to whole-genome annotation. Briefings in Bioinformatics. doi:10.1093/bib/bbw023 </br>
 __17-__ Diaz, A., Park, K., Lim, D. A., & Song, J. S. (2012). Normalization, bias correction, and peak calling for ChIP-seq. Statistical Applications in Genetics and Molecular Biology, 11(3). doi:10.1515/1544-6115.1750 </br>
-__18-__
+
 
 {{site.endslide}}
 {{site.endvertical}}
