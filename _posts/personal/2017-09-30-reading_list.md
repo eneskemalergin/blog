@@ -37,7 +37,7 @@ My reading list contains names, review links, and my rating of the book.
 9. [When I'm Gone](https://www.goodreads.com/book/show/27401883-when-i-m-gone) __by Emily Bleeker__, <span style="color:#C70025">Rating: 3.0 </span>
 10. [Weapons of Math Destruction](https://www.goodreads.com/book/show/28186015-weapons-of-math-destruction) __by Cathy O'Neil__, <span style="color:#C70025">Rating: 5.0 </span> ([My Blogpost Summary](http://eneskemalergin.github.io/blog/personal/weapons_of_math_destruction/))
 11. [Dawn of the Jedi: Into the Void](https://www.goodreads.com/book/show/15823425-dawn-of-the-jedi) __by Tim Lebbon__ <span style="color:#C70025">Rating: 3.5 </span>
-
+12. [A New Dawn](https://www.goodreads.com/book/show/20262705-a-new-dawn) __by John Jackson Miller__ <span style="color:#C70025">Rating: 4.5 </span>
 
 
 ---
