@@ -17,10 +17,18 @@ My reading list contains names, review links, and my rating of the book.
 
 - [Machine, Platform, Crowd: Harnessing our Digital Future](https://www.goodreads.com/book/show/32606599-machine-platform-crowd) __by Erik Brynjolfsson and Andrew McAfee__
 - [Creating Life in the Lab](https://www.goodreads.com/book/show/10555982-creating-life-in-the-lab) __by Fazale Rana__
-- [Living Forward](https://www.goodreads.com/book/show/26266675-living-forward) __by Michael Hyatt and Daniel Harkavy__
-- [In Pursuit of the Unknown: 17 Equations that Changed the World](https://www.goodreads.com/book/show/18899361-in-pursuit-of-the-unknown) __by Ian Steward__
+- [The Five Love Language](https://www.goodreads.com/book/show/23878688-the-5-love-languages) __by Gary Chapman__
 
 ---
+
+## 2018
+
+---
+
+> TBD
+
+---
+
 
 ## 2017
 
