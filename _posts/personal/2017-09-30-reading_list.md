@@ -17,6 +17,7 @@ My reading list contains names, review links, and my rating of the book.
 
 - [Creating Life in the Lab](https://www.goodreads.com/book/show/10555982-creating-life-in-the-lab) __by Fazale Rana__
 - [The Five Love Language](https://www.goodreads.com/book/show/23878688-the-5-love-languages) __by Gary Chapman__
+- [Life 3.0: Being Human in the Age of Artificial Intelligence](https://www.goodreads.com/book/show/34272565-life-3-0) __by Max Tegmark__
 
 ---
 
