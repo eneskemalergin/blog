@@ -15,10 +15,10 @@ My reading list contains names, review links, and my rating of the book.
 
 ---
 
--
-- [The Five Love Language](https://www.goodreads.com/book/show/23878688-the-5-love-languages) __by Gary Chapman__
-- [WTF?: What's the Future and Why It's Up to Us](https://www.goodreads.com/book/show/34017076-wtf) __by Tim O'Reilly__
+
+- [The Strange Order of Things: Life, Feeling, and the Making of Cultures](https://www.goodreads.com/book/show/32335976-the-strange-order-of-things) __by António R. Damásio__
 - [Irresistible: The Rise of Addictive Technology and the Business of Keeping Us Hooked](https://www.goodreads.com/book/show/30962055-irresistible) __by Adam Alter__
+- [The Last Jedi: Expanded Edition](https://www.goodreads.com/book/show/38818855-the-last-jedi) __by Jason Fry__
 
 ---
 
@@ -30,6 +30,7 @@ My reading list contains names, review links, and my rating of the book.
 2. [Life 3.0: Being Human in the Age of Artificial Intelligence](https://www.goodreads.com/book/show/34272565-life-3-0) __by Max Tegmark__ <span style="color:#C70025">Rating: 5.0 </span> , ([My GoodReads Review](https://www.goodreads.com/book/show/34272565-life-3-0))
 3. [Creating Life in the Lab](https://www.goodreads.com/book/show/10555982-creating-life-in-the-lab) __by Fazale Rana__ <span style="color:#C70025">Rating: 4.0 </span> , ([My GoodReads Review](https://www.goodreads.com/book/show/10555982-creating-life-in-the-lab))
 4. [The Four: The Hidden DNA of Amazon, Apple, Facebook, and Google](https://www.goodreads.com/book/show/34427200-the-four) __by Scott Galloway__ <span style="color:#C70025">Rating: 4.0 </span> , ([My GoodReads Review]((https://www.goodreads.com/book/show/34427200-the-four)))
+5. [WTF?: What's the Future and Why It's Up to Us](https://www.goodreads.com/book/show/34017076-wtf) __by Tim O'Reilly__ <span style="color:#C70025">Rating: 5.0 </span>, ([My GoodReads Review](https://www.goodreads.com/review/show/2250151807?book_show_action=false&from_review_page=1))
 
 ---
 
