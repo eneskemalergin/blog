@@ -17,8 +17,8 @@ My reading list contains names, review links, and my rating of the book.
 
 
 - [Irresistible: The Rise of Addictive Technology and the Business of Keeping Us Hooked](https://www.goodreads.com/book/show/30962055-irresistible) __by Adam Alter__
-- [The Last Jedi: Expanded Edition](https://www.goodreads.com/book/show/38818855-the-last-jedi) __by Jason Fry__
-- [Hit Refresh](https://www.goodreads.com/book/show/30835567-hit-refresh) __by Satya Nadella__
+- [The Shallows: What the Internet Is Doing to Our Brains](https://www.goodreads.com/book/show/9778945-the-shallows) __by Nicholas Carr__
+- 
 
 
 ---
@@ -32,9 +32,10 @@ My reading list contains names, review links, and my rating of the book.
 3. [Creating Life in the Lab](https://www.goodreads.com/book/show/10555982-creating-life-in-the-lab) __by Fazale Rana__ <span style="color:#C70025">Rating: 4.0 </span> , ([My GoodReads Review](https://www.goodreads.com/book/show/10555982-creating-life-in-the-lab))
 4. [The Four: The Hidden DNA of Amazon, Apple, Facebook, and Google](https://www.goodreads.com/book/show/34427200-the-four) __by Scott Galloway__ <span style="color:#C70025">Rating: 4.0 </span> , ([My GoodReads Review]((https://www.goodreads.com/book/show/34427200-the-four)))
 5. [WTF?: What's the Future and Why It's Up to Us](https://www.goodreads.com/book/show/34017076-wtf) __by Tim O'Reilly__ <span style="color:#C70025">Rating: 5.0 </span>, ([My GoodReads Review](https://www.goodreads.com/review/show/2250151807?book_show_action=false&from_review_page=1))
-6. - [The Strange Order of Things: Life, Feeling, and the Making of Cultures](https://www.goodreads.com/book/show/32335976-the-strange-order-of-things) __by António R. Damásio__ <span style="color:#C70025">Rating: 4.5 </span>, ([My GoodReads Review](#))
-7.
-
+6. [The Strange Order of Things: Life, Feeling, and the Making of Cultures](https://www.goodreads.com/book/show/32335976-the-strange-order-of-things) __by António R. Damásio__ <span style="color:#C70025">Rating: 4.5 </span>, ([My GoodReads Review](#))
+7. [The Last Jedi: Expanded Edition](https://www.goodreads.com/book/show/38818855-the-last-jedi) __by Jason Fry__ <span style="color:#C70025">Rating: 5.0 </span>, ([My GoodReads Review](#))
+8. [Hit Refresh](https://www.goodreads.com/book/show/30835567-hit-refresh) __by Satya Nadella__ <span style="color:#C70025">Rating: 4.0 </span>, ([My GoodReads Review](#))
+9. [The Future of Humanity: Terraforming Mars, Interstellar Travel, Immortality, and Our Destiny Beyond](https://www.goodreads.com/book/show/36407347-the-future-of-humanity) __by Michio Kaku__ <span style="color:#C70025">Rating: 5.0 </span>, ([My GoodReads Review](#))
 
 ---
 
