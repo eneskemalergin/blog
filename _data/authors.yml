@@ -2,7 +2,7 @@
 
 enes_kemal:
   name: eneskemalergin
-  web:
+  web: https://eneskemalergin.github.io/
   email: eneskemalergin@gmail.com
   bio: "Genomic Data Scientist | Data Lover | Crazy about Biology | Python Enthusiast |"
   avatar: bio-photo-2.jpg

@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Welcome to My Place!
-excerpt: "This theme is very flexible, it's good to have words and images together."
-modified: 2017-10-10
+excerpt: "A place where you can find information about me."
+modified: 2018-04-12
 image:
   feature: bg.jpg
   credit: E.Kemal
@@ -19,3 +19,11 @@ I write mostly about what I am interested currently that's why you can find a lo
 For more details you can [Click Here to download my CV ](https://github.com/eneskemalergin/My_CV/raw/master/Academic_CV.pdf)
 
 Have Fun!
+
+
+
+## What I am Doing currently?
+
+### Reading
+
+I'm currently reading a book called **[A Taste for the Beautiful: The Evalution of Attraction](https://www.goodreads.com/book/show/34928247-a-taste-for-the-beautiful)** and listening another book called **[The Distracted Mind: Ancient Brains in a High-Tech World](https://www.goodreads.com/book/show/29889454-the-distracted-mind)**. I am an avid book reader/listener constantly try to improve myself by learning everyday.
