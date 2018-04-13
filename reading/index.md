@@ -15,7 +15,6 @@ This is my Reading list I started record Books that I've read or listened. You w
 
 - [Irresistible: The Rise of Addictive Technology and the Business of Keeping Us Hooked](https://www.goodreads.com/book/show/30962055-irresistible) __by Adam Alter__
 - [The Shallows: What the Internet Is Doing to Our Brains](https://www.goodreads.com/book/show/9778945-the-shallows) __by Nicholas Carr__
--
 
 
 ---
