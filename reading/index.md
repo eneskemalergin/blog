@@ -13,8 +13,9 @@ This is my Reading list I started record Books that I've read or listened. You w
 ---
 
 
-- 
-- 
+- [A Taste for the Beautiful: The Evolution of Attraction](https://www.goodreads.com/book/show/34928247-a-taste-for-the-beautiful) __by Michael J. Ryan__ 
+- [The Distracted Mind: Ancient Brains in a High-Tech World](https://www.goodreads.com/book/show/29889454-the-distracted-mind) __by Adam Gazzaley,  Larry D. Rosen__ 
+- [The Ascent of Gravity: The Quest to Understand the Force that Explains Everything](https://www.goodreads.com/book/show/34445220-the-ascent-of-gravity) __by Marcus Chown__ 
 
 
 ---
