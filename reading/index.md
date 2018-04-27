@@ -13,8 +13,9 @@ This is my Reading list I started record Books that I've read or listened. You w
 ---
 
 
-- [Irresistible: The Rise of Addictive Technology and the Business of Keeping Us Hooked](https://www.goodreads.com/book/show/30962055-irresistible) __by Adam Alter__
-- [The Shallows: What the Internet Is Doing to Our Brains](https://www.goodreads.com/book/show/9778945-the-shallows) __by Nicholas Carr__
+- [A Taste for the Beautiful: The Evolution of Attraction](https://www.goodreads.com/book/show/34928247-a-taste-for-the-beautiful) __by Michael J. Ryan__ 
+- [The Distracted Mind: Ancient Brains in a High-Tech World](https://www.goodreads.com/book/show/29889454-the-distracted-mind) __by Adam Gazzaley,  Larry D. Rosen__ 
+- [The Ascent of Gravity: The Quest to Understand the Force that Explains Everything](https://www.goodreads.com/book/show/34445220-the-ascent-of-gravity) __by Marcus Chown__ 
 
 
 ---
@@ -32,6 +33,8 @@ This is my Reading list I started record Books that I've read or listened. You w
 7. [The Last Jedi: Expanded Edition](https://www.goodreads.com/book/show/38818855-the-last-jedi) __by Jason Fry__ <span style="color:#C70025">Rating: 5.0 </span>, ([My GoodReads Review](#))
 8. [Hit Refresh](https://www.goodreads.com/book/show/30835567-hit-refresh) __by Satya Nadella__ <span style="color:#C70025">Rating: 4.0 </span>, ([My GoodReads Review](#))
 9. [The Future of Humanity: Terraforming Mars, Interstellar Travel, Immortality, and Our Destiny Beyond](https://www.goodreads.com/book/show/36407347-the-future-of-humanity) __by Michio Kaku__ <span style="color:#C70025">Rating: 5.0 </span>, ([My GoodReads Review](#))
+10. [The Shallows: What the Internet Is Doing to Our Brains](https://www.goodreads.com/book/show/9778945-the-shallows) __by Nicholas Carr__ <span style="color:#C70025">Rating: 2.5 </span>, ([My GoodReads Review](#))
+11. [Irresistible: The Rise of Addictive Technology and the Business of Keeping Us Hooked](https://www.goodreads.com/book/show/30962055-irresistible) __by Adam Alter__ <span style="color:#C70025">Rating: 4.0 </span>, ([My GoodReads Review](#))
 
 ---
 
