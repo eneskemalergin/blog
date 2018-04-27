@@ -6,8 +6,7 @@ description: "R | Python | Big Data | Proteomics | Bioinformatics | Machine Lear
 logo: EKE-logo-Red.png
 search: true
 
-baseurl: "/blog" # the subpath of your site, e.g. /blog/
-url: "https://eneskemalergin.github.io" # the base hostname & protocol for your site
+url: http://eneskemalergin.github.io/blog/
 
 # Jekyll configuration
 
