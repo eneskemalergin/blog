@@ -98,7 +98,7 @@ fviz_cluster(res.fanny, ellipse.type = "convex",
             legend = "right")    
 ```
 
-![Cluster plot](/images/cluster_plot.png)
+![Cluster plot](../../images/cluster_plot.png)
 
 Cluster plots are straightforward, provides a visualization of partitioning clustering methods results. We can see from our result setosa is clustering very well but versicolor and virginica species are very close.
 
@@ -112,7 +112,7 @@ fviz_silhouette(res.fanny, palette = c("#00AFBB", "#E7B800", "#FC4E07"),
 ```
 
 
-![Clusters Silhouette plot](/images/silhouette_plot.png)
+![Clusters Silhouette plot](../../images/silhouette_plot.png)
 
 ---
 
@@ -181,7 +181,7 @@ plt.show()
 ```
 
 
-![png](/images/2018-05-01-Fuzzy_Clustering_4_0.png)
+![png](../../images/2018-05-01-Fuzzy_Clustering_4_0.png)
 
 
 Here is we created our test data and plotted them in the figure. With a human eye I can see there there are 3 distinct clusters however we would like to see which number of clusters best produces the clustering model. To be able to achieve that we will loop from 2 to 10 number of clusters *(named centers in this library)* :
@@ -217,7 +217,7 @@ fig1.tight_layout()
 ```
 
 
-![png](/images/2018-05-01-Fuzzy_Clustering_6_0.png)
+![png](../../images/2018-05-01-Fuzzy_Clustering_6_0.png)
 
 
 In the plot we see 2 parameters showed along side with the clusters with different number centers. First parameter is called centers which indicates number of clusters. Second parameter **(FPC - Fuzzy Partition Coefficient)** is defined to be in 0-1 range, with 1 being the best. It is a metric which tells us how cleanly our data is described by a certain model. Next we will cluster our set of data - which we know has three clusters - several times, with between 2 and 9 clusters. We will then show the results of the clustering, and plot the fuzzy partition coefficient. When the FPC is maximized, our data is described best.
@@ -233,7 +233,7 @@ plt.show()
 ```
 
 
-![png](/images/2018-05-01-Fuzzy_Clustering_8_0.png)
+![png](../../images/2018-05-01-Fuzzy_Clustering_8_0.png)
 
 
 As we can see, the ideal number of centers is 2. This isn’t news for our contrived example, but having the FPC available can be very useful when the structure of your data is unclear.
