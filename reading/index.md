@@ -2,7 +2,7 @@
 layout: page
 title: My Reading List
 excerpt: "A Place to share my footsteps of Journey to the Knowledge and Wisdom "
-modified: 2018-09-24
+modified: 2020-01-27
 ---
 
 This is my Reading list I started record Books that I've read or listened. You will be seeing the names, my rating, and review or notes of the book.
@@ -13,16 +13,35 @@ This is my Reading list I started record Books that I've read or listened. You w
 ---
 
 
-
-- [The Longevity Code: The New Science of Aging](https://www.goodreads.com/book/show/34397791-the-longevity-code) __by Kris Verburgh__
-- [Bir Destandır Çanakkale](https://www.goodreads.com/book/show/16560558-bir-destand-r-anakkale) __by Vehbi Vakkasoğlu__
+- [The History Book: Big Ideas Simply Explained](https://www.goodreads.com/book/show/29776992-the-history-book) __by R.G. Grant__
 
 
 ---
+
+
+## 2020
+
+
+1. [Finish What You Start: The Art of Following Through, Taking Action, Executing, & Self-Discipline](https://www.goodreads.com/book/show/39322175-finish-what-you-start) __by Peter Hollins__ <span style="color:#C70025">Rating: 3.0 </span>, ([My GoodReads Review](#))
+
+
+---
+
+
+## 2019
+
+
+1. [Why We Sleep: Unlocking the Power of Sleep and Dreams](https://www.goodreads.com/book/show/34466963-why-we-sleep) __by Matthew Walker__ <span style="color:#C70025">Rating: 5.0 </span>, ([My GoodReads Review](#))
+
+
+---
+
 
 ## 2018
 
+
 ---
+
 
 1. [Machine, Platform, Crowd: Harnessing our Digital Future](https://www.goodreads.com/book/show/32606599-machine-platform-crowd) __by Erik Brynjolfsson and Andrew McAfee__ <span style="color:#C70025">Rating: 5.0 </span> , ([My GoodReads Review](https://www.goodreads.com/book/show/32606599-machine-platform-crowd))
 2. [Life 3.0: Being Human in the Age of Artificial Intelligence](https://www.goodreads.com/book/show/34272565-life-3-0) __by Max Tegmark__ <span style="color:#C70025">Rating: 5.0 </span> , ([My GoodReads Review](https://www.goodreads.com/book/show/34272565-life-3-0))
@@ -39,6 +58,10 @@ This is my Reading list I started record Books that I've read or listened. You w
 13. [A Taste for the Beautiful: The Evolution of Attraction](https://www.goodreads.com/book/show/34928247-a-taste-for-the-beautiful) __by Michael J. Ryan__ <span style="color:#C70025">Rating: 4.0 </span>, ([My GoodReads Review](#))
 14. [The Ascent of Gravity: The Quest to Understand the Force that Explains Everything](https://www.goodreads.com/book/show/34445220-the-ascent-of-gravity) __by Marcus Chown__ <span style="color:#C70025">Rating: 4.5 </span>, ([My GoodReads Review](#))
 15. [Homo Deus: A Brief History of Tomorrow](https://www.goodreads.com/book/show/28092870-homo-deus) __by Yuval Noah Harari__ <span style="color:#C70025">Rating: 3.5 </span>, ([My GoodReads Review](#))
+16. [Bir Destandır Çanakkale](https://www.goodreads.com/book/show/16560558-bir-destand-r-anakkale) __by Vehbi Vakkasoğlu__ <span style="color:#C70025">Rating: 5.0 </span>, ([My GoodReads Review](#))
+17. [The Longevity Code: The New Science of Aging](https://www.goodreads.com/book/show/34397791-the-longevity-code) __by Kris Verburgh__ <span style="color:#C70025">Rating: 3.5 </span> ([My GoodReads Review](#))
+18. [Catalyst: A Rogue One Novel](https://www.goodreads.com/book/show/29662066-catalyst) __by James Luceno__ <span style="color:#C70025">Rating: 4.0 </span> ([My GoodReads Review](#))
+19. [Make Your Bed: Little Things That Can Change Your Life...And Maybe the World](https://www.goodreads.com/book/show/31423133-make-your-bed) __William H. McRaven__ <span style="color:#C70025">Rating: 4.5 </span> ([My GoodReads Review](#))
 
 
 ---
@@ -46,7 +69,9 @@ This is my Reading list I started record Books that I've read or listened. You w
 
 ## 2017
 
+
 ---
+
 
 1. [The Story of Earth](https://www.goodreads.com/book/show/18760053-the-story-of-earth) __by Robert M. Hazen__, <span style="color:#C70025">Rating: 3.5 </span> , ([My GoodReads Review](https://www.goodreads.com/review/show/2082703313))
 2. [Astrophysics for People in Hurry](https://www.goodreads.com/book/show/32606606-astrophysics-for-people-in-a-hurry) __by Neil deGrasse Tyson__, <span style="color:#C70025">Rating: 5.0 </span> , ([My GoodReads Review](https://www.goodreads.com/review/show/2116209973))
