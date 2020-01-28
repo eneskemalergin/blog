@@ -33,6 +33,7 @@ This is my Reading list I started record Books that I've read or listened. You w
 
 1. [Why We Sleep: Unlocking the Power of Sleep and Dreams](https://www.goodreads.com/book/show/34466963-why-we-sleep) __by Matthew Walker__ <span style="color:#C70025">Rating: 5.0 </span>, ([My GoodReads Review](#))
 
+>  This year was really hard for me, so that I didn't get to read more books.
 
 ---
 
