@@ -58,7 +58,7 @@ owner:
   email: eneskemalergin@gmail.com
   disqus-shortname: eneskemalergin
   twitter: eneskemalergin
-  facebook: eneskemalergin
+  facebook: #eneskemalergin
   github: eneskemalergin
   stackexchange: #http://stackoverflow.com/users/123456/username
   linkedin: eneskemalergin
@@ -68,7 +68,7 @@ owner:
   pinterest: #username
   weibo: #userid
   google:
-    plus: eneskemalergin
+    plus: # eneskemalergin
     analytics: UA-118768066-1
     verify:
     ad-client:
