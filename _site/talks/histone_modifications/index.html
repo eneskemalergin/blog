@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Fantastic Histone Modifications and How to Find Them &#8226; </title>
+
+    <!-- Reveal.JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/lib/js/head.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/js/reveal.js"></script>
+
+    <!-- Main Reveal.JS Style -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/css/reveal.min.css">
+
+    <!-- Reveal.JS Theme -->
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/css/theme/white.min.css">
+   
+
+    <!-- Highlight.JS Syntax Style -->
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/zenburn.min.css">
+    
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+<section data-markdown=""><script type="text/template">
+
+# Fantastic Histone Modifications and How to Find Them
+
+> Enes Kemal Ergin <br />
+> Nov 16, 2017 <br />
+> BIOF501 <br />
+> Review Presentation
+
+</script></section><section data-markdown=""><script type="text/template">
+
+## Outline
+
+- Overview of Epigenomics and Epigenetic Modifications
+- Histone Modifications
+- Chromatin Immunoprecipitation
+- ChIP-chip
+- ChIP-seq
+- ChIP-chip vs ChIP-seq
+- Hidden Markov Chains
+
+
+</script></section>
+</section>
+
+<section>
+<section data-markdown=""><script type="text/template">
+
+## Epigenomics and Epigenetic Modifications
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### What is Epigenomics?
+
+- Study of complete set of epigenetic modifications.
+- Large scale study than a single gene study.
+- Have an important role in gene expression and regulations.
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### Epigenetic Modifications I
+
+- Heritable changes not due to changes in DNA sequence
+- Cause of variation
+- Most studied:
+  - DNA Methylations
+  - Histone Modifications
+
+
+</script></section>
+</section>
+
+<section>
+<section data-markdown=""><script type="text/template">
+
+## Histone Modifications
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### Histones and Their Modifications
+
+- Histone is known for condensing of DNA functionality.
+- Chromatin structure and density of its DNA packaging effects gene expression.
+- Histone proteins affect the gene expression.
+- There are 3 well studied modifications:
+  - Acetylation
+  - Methylation
+  - Phosphorylation
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### Importance of Histone Modifications
+
+- Histone proteins have key roles:
+  - Gene regulation
+  - DNA damage repair
+  - Transcription and Replication
+- Important for understanding epigenetic regulation.
+
+</script></section>
+</section>
+
+<section>
+<section data-markdown=""><script type="text/template">
+
+## Chromatin Immunoprecipitation
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### What is ChIP
+
+- Tool to determine DNA sequences associated with protein of interest
+- ChIP could be used for:
+  - Post-transcriptionally modified histones
+  - histone variants
+  - transcription factors
+  - chromatin modifying enzymes
+- Scope of experiment could expand to genome-wide scale.
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### ChIP protocol
+
+<img
+src="/images/talks/histone_modifications/chip.png"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### ChIP Followed by Microarray and Sequencing
+
+- __ChIP-chip__ (DNA microarray)
+- __ChIP-seq__ (Next Generation Sequencing)
+
+
+</script></section>
+</section>
+
+<section>
+<section data-markdown=""><script type="text/template">
+
+## ChIP-chip Method
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### What is ChIP-chip
+
+- High resolution genome-wide profiling
+- Has wide variety of applications
+- Has also limitations:
+  - Antibody quality
+  - Need for large number of cells
+  - Long, expensive and hard to troubleshoot
+
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### ChIP-chip Overview
+
+<img src="/images/talks/histone_modifications/chip-chip_overview.gif"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+
+### Data Processing in ChIP-chip
+
+- Array normalization
+- Peak Detection
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### The Output of ChIP-chip
+
+<img src="/images/talks/histone_modifications/chip-chip_output.jpg"></img>
+
+</script></section>
+</section>
+
+<section>
+<section data-markdown=""><script type="text/template">
+
+## ChIP-seq Method
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### What is ChIP-seq
+
+- ChIP combined with high-throughput sequencing
+- Genome-wide profiling
+- Handling repetitiveness with high confidence
+- Greater resolution, sensitivity, and specificity
+- More common since 2007
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### ChIP-seq Overview
+
+<img src="/images/talks/histone_modifications/Chip_seq_overview.png"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### Data Processing in ChIP-seq
+
+<img src="/images/talks/histone_modifications/chip-seq_bioinformatics_workflow.png"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+#### Quality Control/Check
+
+- Fundamental Step(s)
+- Fully automated or Manually
+- Aided by Visuals
+- Tools like ChIPQC(R/Bioconductor)
+
+</script></section><section data-markdown=""><script type="text/template">
+
+#### Alignment
+Mapping - Sorting - Removing
+
+1. Map reads to genome (__Bowtie2, BWA, STAR__)
+2. Sort the mapped reads (__Samtools__)
+3. Remove the duplicates
+
+</script></section><section data-markdown=""><script type="text/template">
+
+##### Be Aware of the Bias!
+
+<img src="/images/talks/histone_modifications/short_read.jpg"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+#### Normalization
+
+- Must be done when have multiple experiments.
+- In absence could result bias in peak calling phase.
+
+</script></section><section data-markdown=""><script type="text/template">
+
+#### Peak Calling
+
+- Identifying regions enriched after mapping
+- Main point of optimization for years.
+- Aligner and Peak Caller compatibility
+- __Two Key Components:__
+  - Identifiy candidate peaks
+  - Test candidates statistical significance
+
+</script></section><section data-markdown=""><script type="text/template">
+
+#### Peak Calling
+
+- __MACS__ (Poisson Distribution)
+- PeakFinder (Thresholding Principle)
+- FindPeaks (Monte Carlo Simulation)
+- __HPeak__ (Hidden Markov Model)
+
+</script></section><section data-markdown=""><script type="text/template">
+
+##### Differential Peak Calling in ChIP-seq
+
+- When multiple experiments
+- Critical to calculate the differential peak
+- __ODIN__, __THOR__ (Hidden Markov Model)
+
+<img src="/images/talks/histone_modifications/two_chip-seq_signals.gif"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+<img src="/images/talks/histone_modifications/THOR_DPC.png"></img>
+
+</script></section>
+</section>
+
+<section>
+<section data-markdown=""><script type="text/template">
+
+## ChIP-chip vs ChIP-seq
+
+</script></section><section data-markdown=""><script type="text/template">
+
+| Features        | ChIP-chip       | ChIP-seq  |
+| -------------   |:-------------:| -----:|
+| __Resolution__      | Array Specific | Single Nucleotide - High |
+| __Coverage__        | Limited by Sequences on the Array |  Limited by alignability of reads |
+| __Sensitivity__     | Low Sensitivity | High Sensitivity |
+| __Repeat Elements__ | Masked out   |  Can be covered |
+| __Cost__            | Expensive | Relatively Cheaper |
+| __Source of Noise__ | Cross Hybridization | Sequencing, GC bias, Sequencing error |
+| __ChIP DNA__        | Large amount needed | Low amount necessary |
+
+
+</script></section>
+</section>
+
+<section>
+<section data-markdown=""><script type="text/template">
+
+## Hidden Markov Models
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### Understanding HMM
+
+No Math Involved, Promise!
+
+<img src="https://media.giphy.com/media/ohdY5OaQmUmVW/giphy.gif"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+#### Markov Models
+
+<img src="/images/talks/histone_modifications/weather_predicting_cat.jpg"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+<img src="/images/talks/histone_modifications/markov_model.png"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+#### Hidden Markov Models
+
+<img src="/images/talks/histone_modifications/wheater_predicting_cat_in_box.jpg"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### Why HMM is Useful
+
+<img src="http://www.reactiongifs.com/r/but-why.gif"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+<img src="/images/talks/histone_modifications/chip_seq_modeling_hmm_1.gif"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+<img src="/images/talks/histone_modifications/chip_seq_modeling_hmm_2.gif"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### Advantages and Disadvantages of HMM
+
+- Advantages
+  - Statistical Foundation
+  - Using Raw Data Directly
+  - Variable Lengths in Input
+- Disadvantages
+  - Expressing Dependencies Between Hiddent States
+  - Unstructured Parameters
+
+</script></section>
+</section>
+
+<section>
+<section data-markdown=""><script type="text/template">
+
+## Thank You
+
+> Questions?
+
+</script></section>
+</section>
+
+<section>
+<section data-markdown=""><script type="text/template">
+
+## Supplementary Slides
+
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### Epigenetic Mechanisms DNA Level
+
+<img style="width:350; height:450"  src="/images/talks/histone_modifications/epigenetic_mechanism_DNA.png"></img>
+
+> [WhatisEpigenetics, 2017](https://www.whatisepigenetics.com/type-2-diabetes-mellitus-and-epigenetics/)
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### Epigenetic Mechanisms after DNA Level
+
+<img style="max-width: 100%;" src="/images/talks/histone_modifications/epigenetic_mechanism_supp.png"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### Histone Modifications List
+
+- __Acetylation__ (gene activation)
+- __Methylation__ (gene activation,  gene repression)
+- __Phosphorylation__ (gene activation)
+- Ubiquitination (gene activation, gene repression)
+- SUMOylation (gene repression)
+- ADP-ribosylation  
+- Deamination (gene repression)
+- Proline isomerization (gene repression)
+
+There is a nice reference of full table of Histone Modifications list in the __[cellsignal](https://www.cellsignal.com/contents/resources-reference-tables/histone-modification-table/science-tables-histone)__ website
+
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### Roles of Histone Modifications
+
+<img src="/images/talks/histone_modifications/roles_of_histone_modifications.png"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### Post-translational Modifications on Core Histones
+
+<img style="max-width: 100%;" src="/images/talks/histone_modifications/PTM_of_core_histones.png"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### HMMTiling for ChIP-Chip
+
+<img style="max-width: 100%;" src="/images/talks/histone_modifications/HMMTiling.png"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### TileMap for ChIP-Chip
+
+<img style="max-width: 100%;" src="/images/talks/histone_modifications/TileMap.png"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### Extensive ChIP-seq Workflow
+
+<img style="max-width: 100%;" src="/images/talks/histone_modifications/chip_seq_workflow.jpg"></img>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+### ChIP-seq Quality Check
+<img style="max-width: 100%;" src="/images/talks/histone_modifications/chip-seq_vis_qc.jpg"></img>
+
+</script></section>
+</section>
+
+<section>
+<section data-markdown=""><script type="text/template">
+
+### References
+
+__1-__ Callinan, P. A., & Feinberg, A. P. (2006). The emerging science of epigenomics. Human Molecular Genetics. doi:10.1093/hmg/ddl095 </br>
+__2-__ Handy, D. E., Castro, R., & Loscalzo, J. (2011). Epigenetic Modifications: Basic Mechanisms and Role in Cardiovascular Disease. Circulation, 123(19), 2145-2156. doi:10.1161/circulationaha.110.956839 </br>
+__3-__ Lennartsson, A., & Ekwall, K. (2009). Histone modification patterns and epigenetic codes. Biochimica et Biophysica Acta (BBA) - General Subjects, 1790(9), 863-868. doi:10.1016/j.bbagen.2008.12.006 </br>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+__4-__ Jayani, R. S., Ramanujam, P. L., & Galande, S. (2010). Studying Histone Modifications and Their Genomic Functions by Employing Chromatin Immunoprecipitation and Immunoblotting. Methods in Cell Biology Nuclear Mechanics & Genome Regulation, 35-56. doi:10.1016/s0091-679x(10)98002-3 </br>
+__5-__ Collas, P. (2009). The State-of-the-Art of Chromatin Immunoprecipitation. Chromatin Immunoprecipitation Assays Methods in Molecular Biology, 1-25. doi:10.1007/978-1-60327-414-2_1 </br>
+__6-__ Lee, T. I., Johnstone, S. E., & Young, R. A. (2006). Chromatin immunoprecipitation and microarray-based analysis of protein location. Nature Protocols, 1(2), 729-748. doi:10.1038/nprot.2006.98 </br>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+__7-__ Cauchy, P., Benoukraf, T., & Ferrier, P. (2011). Processing ChIP-Chip Data: From the Scanner to the Browser. Methods in Molecular Biology Bioinformatics for Omics Data, 251-268. doi:10.1007/978-1-61779-027-0_12 </br>
+__8-__ Reinke, V. (2013). Transcriptional regulation of gene expression in C. elegans. WormBook, 1-31. doi:10.1895/wormbook.1.45.2 </br>
+__9-__ Newkirk, D., Biesinger, J., Chon, A., Yokomori, K., & Xie, X. (2011). AREM: Aligning Short Reads from ChIP-Sequencing by Expectation Maximization. Lecture Notes in Computer Science Research in Computational Molecular Biology, 283-297. doi:10.1007/978-3-642-20036-6_26 </br>
+
+
+</script></section><section data-markdown=""><script type="text/template">
+
+__10-__ Allhoff, M., Sere, K., Chauvistre, H., Lin, Q., Zenke, M., & Costa, I. G. (2015). Detecting differential peaks in ChIP-seq signals with ODIN. Bioinformatics, 31(6), 980-980. doi:10.1093/bioinformatics/btv030 </br>
+__11-__ Meyer, I. (2004). Hidden Markov Model (HMM, Hidden Semi-Markov Models, Profile Hidden Markov Models, Training of Hidden Markov Models, Dynamic Programming, Pair Hidden Markov Models). Dictionary of Bioinformatics and Computational Biology. doi:10.1002/9780471650126.dob0318.pub2 </br>
+__12-__ Vinciotti, V. (2017). Modelling ChIP-seq Data Using HMMs. Hidden Markov Models Methods in Molecular Biology, 115-122. doi:10.1007/978-1-4939-6753-7_8 </br>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+__13-__ Ho, J. W., Bishop, E., Karchenko, P. V., Nègre, N., White, K. P., & Park, P. J. (2011). ChIP-chip versus ChIP-seq: Lessons for experimental design and data analysis. BMC Genomics, 12(1). doi:10.1186/1471-2164-12-134 </br>
+__14-__ Carroll TS, Liang Z, Salama R, Stark R and de Santiago I (in press). “Impact of artefact removal on ChIP quality metrics in ChIP-seq and ChIP-exo data.” Frontiers in Genetics. </br>
+__15-__ Guzman, C., & D’Orso, I. (2017). CIPHER: a flexible and extensive workflow platform for integrative next-generation sequencing data analysis and genomic regulatory element prediction. BMC Bioinformatics, 18(1). doi:10.1186/s12859-017-1770-1 </br>
+
+
+</script></section><section data-markdown=""><script type="text/template">
+
+__16-__ Nakato, R., & Shirahige, K. (2016). Recent advances in ChIP-seq analysis: from quality management to whole-genome annotation. Briefings in Bioinformatics. doi:10.1093/bib/bbw023 </br>
+__17-__ Diaz, A., Park, K., Lim, D. A., & Song, J. S. (2012). Normalization, bias correction, and peak calling for ChIP-seq. Statistical Applications in Genetics and Molecular Biology, 11(3). doi:10.1515/1544-6115.1750 </br>
+__18-__ Qin, Zhaohui S, et al. “HPeak: an HMM-Based algorithm for defining read-Enriched regions in ChIP-Seq data.” BMC Bioinformatics, vol. 11, no. 1, 2010, p. 369., doi:10.1186/1471-2105-11-369. </br>
+
+</script></section><section data-markdown=""><script type="text/template">
+
+__19-__ Allhoff, M., et al. “Detecting differential peaks in ChIP-Seq signals with ODIN.” Bioinformatics, vol. 31, no. 6, Nov. 2015, pp. 980–980., doi:10.1093/bioinformatics/btv030. </br>
+__20-__ Allhoff, Manuel, et al. “Differential peak calling of ChIP-Seq signals with replicates with THOR.” Nucleic Acids Research, Feb. 2016, doi:10.1093/nar/gkw680. </br>
+__21-__
+
+</script></section>
+</section>
+
+      </div>
+    </div>
+
+    <script>
+      Reveal.initialize({
+
+      // Display controls in the bottom right corner
+      controls: true,
+
+      // Display a presentation progress bar
+      progress: true,
+
+      // Display the page number of the current slide
+      slideNumber: false,
+
+      // Push each slide change to the browser history
+      history: false,
+
+      // Enable keyboard shortcuts for navigation
+      keyboard: true,
+
+      // Enable the slide overview mode
+      overview: true,
+
+      // Vertical centering of slides
+      center: true,
+
+      // Enables touch navigation on devices with touch input
+      touch: true,
+
+      // Loop the presentation
+      loop: false,
+
+      // Change the presentation direction to be RTL
+      rtl: false,
+
+      // Turns fragments on and off globally
+      fragments: true,
+
+      // Flags if the presentation is running in an embedded mode,
+      // i.e. contained within a limited portion of the screen
+      embedded: false,
+
+      // Flags if we should show a help overlay when the questionmark
+      // key is pressed
+      help: true,
+
+      // Number of milliseconds between automatically proceeding to the
+      // next slide, disabled when set to 0, this value can be overwritten
+      // by using a data-autoslide attribute on your slides
+      autoSlide: 0,
+
+      // Stop auto-sliding after user input
+      autoSlideStoppable: true,
+
+      // Enable slide navigation via mouse wheel
+      mouseWheel: false,
+
+      // Hides the address bar on mobile devices
+      hideAddressBar: true,
+
+      // Opens links in an iframe preview overlay
+      previewLinks: false,
+
+      // Transition style
+      transition: 'default', // none/fade/slide/convex/concave/zoom
+
+      // Transition speed
+      transitionSpeed: 'default', // default/fast/slow
+
+      // Transition style for full page slide backgrounds
+      backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+      // Number of slides away from the current that are visible
+      viewDistance: 3,
+
+      // Parallax background image
+      parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+      // Parallax background size
+      parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+      // Amount to move parallax background (horizontal and vertical) on slide change
+      // Number, e.g. 100
+      parallaxBackgroundHorizontal: '',
+      parallaxBackgroundVertical: '',
+
+      dependencies: [
+        // Interpret Markdown in <section> elements
+        { src: '//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+        // Syntax highlight for <code> elements
+        { src: '//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+        // Zoom in and out with Alt+click
+        { src: '//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/plugin/zoom-js/zoom.js', async: true },
+
+        // Speaker notes
+        { src: '//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/plugin/notes/notes.js', async: true },
+
+        // Remote control your reveal.js presentation using a touch device
+        
+
+        // MathJax
+        { src: '//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/plugin/math/math.js', async: true }
+      ],
+
+      });
+    </script>
+  </body>
+</html>

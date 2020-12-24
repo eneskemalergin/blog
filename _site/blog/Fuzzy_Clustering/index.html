@@ -1,0 +1,502 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Fuzzy Clustering &#8211; Enes Kemal Ergin's Blog</title>
+<meta name="description" content="In this blogpost I will be covering one of clustering which sometimes called soft clustering. Fuzzy clustering is form of clustering in which each data point can belong to more than one cluster.
+
+">
+<meta name="keywords" content="Clustering, Python & R">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Fuzzy Clustering">
+<meta name="twitter:description" content="In this blogpost I will be covering one of clustering which sometimes called soft clustering. Fuzzy clustering is form of clustering in which each data point can belong to more than one cluster.
+
+">
+<meta name="twitter:site" content="@eneskemalergin">
+<meta name="twitter:creator" content="@eneskemalergin">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/images/EKE-logo-Red.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fuzzy Clustering">
+<meta property="og:description" content="In this blogpost I will be covering one of clustering which sometimes called soft clustering. Fuzzy clustering is form of clustering in which each data point can belong to more than one cluster.
+
+">
+<meta property="og:url" content="http://localhost:4000/blog/Fuzzy_Clustering/">
+<meta property="og:site_name" content="Enes Kemal Ergin's Blog">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/blog/Fuzzy_Clustering/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Enes Kemal Ergin's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="http://localhost:4000/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="http://localhost:4000about/" >About</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000reading/" >Reading</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000blog/" >Blog</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000talks/" >Talks</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000personal/" >Personal</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000language/" >Language</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000tags/" >Tags</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000search/" >Search</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+  		<a href="http://localhost:4000/" class="site-logo" rel="home" title="Enes Kemal Ergin's Blog"><img src="http://localhost:4000/images/EKE-logo-Red.png" width="200" height="200" alt="Enes Kemal Ergin's Blog logo" class="animated fadeInDown"></a>
+      
+      <h1 class="site-title animated fadeIn"><a href="http://localhost:4000/">Enes Kemal Ergin's Blog</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">R | Python | Big Data | Proteomics | Bioinformatics | Machine Learning </h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="http://localhost:4000/tags/#Clustering" title="Pages tagged Clustering">Clustering</a></li><li><a href="http://localhost:4000/tags/#Python & R" title="Pages tagged Python & R">Python & R</a></li>
+        </ul>
+        
+          <h1 class="entry-title">Fuzzy Clustering</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="http://localhost:4000/images/me.jpg" class="bio-photo" alt="Enes Kemal Ergin bio photo"></a>
+        
+        <span class="author vcard">By <span class="fn">Enes Kemal Ergin</span></span>
+        <span class="entry-date date published"><time datetime="2018-05-01T00:00:00-04:00"><i class="fa fa-calendar-o"></i> May 01, 2018</time></span>
+        <span class="reading-time" title="Estimated read time">
+  
+  
+    14 mins reading time
+  
+</span>
+
+        
+        <span class="entry-comments"><i class="fa fa-comment-o"></i> <a href="#disqus_thread">Comment</a></span>
+        <span class="social-share-twitter">
+  <a href="https://twitter.com/intent/tweet?hashtags=Clustering,Python&R&amp;text=Fuzzy%20Clustering&amp;url=http://localhost:4000/blog/Fuzzy_Clustering/&amp;via=eneskemalergin" title="Share on Twitter" itemprop="Twitter"><i class="fa fa-twitter-square"></i> Tweet</a>
+</span>
+<span class="social-share-facebook">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/Fuzzy_Clustering/" title="Share on Facebook" itemprop="Facebook"><i class="fa fa-facebook-square"></i> Like</a>
+</span>
+<span class="social-share-linkedin">
+  <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/blog/Fuzzy_Clustering/" itemprop="LinkedIn"><i class="fa fa-linkedin-square"></i> Share</a>
+</span>
+<span class="social-share-googleplus">
+  <a href="https://plus.google.com/share?url=http://localhost:4000/blog/Fuzzy_Clustering/" title="Share on Google Plus" itemprop="GooglePlus"><i class="fa fa-google-plus-square"></i> +1</a>
+</span>
+<!-- /.social-share -->
+
+        
+      </footer>
+      <div class="entry-content">
+        <p>In this blogpost I will be covering one of clustering which sometimes called soft clustering. <strong>Fuzzy clustering</strong> is form of clustering in which each data point can belong to more than one cluster.</p>
+
+<h2 id="clustering">Clustering</h2>
+
+<p>Cluster analysis or <strong>clustering</strong> is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some sense) to each other than to those in other groups (clusters). Clustering is not one specific algorithm, but the task of grouping data. This can be achieved by various algorithms that differ significantly in their notion of what constitutes a cluster and how to efficiently find them. Out of 100 published clustering algorithms there are common clustering algorithm,</p>
+
+<ul>
+  <li>Hard Clustering:
+    <ul>
+      <li>Connectivity-based clustering (Hierarchical Clustering)</li>
+      <li>Centroid-based Clustering (k-means clustering)</li>
+      <li>Distribution-based Clustering</li>
+      <li>Density-based Clustering</li>
+    </ul>
+  </li>
+  <li>Soft Clustering:
+    <ul>
+      <li>Fuzzy Clustering</li>
+    </ul>
+  </li>
+</ul>
+
+<p>In <code class="language-plaintext highlighter-rouge">sklearn.cluster</code> documentation there is nice visual that shows clustering results.</p>
+
+<p><img src="http://scikit-learn.org/stable/_images/sphx_glr_plot_cluster_comparison_001.png" alt="Scikit-learn Overview of Clustering Algorithms" /></p>
+
+<h2 id="fuzzy-clustering">Fuzzy Clustering</h2>
+
+<p>In Fuzzy clustering each element has a set of membership coefficients corresponding to the degree of being in a given cluster. Points close to the center of a cluster, may be in the cluster to a higher degree than points in the edge of a cluster. The degree, to which an element belongs to a given cluster, is a numerical value varying from 0 to 1.</p>
+
+<p>Fuzzy clustering algorithms seeks to minimize cluster memberships and distances, but we will focus on <code class="language-plaintext highlighter-rouge">Fuzzy C-Means Clustering algorithm</code>.  Fuzzy c-means developed in 1973 and improved in 1981. It’s very similar to k-means algorithm in a structure way:</p>
+
+<ul>
+  <li>Choose number of clusters.</li>
+  <li>Assign coefficients randomly to each data point for being in the clusters.</li>
+  <li>Repeat until algorithm converged (Objective Function C minimizes cluster memberships and distances):
+    <ul>
+      <li>Compute the centroid for each cluster</li>
+      <li>Compute each data points’ coefficients of being in the clusters.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The main difference with k-means cluster is that objective function for fuzzy c-means algorithm allows different cluster membership with probability values, where k-means cluster has strict objective function allows only one cluster membership.</p>
+
+<hr />
+
+<h3 id="fuzzy-c-means-in-r">Fuzzy C-Means in R</h3>
+
+<p>Let’s see an implementation in R</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">factoextra</span><span class="p">)</span><span class="w"> </span><span class="c1"># Custom visualizations for clusters</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">  </span><span class="c1"># Data handling</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span><span class="w">    </span><span class="c1"># Clustering algorithms</span><span class="w">
+
+</span><span class="c1"># Reading the data from csv file to R</span><span class="w">
+</span><span class="n">iris_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'./iris.csv'</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Modify the data,</span><span class="w">
+</span><span class="c1">#  create unique names for each row by adding species type to row number</span><span class="w">
+</span><span class="c1">#  then add column species to rownames</span><span class="w">
+</span><span class="n">iris_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iris_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">spec_idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">row_number</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">unite</span><span class="p">(</span><span class="s1">'species'</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">spec_idx</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span><span class="w"> </span><span class="n">remove</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">column_to_rownames</span><span class="p">(</span><span class="s1">'species'</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># fanny() function from cluster packages is</span><span class="w">
+</span><span class="c1">#  for fuzzy c-means clustering algorithm</span><span class="w">
+</span><span class="c1">#  we are also defining 3 clusters to create.</span><span class="w">
+</span><span class="n">res.fanny</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fanny</span><span class="p">(</span><span class="n">iris_df</span><span class="p">,</span><span class="m">3</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Look at the membership coefficients of first 7 element</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">res.fanny</span><span class="p">[</span><span class="s1">'membership'</span><span class="p">],</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w">
+
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output:
+                  [,1]       [,2]       [,3]
+    setosa-1 0.9115847 0.03714162 0.05127368
+    setosa-2 0.8641378 0.05659841 0.07926381
+    setosa-3 0.8720433 0.05381542 0.07414133
+    setosa-4 0.8459146 0.06419306 0.08989232
+    setosa-5 0.9001651 0.04205859 0.05777633
+    setosa-6 0.7648869 0.09848692 0.13662620
+    setosa-7 0.8601062 0.05878600 0.08110779
+</code></pre></div></div>
+
+<p>Now let’s produce the plot using <code class="language-plaintext highlighter-rouge">factoextra</code> package to represent the clusters</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Cluster plot</span><span class="w">
+</span><span class="n">fviz_cluster</span><span class="p">(</span><span class="n">res.fanny</span><span class="p">,</span><span class="w"> </span><span class="n">ellipse.type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"convex"</span><span class="p">,</span><span class="w">
+             </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#00AFBB"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#E7B800"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#FC4E07"</span><span class="p">),</span><span class="w">
+             </span><span class="n">ggtheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">theme_minimal</span><span class="p">(),</span><span class="w">
+            </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"right"</span><span class="p">)</span><span class="w">    
+</span></code></pre></div></div>
+
+<p><img src="../../images/cluster_plot.png" alt="Cluster plot" /></p>
+
+<p>Cluster plots are straightforward, provides a visualization of partitioning clustering methods results. We can see from our result setosa is clustering very well but versicolor and virginica species are very close.</p>
+
+<p>Cluster silhouette plots on the other hand are not very straightforward in first look, however they are very information when we know what is showing. Silhouette plots visualize how the silhouette values are for our cluster. Looking at silhouette values of all clustered objects gives a pretty good idea of the relative quality of the partitioning of your data using a specific clustering algorithm. In our plot that we are going to plot we also have <strong>average silhouette width</strong> which is the average silhouette value of all clustered objects</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Clusters Silhouette plot</span><span class="w">
+</span><span class="n">fviz_silhouette</span><span class="p">(</span><span class="n">res.fanny</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#00AFBB"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#E7B800"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#FC4E07"</span><span class="p">),</span><span class="w">
+                </span><span class="n">ggtheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">theme_minimal</span><span class="p">())</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="../../images/silhouette_plot.png" alt="Clusters Silhouette plot" /></p>
+
+<hr />
+
+<h3 id="fuzzy-c-means-in-python">Fuzzy C-Means in Python</h3>
+
+<p>Python implementation of fuzzy c-means is similar to R’s implementation. We will be using <code class="language-plaintext highlighter-rouge">skfuzzy</code> library of Python. Oddly enough <code class="language-plaintext highlighter-rouge">Sklearn</code> don’t have fuzzy c-means clustering algorithm written inside that’s why we are choosing another library.</p>
+
+<p>To give an example in Python we will create our own data using numpy <em>(skfuzzy documentation)</em>. As you will see in Python implementation that it’s not as trivial and short, since there isn’t a nice and established library for both clustering and visualization.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">skfuzzy</span> <span class="k">as</span> <span class="n">fuzz</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Configure some general styling
+</span><span class="n">sns</span><span class="p">.</span><span class="n">set_style</span><span class="p">(</span><span class="s">"white"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'font.size'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'axes.labelsize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'axes.labelweight'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'bold'</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'axes.titlesize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'xtick.labelsize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'ytick.labelsize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'legend.fontsize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'figure.titlesize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'figure.figsize'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">'b'</span><span class="p">,</span> <span class="s">'orange'</span><span class="p">,</span> <span class="s">'g'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="s">'c'</span><span class="p">,</span> <span class="s">'m'</span><span class="p">,</span> <span class="s">'y'</span><span class="p">,</span> <span class="s">'k'</span><span class="p">,</span> <span class="s">'Brown'</span><span class="p">,</span> <span class="s">'ForestGreen'</span><span class="p">]</span>
+
+<span class="c1"># Define three cluster centers
+</span><span class="n">centers</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+           <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+           <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]</span>
+
+<span class="c1"># Define three cluster sigmas in x and y, respectively
+</span><span class="n">sigmas</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]</span>
+
+<span class="c1"># Generate test data
+</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># Set seed for reproducibility
+</span><span class="n">xpts</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ypts</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">((</span><span class="n">xmu</span><span class="p">,</span> <span class="n">ymu</span><span class="p">),</span> <span class="p">(</span><span class="n">xsigma</span><span class="p">,</span> <span class="n">ysigma</span><span class="p">))</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">centers</span><span class="p">,</span> <span class="n">sigmas</span><span class="p">)):</span>
+    <span class="n">xpts</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">xpts</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="o">*</span> <span class="n">xsigma</span> <span class="o">+</span> <span class="n">xmu</span><span class="p">))</span>
+    <span class="n">ypts</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">ypts</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="o">*</span> <span class="n">ysigma</span> <span class="o">+</span> <span class="n">ymu</span><span class="p">))</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">labels</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span><span class="p">))</span>
+
+<span class="c1"># Visualize the test data
+</span><span class="n">fig0</span><span class="p">,</span> <span class="n">ax0</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">ax0</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xpts</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">label</span><span class="p">],</span> <span class="n">ypts</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">label</span><span class="p">],</span> <span class="s">'.'</span><span class="p">)</span>
+<span class="n">ax0</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Test data: 200 points.'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="../../images/2018-05-01-Fuzzy_Clustering_4_0.png" alt="png" /></p>
+
+<p>Here is we created our test data and plotted them in the figure. With a human eye I can see there there are 3 distinct clusters however we would like to see which number of clusters best produces the clustering model. To be able to achieve that we will loop from 2 to 10 number of clusters <em>(named centers in this library)</em> :</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Set up the loop and plot
+</span><span class="n">fig1</span><span class="p">,</span> <span class="n">axes1</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">alldata</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">xpts</span><span class="p">,</span> <span class="n">ypts</span><span class="p">))</span>
+<span class="n">fpcs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">ncenters</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axes1</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">cntr</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">jm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">fpc</span> <span class="o">=</span> <span class="n">fuzz</span><span class="p">.</span><span class="n">cluster</span><span class="p">.</span><span class="n">cmeans</span><span class="p">(</span>
+        <span class="n">alldata</span><span class="p">,</span> <span class="n">ncenters</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+    <span class="c1"># Store fpc values for later
+</span>    <span class="n">fpcs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">fpc</span><span class="p">)</span>
+
+    <span class="c1"># Plot assigned clusters, for each data point in training set
+</span>    <span class="n">cluster_membership</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncenters</span><span class="p">):</span>
+        <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xpts</span><span class="p">[</span><span class="n">cluster_membership</span> <span class="o">==</span> <span class="n">j</span><span class="p">],</span>
+                <span class="n">ypts</span><span class="p">[</span><span class="n">cluster_membership</span> <span class="o">==</span> <span class="n">j</span><span class="p">],</span> <span class="s">'.'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+    <span class="c1"># Mark the center of each fuzzy cluster
+</span>    <span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">cntr</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">'rs'</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Centers = {0}; FPC = {1:.2f}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">ncenters</span><span class="p">,</span> <span class="n">fpc</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">axis</span><span class="p">(</span><span class="s">'off'</span><span class="p">)</span>
+
+<span class="n">fig1</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="../../images/2018-05-01-Fuzzy_Clustering_6_0.png" alt="png" /></p>
+
+<p>In the plot we see 2 parameters showed along side with the clusters with different number centers. First parameter is called centers which indicates number of clusters. Second parameter <strong>(FPC - Fuzzy Partition Coefficient)</strong> is defined to be in 0-1 range, with 1 being the best. It is a metric which tells us how cleanly our data is described by a certain model. Next we will cluster our set of data - which we know has three clusters - several times, with between 2 and 9 clusters. We will then show the results of the clustering, and plot the fuzzy partition coefficient. When the FPC is maximized, our data is described best.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig2</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax2</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">r_</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">11</span><span class="p">],</span> <span class="n">fpcs</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'#731810'</span><span class="p">)</span>
+<span class="n">ax2</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">"How Number of Clusters Change FPC?"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Number of centers"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Fuzzy partition coefficient"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="../../images/2018-05-01-Fuzzy_Clustering_8_0.png" alt="png" /></p>
+
+<p>As we can see, the ideal number of centers is 2. This isn’t news for our contrived example, but having the FPC available can be very useful when the structure of your data is unclear.</p>
+
+<p>Note that we started with two centers, not one; clustering a dataset with only one cluster center is the trivial solution and will by definition return FPC == 1.</p>
+
+<hr />
+
+<p>It’s also possible to make a predictive model out of this fuzzy clustering model, finding the new observations group, however I won’t be covering it in here. You can see it in the <a href="https://pythonhosted.org/scikit-fuzzy/auto_examples/plot_cmeans.html">Scikit-Fuzzy Documentation</a>.</p>
+
+<h3 id="sources">Sources</h3>
+
+<ol>
+  <li><a href="">Practical Guide to Cluster Analysis in R - Chapter 17 - Fuzzy Clustering</a></li>
+  <li><a href="https://www.sciencedirect.com/science/article/pii/S0167947306001307">Data analysis with fuzzy clustering methods</a></li>
+  <li><a href="https://arxiv.org/pdf/1404.6059.pdf">A Comparative study Between Fuzzy Clustering Algorithm and Hard Clustering Algorithm</a></li>
+  <li><a href="https://home.deib.polimi.it/matteucc/Clustering/tutorial_html/cmeans.html">A Tutorial on Clustering Algorithms - Fuzzy CMeans Clustering</a></li>
+  <li><a href="http://www.statisticshowto.com/fuzzy-clustering/">Statistics HowTo - Fuzzy Clustering</a></li>
+  <li><a href="https://pythonhosted.org/scikit-fuzzy/auto_examples/plot_cmeans.html">Scikit-Fuzzy Documentation</a></li>
+</ol>
+
+        
+          <div id="disqus_thread"></div><!-- /#disqus_thread -->
+          
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'eneskemalergin'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://localhost:4000/talks/histone_modifications/" class="btn" title="Fantastic Histone Modifications and How to Find Them">Previous</a>
+      
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2020 Enes Kemal Ergin</span>
+<div class="social-icons">
+	<a href="https://twitter.com/eneskemalergin" title="Enes Kemal Ergin on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/eneskemalergin" title="Enes Kemal Ergin on LinkedIn" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+	
+	<a href="https://instagram.com/ekemalergin" title="Enes Kemal Ergin on Instagram" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+	
+	<a href="https://github.com/eneskemalergin" title="Enes Kemal Ergin on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'http://localhost:4000';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ 'https://www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-118768066-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = 'https://stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,2021 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">Enes Kemal Ergin's Blog</title>
+<generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
+<link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml" />
+<link rel="alternate" type="text/html" href="http://localhost:4000" />
+<updated>2020-12-24T10:13:36-05:00</updated>
+<id>http://localhost:4000/</id>
+<author>
+  <name>Enes Kemal Ergin</name>
+  <uri>http://localhost:4000/</uri>
+  <email>eneskemalergin@gmail.com</email>
+</author>
+
+
+<entry>
+  <title type="html"><![CDATA[Fuzzy Clustering]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/Fuzzy_Clustering/" />
+  <id>http://localhost:4000/blog/Fuzzy_Clustering</id>
+  <published>2018-05-01T00:00:00-04:00</published>
+  <updated>2018-05-01T00:00:00-04:00</updated>
+  <author>
+    <name>Enes Kemal Ergin</name>
+    <uri>http://localhost:4000</uri>
+    <email>eneskemalergin@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;In this blogpost I will be covering one of clustering which sometimes called soft clustering. &lt;strong&gt;Fuzzy clustering&lt;/strong&gt; is form of clustering in which each data point can belong to more than one cluster.&lt;/p&gt;
+
+&lt;h2 id=&quot;clustering&quot;&gt;Clustering&lt;/h2&gt;
+
+&lt;p&gt;Cluster analysis or &lt;strong&gt;clustering&lt;/strong&gt; is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some sense) to each other than to those in other groups (clusters). Clustering is not one specific algorithm, but the task of grouping data. This can be achieved by various algorithms that differ significantly in their notion of what constitutes a cluster and how to efficiently find them. Out of 100 published clustering algorithms there are common clustering algorithm,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Hard Clustering:
+    &lt;ul&gt;
+      &lt;li&gt;Connectivity-based clustering (Hierarchical Clustering)&lt;/li&gt;
+      &lt;li&gt;Centroid-based Clustering (k-means clustering)&lt;/li&gt;
+      &lt;li&gt;Distribution-based Clustering&lt;/li&gt;
+      &lt;li&gt;Density-based Clustering&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Soft Clustering:
+    &lt;ul&gt;
+      &lt;li&gt;Fuzzy Clustering&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sklearn.cluster&lt;/code&gt; documentation there is nice visual that shows clustering results.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://scikit-learn.org/stable/_images/sphx_glr_plot_cluster_comparison_001.png&quot; alt=&quot;Scikit-learn Overview of Clustering Algorithms&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;fuzzy-clustering&quot;&gt;Fuzzy Clustering&lt;/h2&gt;
+
+&lt;p&gt;In Fuzzy clustering each element has a set of membership coefficients corresponding to the degree of being in a given cluster. Points close to the center of a cluster, may be in the cluster to a higher degree than points in the edge of a cluster. The degree, to which an element belongs to a given cluster, is a numerical value varying from 0 to 1.&lt;/p&gt;
+
+&lt;p&gt;Fuzzy clustering algorithms seeks to minimize cluster memberships and distances, but we will focus on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fuzzy C-Means Clustering algorithm&lt;/code&gt;.  Fuzzy c-means developed in 1973 and improved in 1981. It’s very similar to k-means algorithm in a structure way:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Choose number of clusters.&lt;/li&gt;
+  &lt;li&gt;Assign coefficients randomly to each data point for being in the clusters.&lt;/li&gt;
+  &lt;li&gt;Repeat until algorithm converged (Objective Function C minimizes cluster memberships and distances):
+    &lt;ul&gt;
+      &lt;li&gt;Compute the centroid for each cluster&lt;/li&gt;
+      &lt;li&gt;Compute each data points’ coefficients of being in the clusters.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The main difference with k-means cluster is that objective function for fuzzy c-means algorithm allows different cluster membership with probability values, where k-means cluster has strict objective function allows only one cluster membership.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;fuzzy-c-means-in-r&quot;&gt;Fuzzy C-Means in R&lt;/h3&gt;
+
+&lt;p&gt;Let’s see an implementation in R&lt;/p&gt;
+
+&lt;div class=&quot;language-R highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;factoextra&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Custom visualizations for clusters&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tidyverse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Data handling&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cluster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Clustering algorithms&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Reading the data from csv file to R&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iris_df&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'./iris.csv'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Modify the data,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#  create unique names for each row by adding species type to row number&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#  then add column species to rownames&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iris_df&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iris_df&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group_by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;species&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mutate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spec_idx&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row_number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'species'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;species&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spec_idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;TRUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&amp;gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;column_to_rownames&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'species'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# fanny() function from cluster packages is&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#  for fuzzy c-means clustering algorithm&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#  we are also defining 3 clusters to create.&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;res.fanny&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fanny&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iris_df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Look at the membership coefficients of first 7 element&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;res.fanny&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'membership'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Output:
+                  [,1]       [,2]       [,3]
+    setosa-1 0.9115847 0.03714162 0.05127368
+    setosa-2 0.8641378 0.05659841 0.07926381
+    setosa-3 0.8720433 0.05381542 0.07414133
+    setosa-4 0.8459146 0.06419306 0.08989232
+    setosa-5 0.9001651 0.04205859 0.05777633
+    setosa-6 0.7648869 0.09848692 0.13662620
+    setosa-7 0.8601062 0.05878600 0.08110779
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now let’s produce the plot using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;factoextra&lt;/code&gt; package to represent the clusters&lt;/p&gt;
+
+&lt;div class=&quot;language-R highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Cluster plot&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fviz_cluster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;res.fanny&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ellipse.type&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;convex&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+             &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;palette&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#00AFBB&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#E7B800&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#FC4E07&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+             &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ggtheme&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theme_minimal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;legend&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;right&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;    
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../images/cluster_plot.png&quot; alt=&quot;Cluster plot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Cluster plots are straightforward, provides a visualization of partitioning clustering methods results. We can see from our result setosa is clustering very well but versicolor and virginica species are very close.&lt;/p&gt;
+
+&lt;p&gt;Cluster silhouette plots on the other hand are not very straightforward in first look, however they are very information when we know what is showing. Silhouette plots visualize how the silhouette values are for our cluster. Looking at silhouette values of all clustered objects gives a pretty good idea of the relative quality of the partitioning of your data using a specific clustering algorithm. In our plot that we are going to plot we also have &lt;strong&gt;average silhouette width&lt;/strong&gt; which is the average silhouette value of all clustered objects&lt;/p&gt;
+
+&lt;div class=&quot;language-R highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Clusters Silhouette plot&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fviz_silhouette&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;res.fanny&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;palette&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#00AFBB&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#E7B800&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#FC4E07&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ggtheme&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theme_minimal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../images/silhouette_plot.png&quot; alt=&quot;Clusters Silhouette plot&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;fuzzy-c-means-in-python&quot;&gt;Fuzzy C-Means in Python&lt;/h3&gt;
+
+&lt;p&gt;Python implementation of fuzzy c-means is similar to R’s implementation. We will be using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skfuzzy&lt;/code&gt; library of Python. Oddly enough &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sklearn&lt;/code&gt; don’t have fuzzy c-means clustering algorithm written inside that’s why we are choosing another library.&lt;/p&gt;
+
+&lt;p&gt;To give an example in Python we will create our own data using numpy &lt;em&gt;(skfuzzy documentation)&lt;/em&gt;. As you will see in Python implementation that it’s not as trivial and short, since there isn’t a nice and established library for both clustering and visualization.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;skfuzzy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fuzz&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pandas&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;seaborn&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sns&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matplotlib&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inline&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;## Configure some general styling
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;white&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rcParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'font.size'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rcParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'axes.labelsize'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rcParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'axes.labelweight'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'bold'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rcParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'axes.titlesize'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rcParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'xtick.labelsize'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rcParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'ytick.labelsize'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rcParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'legend.fontsize'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rcParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'figure.titlesize'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rcParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'figure.figsize'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'b'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'orange'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'g'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'r'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'c'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'m'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'y'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'k'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Brown'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'ForestGreen'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Define three cluster centers
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+           &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+           &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Define three cluster sigmas in x and y, respectively
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sigmas&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Generate test data
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# Set seed for reproducibility
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xpts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ypts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xmu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ymu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xsigma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ysigma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;enumerate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;zip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sigmas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;xpts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hstack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xpts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;standard_normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xsigma&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xmu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ypts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hstack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ypts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;standard_normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ysigma&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ymu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hstack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ones&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Visualize the test data
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fig0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subplots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ax0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xpts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ypts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ax0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Test data: 200 points.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../images/2018-05-01-Fuzzy_Clustering_4_0.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is we created our test data and plotted them in the figure. With a human eye I can see there there are 3 distinct clusters however we would like to see which number of clusters best produces the clustering model. To be able to achieve that we will loop from 2 to 10 number of clusters &lt;em&gt;(named centers in this library)&lt;/em&gt; :&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Set up the loop and plot
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fig1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axes1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subplots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;alldata&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vstack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xpts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ypts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fpcs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ncenters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;enumerate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axes1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reshape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cntr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fpc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fuzz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cluster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmeans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;alldata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ncenters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.005&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;maxiter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Store fpc values for later
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;fpcs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fpc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Plot assigned clusters, for each data point in training set
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;cluster_membership&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argmax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ncenters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xpts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cluster_membership&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;ypts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cluster_membership&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Mark the center of each fuzzy cluster
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pt&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cntr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'rs'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Centers = {0}; FPC = {1:.2f}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ncenters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fpc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'off'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;fig1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tight_layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../images/2018-05-01-Fuzzy_Clustering_6_0.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the plot we see 2 parameters showed along side with the clusters with different number centers. First parameter is called centers which indicates number of clusters. Second parameter &lt;strong&gt;(FPC - Fuzzy Partition Coefficient)&lt;/strong&gt; is defined to be in 0-1 range, with 1 being the best. It is a metric which tells us how cleanly our data is described by a certain model. Next we will cluster our set of data - which we know has three clusters - several times, with between 2 and 9 clusters. We will then show the results of the clustering, and plot the fuzzy partition coefficient. When the FPC is maximized, our data is described best.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;fig2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subplots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ax2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fpcs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'#731810'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ax2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;How Number of Clusters Change FPC?&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ax2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Number of centers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ax2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Fuzzy partition coefficient&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../images/2018-05-01-Fuzzy_Clustering_8_0.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As we can see, the ideal number of centers is 2. This isn’t news for our contrived example, but having the FPC available can be very useful when the structure of your data is unclear.&lt;/p&gt;
+
+&lt;p&gt;Note that we started with two centers, not one; clustering a dataset with only one cluster center is the trivial solution and will by definition return FPC == 1.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;It’s also possible to make a predictive model out of this fuzzy clustering model, finding the new observations group, however I won’t be covering it in here. You can see it in the &lt;a href=&quot;https://pythonhosted.org/scikit-fuzzy/auto_examples/plot_cmeans.html&quot;&gt;Scikit-Fuzzy Documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;sources&quot;&gt;Sources&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Practical Guide to Cluster Analysis in R - Chapter 17 - Fuzzy Clustering&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.sciencedirect.com/science/article/pii/S0167947306001307&quot;&gt;Data analysis with fuzzy clustering methods&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1404.6059.pdf&quot;&gt;A Comparative study Between Fuzzy Clustering Algorithm and Hard Clustering Algorithm&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://home.deib.polimi.it/matteucc/Clustering/tutorial_html/cmeans.html&quot;&gt;A Tutorial on Clustering Algorithms - Fuzzy CMeans Clustering&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.statisticshowto.com/fuzzy-clustering/&quot;&gt;Statistics HowTo - Fuzzy Clustering&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pythonhosted.org/scikit-fuzzy/auto_examples/plot_cmeans.html&quot;&gt;Scikit-Fuzzy Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/Fuzzy_Clustering/&quot;&gt;Fuzzy Clustering&lt;/a&gt; was originally published by Enes Kemal Ergin at &lt;a href=&quot;http://localhost:4000&quot;&gt;Enes Kemal Ergin's Blog&lt;/a&gt; on May 01, 2018.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Fantastic Histone Modifications and How to Find Them]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/talks/histone_modifications/" />
+  <id>http://localhost:4000/talks/histone_modifications</id>
+  <published>2017-11-12T00:00:00-05:00</published>
+  <updated>2017-11-12T00:00:00-05:00</updated>
+  <author>
+    <name>Enes Kemal Ergin</name>
+    <uri>http://localhost:4000</uri>
+    <email>eneskemalergin@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;section&gt;
+&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+# Fantastic Histone Modifications and How to Find Them
+
+&gt; Enes Kemal Ergin &lt;br /&gt;
+&gt; Nov 16, 2017 &lt;br /&gt;
+&gt; BIOF501 &lt;br /&gt;
+&gt; Review Presentation
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+## Outline
+
+- Overview of Epigenomics and Epigenetic Modifications
+- Histone Modifications
+- Chromatin Immunoprecipitation
+- ChIP-chip
+- ChIP-seq
+- ChIP-chip vs ChIP-seq
+- Hidden Markov Chains
+
+
+&lt;/script&gt;&lt;/section&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+## Epigenomics and Epigenetic Modifications
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### What is Epigenomics?
+
+- Study of complete set of epigenetic modifications.
+- Large scale study than a single gene study.
+- Have an important role in gene expression and regulations.
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### Epigenetic Modifications I
+
+- Heritable changes not due to changes in DNA sequence
+- Cause of variation
+- Most studied:
+  - DNA Methylations
+  - Histone Modifications
+
+
+&lt;/script&gt;&lt;/section&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+## Histone Modifications
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### Histones and Their Modifications
+
+- Histone is known for condensing of DNA functionality.
+- Chromatin structure and density of its DNA packaging effects gene expression.
+- Histone proteins affect the gene expression.
+- There are 3 well studied modifications:
+  - Acetylation
+  - Methylation
+  - Phosphorylation
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### Importance of Histone Modifications
+
+- Histone proteins have key roles:
+  - Gene regulation
+  - DNA damage repair
+  - Transcription and Replication
+- Important for understanding epigenetic regulation.
+
+&lt;/script&gt;&lt;/section&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+## Chromatin Immunoprecipitation
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### What is ChIP
+
+- Tool to determine DNA sequences associated with protein of interest
+- ChIP could be used for:
+  - Post-transcriptionally modified histones
+  - histone variants
+  - transcription factors
+  - chromatin modifying enzymes
+- Scope of experiment could expand to genome-wide scale.
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### ChIP protocol
+
+&lt;img
+src=&quot;/images/talks/histone_modifications/chip.png&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### ChIP Followed by Microarray and Sequencing
+
+- __ChIP-chip__ (DNA microarray)
+- __ChIP-seq__ (Next Generation Sequencing)
+
+
+&lt;/script&gt;&lt;/section&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+## ChIP-chip Method
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### What is ChIP-chip
+
+- High resolution genome-wide profiling
+- Has wide variety of applications
+- Has also limitations:
+  - Antibody quality
+  - Need for large number of cells
+  - Long, expensive and hard to troubleshoot
+
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### ChIP-chip Overview
+
+&lt;img src=&quot;/images/talks/histone_modifications/chip-chip_overview.gif&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+
+### Data Processing in ChIP-chip
+
+- Array normalization
+- Peak Detection
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### The Output of ChIP-chip
+
+&lt;img src=&quot;/images/talks/histone_modifications/chip-chip_output.jpg&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+## ChIP-seq Method
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### What is ChIP-seq
+
+- ChIP combined with high-throughput sequencing
+- Genome-wide profiling
+- Handling repetitiveness with high confidence
+- Greater resolution, sensitivity, and specificity
+- More common since 2007
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### ChIP-seq Overview
+
+&lt;img src=&quot;/images/talks/histone_modifications/Chip_seq_overview.png&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### Data Processing in ChIP-seq
+
+&lt;img src=&quot;/images/talks/histone_modifications/chip-seq_bioinformatics_workflow.png&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+#### Quality Control/Check
+
+- Fundamental Step(s)
+- Fully automated or Manually
+- Aided by Visuals
+- Tools like ChIPQC(R/Bioconductor)
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+#### Alignment
+Mapping - Sorting - Removing
+
+1. Map reads to genome (__Bowtie2, BWA, STAR__)
+2. Sort the mapped reads (__Samtools__)
+3. Remove the duplicates
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+##### Be Aware of the Bias!
+
+&lt;img src=&quot;/images/talks/histone_modifications/short_read.jpg&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+#### Normalization
+
+- Must be done when have multiple experiments.
+- In absence could result bias in peak calling phase.
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+#### Peak Calling
+
+- Identifying regions enriched after mapping
+- Main point of optimization for years.
+- Aligner and Peak Caller compatibility
+- __Two Key Components:__
+  - Identifiy candidate peaks
+  - Test candidates statistical significance
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+#### Peak Calling
+
+- __MACS__ (Poisson Distribution)
+- PeakFinder (Thresholding Principle)
+- FindPeaks (Monte Carlo Simulation)
+- __HPeak__ (Hidden Markov Model)
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+##### Differential Peak Calling in ChIP-seq
+
+- When multiple experiments
+- Critical to calculate the differential peak
+- __ODIN__, __THOR__ (Hidden Markov Model)
+
+&lt;img src=&quot;/images/talks/histone_modifications/two_chip-seq_signals.gif&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+&lt;img src=&quot;/images/talks/histone_modifications/THOR_DPC.png&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+## ChIP-chip vs ChIP-seq
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+| Features        | ChIP-chip       | ChIP-seq  |
+| -------------   |:-------------:| -----:|
+| __Resolution__      | Array Specific | Single Nucleotide - High |
+| __Coverage__        | Limited by Sequences on the Array |  Limited by alignability of reads |
+| __Sensitivity__     | Low Sensitivity | High Sensitivity |
+| __Repeat Elements__ | Masked out   |  Can be covered |
+| __Cost__            | Expensive | Relatively Cheaper |
+| __Source of Noise__ | Cross Hybridization | Sequencing, GC bias, Sequencing error |
+| __ChIP DNA__        | Large amount needed | Low amount necessary |
+
+
+&lt;/script&gt;&lt;/section&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+## Hidden Markov Models
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### Understanding HMM
+
+No Math Involved, Promise!
+
+&lt;img src=&quot;https://media.giphy.com/media/ohdY5OaQmUmVW/giphy.gif&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+#### Markov Models
+
+&lt;img src=&quot;/images/talks/histone_modifications/weather_predicting_cat.jpg&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+&lt;img src=&quot;/images/talks/histone_modifications/markov_model.png&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+#### Hidden Markov Models
+
+&lt;img src=&quot;/images/talks/histone_modifications/wheater_predicting_cat_in_box.jpg&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### Why HMM is Useful
+
+&lt;img src=&quot;http://www.reactiongifs.com/r/but-why.gif&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+&lt;img src=&quot;/images/talks/histone_modifications/chip_seq_modeling_hmm_1.gif&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+&lt;img src=&quot;/images/talks/histone_modifications/chip_seq_modeling_hmm_2.gif&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### Advantages and Disadvantages of HMM
+
+- Advantages
+  - Statistical Foundation
+  - Using Raw Data Directly
+  - Variable Lengths in Input
+- Disadvantages
+  - Expressing Dependencies Between Hiddent States
+  - Unstructured Parameters
+
+&lt;/script&gt;&lt;/section&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+## Thank You
+
+&gt; Questions?
+
+&lt;/script&gt;&lt;/section&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+## Supplementary Slides
+
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### Epigenetic Mechanisms DNA Level
+
+&lt;img style=&quot;width:350; height:450&quot;  src=&quot;/images/talks/histone_modifications/epigenetic_mechanism_DNA.png&quot;&gt;&lt;/img&gt;
+
+&gt; [WhatisEpigenetics, 2017](https://www.whatisepigenetics.com/type-2-diabetes-mellitus-and-epigenetics/)
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### Epigenetic Mechanisms after DNA Level
+
+&lt;img style=&quot;max-width: 100%;&quot; src=&quot;/images/talks/histone_modifications/epigenetic_mechanism_supp.png&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### Histone Modifications List
+
+- __Acetylation__ (gene activation)
+- __Methylation__ (gene activation,  gene repression)
+- __Phosphorylation__ (gene activation)
+- Ubiquitination (gene activation, gene repression)
+- SUMOylation (gene repression)
+- ADP-ribosylation  
+- Deamination (gene repression)
+- Proline isomerization (gene repression)
+
+There is a nice reference of full table of Histone Modifications list in the __[cellsignal](https://www.cellsignal.com/contents/resources-reference-tables/histone-modification-table/science-tables-histone)__ website
+
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### Roles of Histone Modifications
+
+&lt;img src=&quot;/images/talks/histone_modifications/roles_of_histone_modifications.png&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### Post-translational Modifications on Core Histones
+
+&lt;img style=&quot;max-width: 100%;&quot; src=&quot;/images/talks/histone_modifications/PTM_of_core_histones.png&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### HMMTiling for ChIP-Chip
+
+&lt;img style=&quot;max-width: 100%;&quot; src=&quot;/images/talks/histone_modifications/HMMTiling.png&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### TileMap for ChIP-Chip
+
+&lt;img style=&quot;max-width: 100%;&quot; src=&quot;/images/talks/histone_modifications/TileMap.png&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### Extensive ChIP-seq Workflow
+
+&lt;img style=&quot;max-width: 100%;&quot; src=&quot;/images/talks/histone_modifications/chip_seq_workflow.jpg&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### ChIP-seq Quality Check
+&lt;img style=&quot;max-width: 100%;&quot; src=&quot;/images/talks/histone_modifications/chip-seq_vis_qc.jpg&quot;&gt;&lt;/img&gt;
+
+&lt;/script&gt;&lt;/section&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+### References
+
+__1-__ Callinan, P. A., &amp; Feinberg, A. P. (2006). The emerging science of epigenomics. Human Molecular Genetics. doi:10.1093/hmg/ddl095 &lt;/br&gt;
+__2-__ Handy, D. E., Castro, R., &amp; Loscalzo, J. (2011). Epigenetic Modifications: Basic Mechanisms and Role in Cardiovascular Disease. Circulation, 123(19), 2145-2156. doi:10.1161/circulationaha.110.956839 &lt;/br&gt;
+__3-__ Lennartsson, A., &amp; Ekwall, K. (2009). Histone modification patterns and epigenetic codes. Biochimica et Biophysica Acta (BBA) - General Subjects, 1790(9), 863-868. doi:10.1016/j.bbagen.2008.12.006 &lt;/br&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+__4-__ Jayani, R. S., Ramanujam, P. L., &amp; Galande, S. (2010). Studying Histone Modifications and Their Genomic Functions by Employing Chromatin Immunoprecipitation and Immunoblotting. Methods in Cell Biology Nuclear Mechanics &amp; Genome Regulation, 35-56. doi:10.1016/s0091-679x(10)98002-3 &lt;/br&gt;
+__5-__ Collas, P. (2009). The State-of-the-Art of Chromatin Immunoprecipitation. Chromatin Immunoprecipitation Assays Methods in Molecular Biology, 1-25. doi:10.1007/978-1-60327-414-2_1 &lt;/br&gt;
+__6-__ Lee, T. I., Johnstone, S. E., &amp; Young, R. A. (2006). Chromatin immunoprecipitation and microarray-based analysis of protein location. Nature Protocols, 1(2), 729-748. doi:10.1038/nprot.2006.98 &lt;/br&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+__7-__ Cauchy, P., Benoukraf, T., &amp; Ferrier, P. (2011). Processing ChIP-Chip Data: From the Scanner to the Browser. Methods in Molecular Biology Bioinformatics for Omics Data, 251-268. doi:10.1007/978-1-61779-027-0_12 &lt;/br&gt;
+__8-__ Reinke, V. (2013). Transcriptional regulation of gene expression in C. elegans. WormBook, 1-31. doi:10.1895/wormbook.1.45.2 &lt;/br&gt;
+__9-__ Newkirk, D., Biesinger, J., Chon, A., Yokomori, K., &amp; Xie, X. (2011). AREM: Aligning Short Reads from ChIP-Sequencing by Expectation Maximization. Lecture Notes in Computer Science Research in Computational Molecular Biology, 283-297. doi:10.1007/978-3-642-20036-6_26 &lt;/br&gt;
+
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+__10-__ Allhoff, M., Sere, K., Chauvistre, H., Lin, Q., Zenke, M., &amp; Costa, I. G. (2015). Detecting differential peaks in ChIP-seq signals with ODIN. Bioinformatics, 31(6), 980-980. doi:10.1093/bioinformatics/btv030 &lt;/br&gt;
+__11-__ Meyer, I. (2004). Hidden Markov Model (HMM, Hidden Semi-Markov Models, Profile Hidden Markov Models, Training of Hidden Markov Models, Dynamic Programming, Pair Hidden Markov Models). Dictionary of Bioinformatics and Computational Biology. doi:10.1002/9780471650126.dob0318.pub2 &lt;/br&gt;
+__12-__ Vinciotti, V. (2017). Modelling ChIP-seq Data Using HMMs. Hidden Markov Models Methods in Molecular Biology, 115-122. doi:10.1007/978-1-4939-6753-7_8 &lt;/br&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+__13-__ Ho, J. W., Bishop, E., Karchenko, P. V., Nègre, N., White, K. P., &amp; Park, P. J. (2011). ChIP-chip versus ChIP-seq: Lessons for experimental design and data analysis. BMC Genomics, 12(1). doi:10.1186/1471-2164-12-134 &lt;/br&gt;
+__14-__ Carroll TS, Liang Z, Salama R, Stark R and de Santiago I (in press). “Impact of artefact removal on ChIP quality metrics in ChIP-seq and ChIP-exo data.” Frontiers in Genetics. &lt;/br&gt;
+__15-__ Guzman, C., &amp; D’Orso, I. (2017). CIPHER: a flexible and extensive workflow platform for integrative next-generation sequencing data analysis and genomic regulatory element prediction. BMC Bioinformatics, 18(1). doi:10.1186/s12859-017-1770-1 &lt;/br&gt;
+
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+__16-__ Nakato, R., &amp; Shirahige, K. (2016). Recent advances in ChIP-seq analysis: from quality management to whole-genome annotation. Briefings in Bioinformatics. doi:10.1093/bib/bbw023 &lt;/br&gt;
+__17-__ Diaz, A., Park, K., Lim, D. A., &amp; Song, J. S. (2012). Normalization, bias correction, and peak calling for ChIP-seq. Statistical Applications in Genetics and Molecular Biology, 11(3). doi:10.1515/1544-6115.1750 &lt;/br&gt;
+__18-__ Qin, Zhaohui S, et al. “HPeak: an HMM-Based algorithm for defining read-Enriched regions in ChIP-Seq data.” BMC Bioinformatics, vol. 11, no. 1, 2010, p. 369., doi:10.1186/1471-2105-11-369. &lt;/br&gt;
+
+&lt;/script&gt;&lt;/section&gt;&lt;section data-markdown=&quot;&quot;&gt;&lt;script type=&quot;text/template&quot;&gt;
+
+__19-__ Allhoff, M., et al. “Detecting differential peaks in ChIP-Seq signals with ODIN.” Bioinformatics, vol. 31, no. 6, Nov. 2015, pp. 980–980., doi:10.1093/bioinformatics/btv030. &lt;/br&gt;
+__20-__ Allhoff, Manuel, et al. “Differential peak calling of ChIP-Seq signals with replicates with THOR.” Nucleic Acids Research, Feb. 2016, doi:10.1093/nar/gkw680. &lt;/br&gt;
+__21-__
+
+&lt;/script&gt;&lt;/section&gt;
+&lt;/section&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/talks/histone_modifications/&quot;&gt;Fantastic Histone Modifications and How to Find Them&lt;/a&gt; was originally published by Enes Kemal Ergin at &lt;a href=&quot;http://localhost:4000&quot;&gt;Enes Kemal Ergin's Blog&lt;/a&gt; on November 12, 2017.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Weapons of Math Destruction]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/personal/weapons_of_math_destruction/" />
+  <id>http://localhost:4000/personal/weapons_of_math_destruction</id>
+  <published>2017-10-16T00:00:00-04:00</published>
+  <updated>2017-10-16T00:00:00-04:00</updated>
+  <author>
+    <name>Enes Kemal Ergin</name>
+    <uri>http://localhost:4000</uri>
+    <email>eneskemalergin@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;a href=&quot;https://www.goodreads.com/book/show/28186015-weapons-of-math-destruction&quot;&gt;Weapons of Math Destruction&lt;/a&gt; is a book by &lt;a href=&quot;https://twitter.com/mathbabedotorg&quot;&gt;Cathy O’Neil&lt;/a&gt; (also the author of the blog called &lt;a href=&quot;https://mathbabe.org/&quot;&gt;mathbabe&lt;/a&gt;) which I can define in 4 words: captivating, haunting, honest, and enlightening.&lt;/p&gt;
+
+&lt;h2 id=&quot;weapons-of-math-destruction-how-big-data-increases-inequality-and-threatens-democracy&quot;&gt;Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy&lt;/h2&gt;
+
+&lt;p&gt;I’ve found myself reading books about technology more than ever. Starting with &lt;a href=&quot;https://www.goodreads.com/book/show/17986396-the-second-machine-age&quot;&gt;The Second Machine Age&lt;/a&gt;, &lt;a href=&quot;https://www.goodreads.com/book/show/28186015-weapons-of-math-destruction&quot;&gt;Weapons of Math Destruction&lt;/a&gt;, and currently reading &lt;a href=&quot;https://www.goodreads.com/book/show/32606599-machine-platform-crowd&quot;&gt;Machine, Platform, Crowd&lt;/a&gt;, they are the ones that I’ve finished any many more is in my to read list. But why am I interested in reading these? Answer is really simple, because I want to know what are the larger scale effects of the technologies that I am using, developing in daily basis. These concepts are not taught in the class or practiced in any project. &lt;strong&gt;We as developers or as users, should be aware of the effects of the technology to come up with better solutions, policies, and bridges to connect user and application.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The book &lt;a href=&quot;https://www.goodreads.com/book/show/28186015-weapons-of-math-destruction&quot;&gt;Weapons of Math Destruction&lt;/a&gt; is a little different than other books that I am reading, in terms of its tone. &lt;strong&gt;The tone of the author is more warning and notice of the mathematical algorithms, and their chaotic effects on the large scale than the overview of new emerging technologies.&lt;/strong&gt; One can see the darker tone in the book, and cannot take him/herself from thinking that how math and computer science is in everything and changing our life in a way that needs regulation. It needs regulation because the systems they are using is feeding a negative feedback to the system which creates inequality in a greater scale every time its being put to use.&lt;/p&gt;
+
+&lt;p&gt;The author touches so many ethical dilemmas created by these WMDs [(&lt;strong&gt;W&lt;/strong&gt;)eapons of (&lt;strong&gt;M&lt;/strong&gt;)ath (&lt;strong&gt;D&lt;/strong&gt;)estruction)] and gives reader a space to think about them. &lt;strong&gt;The reason that WMDs are creating ethical dilemmas is that they penalize the poor, the ethnically diverse, or simply the non-target audience of the profit WMDs.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As a developer of Machine Learning technologies, I use math, statistics, and data science quite a lot. And learning that intentionally or un-intentionally misusing those methods could result in catastrophic effects in the large scale. That’s why the points I get from this book is really important for me. By reverse engineering the WMDs, I get what I should be doing and be more careful to.&lt;/p&gt;
+
+&lt;p&gt;After giving my review about the book, let me also share some of the notes taken from the book:&lt;/p&gt;
+
+&lt;p&gt;Author is going over different areas in each chapter to show the cause and effects of each WMDs populating the area with unequalities, and feedback loops that is creating more and more imbalance. In each WMD we see in the book, the author explains how opaque the model, the scale and the damage of the models.&lt;/p&gt;
+
+&lt;p&gt;The book starts with the teacher assesment tool IMPACT, by introducing IMPACT and it’s impact (:D), author shows the main 3 features which makes WMD, a corrupted use of mathematics. Here are the 3 main features:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Opacity:&lt;/strong&gt; This part comes from how hidden the algorithm is, do the users know how it works, or even it’s existence in the first place.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Scale:&lt;/strong&gt;  This part comes from the effects increases exponentially to large number of people, creating a never seen before effects.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Damage:&lt;/strong&gt; This part comes from the results penalizing the poor, or ethnically diverse, or simply the non-target audience.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These algorithms misuse of math and statistics, by taking variables in a fashion that will make it a biased. Taking account of variables that they could easily obtain and measure is not always the ones important to use as a prediction base. So there are a lot of variables left out and most of the time they are the most complex and correlated ones.&lt;/p&gt;
+
+&lt;p&gt;Another big issue with these misused algorithms, is that they don’t have a good feedback mechanism, meaning that it cannot update the importance of the variables (commonly used as weighting variables) or simply selecting variables to use for the job at hand.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Statistical systems require feedback, statisticians use errors to train their models and make them smarter.&lt;/li&gt;
+  &lt;li&gt;Without feedback, however, a statistical algorithm can continues spinning out faulty and damaging while never learning from its mistakes.&lt;/li&gt;
+  &lt;li&gt;WMDs is the same, they define their own reality and use it to justify their results. This type of model is self-perpetuating, highly destructive, and very common.&lt;/li&gt;
+  &lt;li&gt;WMDs as in their nature is secretive. They don’t give away how the algorithm works, which parameters used and variables accounted for. Only the analysis is outsourced to coders and statisticians and they let the machines do the talking. (&lt;strong&gt;They Opaque&lt;/strong&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The tactics used in baseball teams are perfect example of math and statistics usage. They create models to analyze their opponents and devise their play accordingly. After each play they feed whatever they learn from the play into their model to refine it. That’s how trusthworthy models should operate. They maintain a constant back-and-forth with whatever in the world they’re trying to understand or predict. Conditions change, and so must the mode.&lt;/p&gt;
+
+&lt;p&gt;A model is nothing more than an abstract representation of some process, be it a baseball game, and oil company’s supply chain, a foreign government’s actions, or a movie theater’s attendance. And a dynamic model is when you constantly update and adjust the model with feedback.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;There would always be mistakes, however, because models are, by their very nature, simplifications. No model can include all of the real world’s complexity or the nuance of human communication.&lt;/li&gt;
+  &lt;li&gt;Our own values and desires influence our choices, from the data we choose to collect to the questions we ask. Models are opinions embedded in mathematics.&lt;/li&gt;
+  &lt;li&gt;The quality of the model does not correlate with the complexity of the models, sometimes the simple one variable models prove the be very effective on the task they needed to be doing, like smoke alarms.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Signature quality of WMD is a toxic feedback loop that contributes and sustains inequality.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Baseball models are healthy, they are transparent, and continuously updated, with assumptions and conclusions are interpretable and clear to see.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;So to sum up, these are the three elements of WMD: Opacity, Scale, and Damage. All of them will be present, to one degree or another.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The biased models are everywhere. They are infiltrated our lifes from job applications to civil justice, and they have huge effects. Author is mentioning the role of biased financial models is huge in the market crash in 2008.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;People were using formulas to impress rather than clarify.&lt;/li&gt;
+  &lt;li&gt;I saw all kinds of parallels between finance and big data.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Fallacious conclusion that whatever they’re doing to bring in more money is good.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;After a couple of years working and learning in the Big Data space, my journey to disillusionment was more or less complete, and the misuse of mathematics was only accelerating with incredible pace.&lt;/li&gt;
+  &lt;li&gt;I quit my job as data scientist to investigate the issue of misusing math to gain.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Have you ever wonder how U.S. News rank the universities? or Have you ever wondered how they are so influential? In 1983 U.S.News and World report stated to evaluate 1,800 colleges and universities and rank them for their excellence. But how? Okay, features like SAT scores, AP classes, student-teacher ratio, acceptence rate is definetely a big factor and used but is it enough? Creating a system that higly accepted by the colleges and universities, created an unfair race.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;First data driven ranking came out 1988, at first it was ok/bearable but when ranking grew to national standard, vicious feedback loop materialized.&lt;/li&gt;
+  &lt;li&gt;U.S. News college ranking is operates at great scale, inflicts widespread damage, and generates an almost endless spiral of destructive feedback loops, even though is less opaque than other WMDs the other things are enough to count ranking as WMD.&lt;/li&gt;
+  &lt;li&gt;The schools are start to race to get better ranking on the list ever year, and sometimes taking it as far as cheating by lying about the scores.&lt;/li&gt;
+  &lt;li&gt;Even though it created a WMD and have devastating effects, we cannot say that it’s all negative. It kind of created a competitive environment where school has to improve every year to be able to get better ranking.&lt;/li&gt;
+  &lt;li&gt;However this nice looking competition is also resulted in increasing the tuition.&lt;/li&gt;
+  &lt;li&gt;Between 1985 and 2013, the cost of higher education rose by more than 500 percent, nearly four times the rate of inflation.&lt;/li&gt;
+  &lt;li&gt;This increase in the tuitions could be explained by the spending of universities to attract students, like building new stadium, dorm, gyms, etc.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Another threat is coming from online advertising. In this section of the book author explores the how online advertising is used to create a WMD on behalf of the for-profit colleges and leave students with huge student loans.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Online advertising and predatory ads are define the genre of the WMDs.&lt;/li&gt;
+  &lt;li&gt;Online profit college ads are targeting isolated, impatient individuals with low self-esteem.&lt;/li&gt;
+  &lt;li&gt;With machine learning, a fast-growing domain of artificial intelligence, the computer dices into the data, following only basic instructions. The algorithm then finds patterns on its own, and then, through time, connects them with outcomes. In a sense, it learns.&lt;/li&gt;
+  &lt;li&gt;A machine learning algorithm in contrast to Human learning, will often require millions or billions of data points to create its statistical models of cause and effect.&lt;/li&gt;
+  &lt;li&gt;But with the internet, people across the earth have produced quadrillions of words about our lives and work, our shopping, and our friendships. By doing this, we have unwittingly built the greatest ever training corpus for natural-language machines. As we turned from paper to e-mail and social networks, machines could study our words, compare them to others, and gather something about their context.&lt;/li&gt;
+  &lt;li&gt;The programs “know” what a word means, at least enough to associate with certain behaviors and outcomes, at least some of the time.&lt;/li&gt;
+  &lt;li&gt;Yet a crucial component of a WMD is that it’s damaging to many people’s lives, and with these types of predatory ads, the damage doesn’t begin until students start taking out big loans for their tuition and fees.&lt;/li&gt;
+  &lt;li&gt;Research created by CALDER found that diplomas from for-profit colleges were worth less in the community colleges and about the same as a high school diploma. And yet these colleges cost on average 20 percent more than flagship public universities.&lt;/li&gt;
+  &lt;li&gt;For-profit colleges, sadly, are hardly alone in deploying predatory ads, payday load industry operates WMDs too.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;WMDs are also present in civil justice area, where police departments across USA using predictive software programs, and unwillingly creating WMDs. These predictive softwares are creating a vicious feedback loop that creates a huge racial profiling unknowingly.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Predictive software programs like PredPol used in budget-strapped police departments, that predicts the hot-spots, which has a potential to have a crime occur.&lt;/li&gt;
+  &lt;li&gt;PredPol doesn’t target individual but targets the geography.&lt;/li&gt;
+  &lt;li&gt;However when police setup the system they have choice to select either Part 1 crimes (violent crimes, like homicide, arson, assault) or Part 2 crimes (vagrancy, aggressive panhandling, selling and consuming small amounts of drug)&lt;/li&gt;
+  &lt;li&gt;Including Part 2 crimes skew the model and creates a pernicious feedback loop.&lt;/li&gt;
+  &lt;li&gt;Policing itself spans new data in part 2 crime sites which justifies more policing, and our prisons are fill up with hundreds of thousands of people found guilty of victimless crimes, most of them from black and hispanic neighbors because the model feeds their neighbors. This is not color blind&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There is inequality even in the job applications caused by WMDs nowadays. The models that reads and predicts the availability, fitness of the applicant by looking at resumes and personality test results. It doesn’t really matter if you are top-notch applicant, the machine/model could mark you with it’s read flags.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A perfect SAT or a school with high ranking in USA does not help to beat the vicious feedback loop of WMD that decides which applicant to call for an interview.&lt;/li&gt;
+  &lt;li&gt;Personality tests are used as a criteria in algorithms, primary purpose of the test  is not to find the best employee but to exclude as many as people as cheaply as possible.&lt;/li&gt;
+  &lt;li&gt;72 percent of CVs or resumes are not seen by human eyes, but by computers pulling out the skills and experiences that employee is looking for.&lt;/li&gt;
+  &lt;li&gt;So crafting CV and Resumes is very crucial in job specific level.&lt;/li&gt;
+  &lt;li&gt;There are somethings that machines cannot process in cv or the algorithm is simply not built to except them, like images, or fancy fonts.&lt;/li&gt;
+  &lt;li&gt;Using Ariel and Courier fonts, and not including images or different inserts is the best way to avoid trashing your resume by machine.&lt;/li&gt;
+  &lt;li&gt;WMDs are designed to cut administrative costs and to reduce the risk of bad hires (or ones that might require more training.) The objective of the filters, in short, is to save money.&lt;/li&gt;
+  &lt;li&gt;Naturally many hiring models attempt to calculate the likelihood that each job candidate will stick around.&lt;/li&gt;
+  &lt;li&gt;There are different correlation to get the metric that calculate the likelihood of candidate leaving, such as type of person, or geography (the place the candidate live)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Another example of WMD author uses in another section is how scheduling models are creating unbalanced schedules for people working.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;“Clopening”&lt;/em&gt;, that’s when an employee works late on night to close the store or café and returns a few hours later, before down to open it.&lt;/li&gt;
+  &lt;li&gt;These irregular schedules are a product of the data economy.&lt;/li&gt;
+  &lt;li&gt;Scheduling tech has its roots in a powerful discipline of applied math called “operations research, or OR”&lt;/li&gt;
+  &lt;li&gt;This means using big scheduling modes, big retailers and restaurants can twist the workers’ lives to ever-more-absurd schedules without suffering from excessive churn.&lt;/li&gt;
+  &lt;li&gt;These WMDs are massive, and it’s entirely opaque. Workers don’t have clue about when they’ll be called to work.&lt;/li&gt;
+  &lt;li&gt;The model is optimized for efficiency and profitability, not for justice or the good of the “team.” (Nature of the Capitalism)&lt;/li&gt;
+  &lt;li&gt;Intelligence Systems are depended on the feedback they receive(error feedback, false positives) to delve into forensic analysis and figure out what went wrong, what was misread, what data was ignored, that’s how the systems improve. However loads of WMDs from recidivism models to teacher scores, blithely generate their own reality.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Calculating credit scores are also in hands of WMDs.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;FICO an algorithm devised by Earl Isaac and Bill Fair, evaluates the risk that an individual would default on a loan.&lt;/li&gt;
+  &lt;li&gt;This score was color blind and the criteria taken into account were clear and known.&lt;/li&gt;
+  &lt;li&gt;Today we’re added up to it in every conceivable was as statisticians and mathematicians patch together a mishmash of data, from our zip codes and Internet surfing patterns to our recent purchases.&lt;/li&gt;
+  &lt;li&gt;Many pseudoscientific  models attempt to predict our creditworthiness, giving each of us so-called e-scores, unlike FICO, they resemble, e-scores are arbitrary, unaccountable, unregulated, and often unfair-in short, they are WMDs.&lt;/li&gt;
+  &lt;li&gt;Nasty feedback loop created by e-scores: E-scoring system will give person lives in a low-income (demographic) area  a low score thus the loans will have higher interest rate and more advertisement about credit cards, which will put the buyer into a worst place.&lt;/li&gt;
+  &lt;li&gt;There are a lot of data points called proxies are used to calculate e-score. E-scores nourished by millions of proxies exist in the shadows.&lt;/li&gt;
+  &lt;li&gt;Errors caused by algorithm because of the name similarity is so often, in 2013 5% of the people reported an error.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are couple of more examples in the book, that I won’t put it here. In the book author visited different areas of life; schools, colleges, courts, workplaces, and she showed us the destructive usages of misused math as WMDs. However she also gives some ideas about how we can regulate these WMDs and possibly stop them:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Injustice, whether based in greed or prejudice, has been with us forever, and WMDs are reflecting it since the humans are the ones writing their algorithm.&lt;/li&gt;
+  &lt;li&gt;Big Data Processes codify the past. They do not invent the future.&lt;/li&gt;
+  &lt;li&gt;She is suggesting an oath something like Hippocratic Oath, one that focuses on the possible misuses and misinterpretations of math in the models.&lt;/li&gt;
+  &lt;li&gt;To eliminate WMDs, we must advance beyond establishing the best practices in our data guild. To change our laws in data guild we need to reevaluate our metric of success.&lt;/li&gt;
+  &lt;li&gt;Nowadays, success of a model is measured in terms of profit, efficiency, or default rates.&lt;/li&gt;
+  &lt;li&gt;To disarm WMDs, we also need to measure their impact and conduct algorithmic audits.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;What I would take from this book is that Big Data has a huge influence in our life, but currently the way we use it and take advantage of it just increases the inequality and bias, which effects millions of people in a very depressing way. Big data is one of the strongest super powers of our century, and if we keep using it for power and profit by ignoring human rights and actual fairness we’ll create a community which will never come back from. So everyone should be careful about these sinister misused models, and people who works on the industry should come up with strict regulations before it would leave an irreversible mark on our society.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This is my notes from the book. Most of the bulletin points are exactly quoted from the book. I wanted to combine my views and review about the book with exact quotations from the book, and I hope I could’ve achieved it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/personal/weapons_of_math_destruction/&quot;&gt;Weapons of Math Destruction&lt;/a&gt; was originally published by Enes Kemal Ergin at &lt;a href=&quot;http://localhost:4000&quot;&gt;Enes Kemal Ergin's Blog&lt;/a&gt; on October 16, 2017.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[The Second Machine Age]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/personal/second_machine_age/" />
+  <id>http://localhost:4000/personal/second_machine_age</id>
+  <published>2017-10-07T00:00:00-04:00</published>
+  <updated>2017-10-07T00:00:00-04:00</updated>
+  <author>
+    <name>Enes Kemal Ergin</name>
+    <uri>http://localhost:4000</uri>
+    <email>eneskemalergin@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;a href=&quot;https://www.amazon.ca/Second-Machine-Age-Prosperity-Technologies/dp/0393239357&quot;&gt;The Second Machine Age&lt;/a&gt; was an amazing book that gives informative insights about the advancement of Artificial Intelligence and the automation.&lt;/p&gt;
+
+&lt;p&gt;Even though the book was published in 2015, and used the advancements until 2015, I can say that some of the state-of-art technologies mentioned is no longer state-of-art, some of them is just old children toy. However the authors giving us a big picture of how the technology is affecting us, and will affect more in the future. I also discovered that there is more recent book by the authors called Machine, Platform, Crowd. I am definitely going to read that too and share the notes here as well for more up-to-date technological overview.&lt;/p&gt;
+
+&lt;p&gt;The authors organized the book in a way, that we as a reader first get introduced with the state-of-art(for 2015) technologies, then we read how fast really the technology is advancing, and if there is a limit. After knowing the technology part, we get to know the scope of the effectiveness of new tech. Then as the last parts authors talk about the what it really means for the working force, what should be done to avoid huge problems such as unemployment. They also give some recommendations.&lt;/p&gt;
+
+&lt;p&gt;Here I would like to share some of my notes from the book. It’s not fully a summary because I did not put them in that kind of order. I am just sharing some points that I find most interesting/useful.&lt;/p&gt;
+
+&lt;p&gt;The era that we live in is most interesting for digitization. We record everything in digitalized format. &lt;strong&gt;Let me give you an example about our daily encounter with computers, or let’s generalize, with machines from my one day;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I wake up at 6:00am, and my alarm is set in my smart phone. Of course my sleep tracker program was tracking my sleep patterns during the night, through my smart phone again. Checking emails, listening music, reading books, messaging with friends, writing blogs, and more I am using computer, smartphone, ipad, or some kind of digitalized device to survive daily. Now, let’s try to remember the times that using computer was a luxuary. I believe you will have hard time remembering, not because it was a long time ago but because we are so dependent to them. 15 years ago, electronic devices was not commonly used, but now we cannot think a day, an hour without them.&lt;/p&gt;
+
+&lt;p&gt;The reason I wanted you think this is, I want you to be ready for the notes coming…&lt;/p&gt;
+
+&lt;p&gt;With the rapid advancement of new technologies, there has never been a better time to be a worker with special skills and/or right education, because those people will be one creating and using those technologies to create and capture value. On the other hand, time we live in is the worst for people with ‘ordinary’ skills because they will face job loss to the smart technologies that could do their jobs.&lt;/p&gt;
+
+&lt;p&gt;Our brains are extraordinarily good at taking information via our senses and examining it for patterns, however we are quite bad at describing or figuring out how we are actually doing it, especially when a large volume of fast-changing information arrives at a rapid pace.&lt;/p&gt;
+
+&lt;p&gt;The time is changing with an incredible pace, and technology is a huge part of this transition. To show how fast the technology is moving, let’s compare two technologies: ASCI Red, first product of the U.S. government’s Accelerated Strategic Computing Initiative, was the fastest computer in the world in 1996 with a cost of 55 Million US Dollar and it was occupying 1,600 square feet area. ASCI Red was also first computer to reach the speed of 1.8 teraflops (one trillion floating point operations per second). 9 Years later another computer have the same speed with 1.8 teraflops, called PlayStation 3, for only 500 USD and it was smaller than 1/10 of square feet.&lt;/p&gt;
+
+&lt;p&gt;Innovation is a big part of the second machine age, when using old technology of GPS is normal but when  you add a social part to it, it’s what is called innovation. Waze is the example of innovative GPS application, uses 3 layers; digital maps, GPS location information, and the social data. Waze let’s user to give real-time feedback about things happening around them. Accidents, police, speed of the way, and more could be given by the user of the application. The Waze is turning every car into a sensor to calculate the most accurate speed of the roads and calculates the fastest routes accordingly. It’s a great example of the digitization of everything.&lt;/p&gt;
+
+&lt;p&gt;Nasa’s “Open innovation” and “crowdsourcing” is an effective strategy of using technology to open up their innovation challenges and opportunities to more eyeballs which is adopted by many organizations in recent years.&lt;/p&gt;
+
+&lt;p&gt;Kaggle is one example of crowdsourcing. It specializes in data-intensive challenges where the goal is to arrive at a better prediction than the submitting organization’s starting baseline prediction.&lt;/p&gt;
+
+&lt;p&gt;Latest hype is artificial intelligence, there are a lot of things happening right now, such as IBM’s Watson computer. IBM is applying the same principles that led Watson to win the Jeopardy competition to the task of helping doctors better diagnose what’s wrong with their patients.&lt;/p&gt;
+
+&lt;p&gt;Connectivity brings a massive information and leads to a collective knowledge and the open source. With connected smartphones or tablets, people can reach anything in the internet and use the knowledge in their lives. They can be the full contributors in the work of innovation and knowledge creation. It’s no exaggeration to say that billions of people will soon have a printing press, reference library, school, and computer all at their fingertips.&lt;/p&gt;
+
+&lt;p&gt;Free learning and knowledge sources are for free, they are adding value to the economy but no dollars to GDP because they are virtually invisible in the official statistics.  Better way of measuring the growth could be consumer surplus, which compares the amount a consumer would have been willing to pay for something to the amount they actually have to pay. Even though it’s a better case to measure our economy’s well being, it’s extremely difficult to measure.&lt;/p&gt;
+
+&lt;p&gt;Erik and Joo Hee estimated that the internet created about $2,600 of value per user each year none of which is showed up in the GDP statistics, but if it had, GDP growth thus productivity growth would have been about 0.3 percent higher each year.&lt;/p&gt;
+
+&lt;p&gt;Another reason for our welfare increase is the having more and more options in goods and services as well as making the existing goods cheaper to obtain.&lt;/p&gt;
+
+&lt;p&gt;GDP and productivity statistics overlook much of what we value, so as more data become available and as the economy continues to change, the ability to ask the right questions will become even more vital to actually continue to advance in terms of economic welfare and growth.&lt;/p&gt;
+
+&lt;p&gt;3.5 Trillion photos taken from the first photo in 1838, and 10 percent was just in 2014. After digital cameras, now more photos taken every two minutes than in all of the 19th century. Adding photos and sharing them online is with nearly zero cost.&lt;/p&gt;
+
+&lt;p&gt;Technology is even helping authors to publish and sell more with the help of digitization and globalization.&lt;/p&gt;
+
+&lt;p&gt;Direct management via digital technologies makes a good manager more valuable than in earlier times when managers had diffuse control via long chains of subordinates, or when they could only affect a smaller scale of activities.&lt;/p&gt;
+
+&lt;p&gt;Winner-take-all markets are more popular nowadays. Let’s explain winner-take-all markets. Imagine, we have already written compression algorithm which works fine, but when someone comes up with a slightly more optimized faster algorithm, 99% of the people in need of compression will use the new one because it’s little faster. This is the perfect example of winner-take-all markets and similar situations can be seen in different areas of life nowadays.&lt;/p&gt;
+
+&lt;p&gt;Why winner-take-all markets are popular? One reason is the digitization factor, Every digital app developer not matter how humble its’ offices or how small its’ staff, almost automatically becomes a micro-multinational, reaching global audiences with a speed that would have been inconceivable in the first machine age.&lt;/p&gt;
+
+&lt;p&gt;The Spread of the Machine age and implications of Bounty:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;3 important questions,
+    &lt;ul&gt;
+      &lt;li&gt;Will the bounty overwhelm the spread?
+        &lt;ul&gt;
+          &lt;li&gt;Bounty means simultaneously more choice, greater variety, and higher quality in many areas of our lives.&lt;/li&gt;
+          &lt;li&gt;If the bounty is great, should we consider rising inequality less of a problem, since people at the bottom are also seeing their lives improve thanks to technology.&lt;/li&gt;
+          &lt;li&gt;Bounty brought by innovation and technology makes an average worker a better off than the counterpart in earlier generation&lt;/li&gt;
+          &lt;li&gt;As a conclusion however, bounty is not sufficient to compensate for huge increases in spread.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Can Technology not only increase inequality but also create structural unemployment?
+        &lt;ul&gt;
+          &lt;li&gt;Majority of people can be worse off by advances in technology. As demands falls for labor, particularly relatively unskilled labor, wages fall. Can tech really lead to unemployment?&lt;/li&gt;
+          &lt;li&gt;Technological unemployment, is an unemployment due to our discovery of means of economizing the use of labor outrunning the pace at which we can find new uses of labor.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Could globalization explain recent declines in wages and employment?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Even in those areas where digital machines have far outstripped humans, people still have vital roles to play:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Even thought the machines are great at following instructions it cannot idealize something and build on top of that. Let’s give an example of writing a poem. It could read millions of poems and could create a logical syntax but it would not make sense romantically/dramatically.&lt;/li&gt;
+  &lt;li&gt;Ideation is where the humans are still better than the computers and it will be for some time.&lt;/li&gt;
+  &lt;li&gt;Computers are good for answering question until some domain, but they are not good posing new questions. Posing new/right questions are still unique to human and highly valuable.&lt;/li&gt;
+  &lt;li&gt;Ideation, creativity, and innovation  (“thinking outside of the box” ) gives humans significant advantage over digital labor.&lt;/li&gt;
+  &lt;li&gt;But working with digital labor will be inevitable, and according to Kevin Kelly “We’ll be paid in the future on how well we work with robots.”&lt;/li&gt;
+  &lt;li&gt;In the current education system we still teaching our children the skillsets that the computers are good instead of ideation. (Very important !!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Our current education system is no longer relevant to the increasing type of demand. (Sugata Mitra in Ted Talks)&lt;/p&gt;
+
+&lt;p&gt;SOLE (Self-organizing learning environment)s are teaching children the skills that will give them advantageous over digital labor.&lt;/p&gt;
+
+&lt;p&gt;Maria Montessori, developed the primary education system that emphasize self-directed learning, hands-on engagement and a largely unstructured school day. In the Montessori schools  innovators are produced, and as a result of an interview most of the innovators such as Jeff Bezos(Amazon), Larry Page and Sergey Brin (Google), and they all said “they learned to follow their curiosity”.&lt;/p&gt;
+
+&lt;p&gt;To stay valuable in the emerging machine age, people should improve skills of ideation, complex communications. There are some tools that you can use to stand out such as MOOCs. Massive Open Online Courses (MOOC) are the best platforms nowadays to obtain skills necessary for mostly free. (In 2011 Sebastian Thrun, announced that he will be teaching his course in AI in MOOC free over the internet. )&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Policy Recommendations:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Need to teach children better:
+    &lt;ul&gt;
+      &lt;li&gt;When technology advances too quickly for education to keep up, inequality generally rises.&lt;/li&gt;
+      &lt;li&gt;We should improve the education, using technology, emphasizing teacher importance , knowing types of teaching and selecting most relevant.&lt;/li&gt;
+      &lt;li&gt;Use technology wiser:
+        &lt;ul&gt;
+          &lt;li&gt;MOOCs are enabling low-cost replication of the best teachers, content, and methods.&lt;/li&gt;
+          &lt;li&gt;Using MOOC’s feedback data we have better chance to improve the education rather then depending on the full government policy change.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Give more importance to the teacher:
+        &lt;ul&gt;
+          &lt;li&gt;Testing is kind of risky because it encourages teaching to the test at the expense of other types of learning.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Not all the news are the good news, bounty brought by the technology increases so the demand and need too. Which makes an inequality. Also, probably first time in human history, we have power to completely destroy our race, and world. (Of course this is just a dystopic theory and an extreme one.) People with really bad intentions could use these technological advancements against humanity, the same technologies we use to cure diseases could be used to create biological weapons such as creating new viruses.&lt;/p&gt;
+
+&lt;p&gt;Probably the most far-out (sci-fi) scenario is the development of fully conscious machines. In those scenarios we end up fighting with machine or give up and merge with machines by transferring our consciousness into machines. We don’t think it’s not possible, but having closer threats such as losing a lot of job areas for millions of people is more important and imminent than planet wide war with machines.&lt;/p&gt;
+
+&lt;p&gt;As a closing, the technologies we are creating provide vastly more power to change the world, but with that power comes greater responsibility. That’s why this book gives a lot of time to explain what we can do to avoid mistakes that could have catastrophic results.  As more and more work is done by machines, people can spend more time on other activities. Not just leisure and amusements, but also the deeper satisfactions that come from invention and exploration, from creativity and building, and from love, friendship, and community. We don’t have a lot of formal metrics for those kinds of value, and perhaps we will never will, but they will nonetheless grow in importance as we satisfy our more basic economics needs.&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/personal/second_machine_age/&quot;&gt;The Second Machine Age&lt;/a&gt; was originally published by Enes Kemal Ergin at &lt;a href=&quot;http://localhost:4000&quot;&gt;Enes Kemal Ergin's Blog&lt;/a&gt; on October 07, 2017.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Software Guide of Ubuntu 16.04 for my Research]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/blog/Software_Guide_Ubuntu/" />
+  <id>http://localhost:4000/blog/Software_Guide_Ubuntu</id>
+  <published>2017-09-14T00:00:00-04:00</published>
+  <updated>2017-09-14T00:00:00-04:00</updated>
+  <author>
+    <name>Enes Kemal Ergin</name>
+    <uri>http://localhost:4000</uri>
+    <email>eneskemalergin@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;Hello everybody, today I am sharing my first guide which is about building my new research computer. This is a small guide for setting up Ubuntu 16.04 and necessary software for my research.&lt;/p&gt;
+
+&lt;h3 id=&quot;specs-of-my-computer&quot;&gt;Specs of my computer&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Operating System and System type / version:&lt;/strong&gt; Ubuntu 16.04.2 LTS&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Processor type and speed:&lt;/strong&gt; Ryzen 7 1700x, 16 Threat, 3.4 to 3.8 GHz&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RAM amount:&lt;/strong&gt; 32GB&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;GPU:&lt;/strong&gt; Nvidia 1080 gtx, 8GB&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Hard drive size:&lt;/strong&gt; 256 GB M.2 SSD, 1 TB SSD, 2TB SATA&lt;/p&gt;
+
+&lt;h3 id=&quot;steps-to-software-installationconfiguration&quot;&gt;Steps to Software Installation/Configuration&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Install Nvidia drivers
+    &lt;blockquote&gt;
+      &lt;p&gt;Ubuntu 16.04 Nvidia ppa now has 375 and it seems stable so we will go with that now.&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo add-apt-repository ppa:graphics-drivers/ppa&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt update&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install nvidia-375&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt; # Restarts your system&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install some required packages:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install openjdk-8-jdk git build-essential libcurl3-dev&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install software-properties-common&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Installing CUDA
+    &lt;blockquote&gt;
+      &lt;p&gt;We will first install the toolkit Go to &lt;a href=&quot;https://developer.nvidia.com/cuda-release-candidate-download&quot;&gt;Nvidia CUDA Website&lt;/a&gt;. Choose &lt;strong&gt;Linux &amp;gt; x86_64 &amp;gt; Ubuntu &amp;gt; 16.04 &amp;gt; deb(local)&lt;/strong&gt;&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get update&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install cuda&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;Then we add the path updates to the .bashrc with the following oneliners.&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;To test the CUDA if it’s working:&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cd /usr/local/cuda-8.0/samples/5_Simulations/nbody&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo make&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./nbody&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install cuDNN
+    &lt;blockquote&gt;
+      &lt;p&gt;Go to &lt;a href=&quot;https://developer.nvidia.com/cudnn&quot;&gt;Nvidia cuDNN website&lt;/a&gt; download the latest for CUDA 8.0 and linux  Carefull because we will be using cuDNN v5.1 for our setup.&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-BASH&quot;&gt;  $ sudo tar -xzvf cudnn-8.0-linux-x64-v5.1.tgz
+  $ sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+  $ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+  $ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install Anaconda Python Distribution
+    &lt;blockquote&gt;
+      &lt;p&gt;Anaconda distribution is really easy Python distributor that I can manage my libraries.&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Download Anaconda Python 3.6 from &lt;a href=&quot;https://www.continuum.io/downloads&quot;&gt;here&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bash Downloads/Anaconda3-4.3.1-Linux-x86_64.sh&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install Jupyter Themes
+    &lt;blockquote&gt;
+      &lt;p&gt;Installing the most updated version of jupyterthemes&lt;/p&gt;
+    &lt;/blockquote&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip install --upgrade jupyterthemes&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jt -t solarizedl -T -N&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install Tensorflow&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;For dependencies: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install libcupti-dev&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Then we install Tensorflow with pip: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip install tensorflow-gpu&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install Chrome&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-BASH&quot;&gt;wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
+sudo apt-get install -f
+rm google-chrome-stable_current_amd64.deb
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;&lt;span style=&quot;color:red&quot;&gt;If chrome lags when you highlight or something just go and unchecked Use ‘Hardware acceleration if available’ in advance settings of chrome settings&lt;/span&gt;&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Configure workspaces in Ubuntu&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;system settings &amp;gt; Appearance &amp;gt; Behavior &amp;gt; Check ‘Enable Workspaces’&lt;/li&gt;
+      &lt;li&gt;If you want to configure new shortcuts:
+        &lt;ul&gt;
+          &lt;li&gt;System Settings &amp;gt; Keyboard &amp;gt; Shortcuts &amp;gt; Navigation &amp;gt; You can assign new shortcuts&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install gdebi package manager
+    &lt;blockquote&gt;
+      &lt;p&gt;Gdebi is a better way to install deb files for me.&lt;/p&gt;
+    &lt;/blockquote&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install gdebi&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install vim
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install vim&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install git
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install git&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git config --global user.name &quot;name&quot;&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git config --global user.email &quot;email&quot;&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install htop
+    &lt;blockquote&gt;
+      &lt;p&gt;It is really nice command line tool to see and control system&lt;/p&gt;
+    &lt;/blockquote&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install htop&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install Atom text editor&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo add-apt-repository ppa:webupd8team/atom&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get update&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install atom&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install Restricted Extras for Ubuntu
+    &lt;blockquote&gt;
+      &lt;p&gt;package of several codecs that are not included by default in Ubuntu system, media codecs and Flash Support.&lt;/p&gt;
+    &lt;/blockquote&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install ubuntu-restricted-extras&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install a good Theme for Ubuntu
+    &lt;blockquote&gt;
+      &lt;p&gt;It is really nice to have a new look…&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt install unity-tweak-tool&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-add-repository ppa:numix/ppa&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get update&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install numix-gtk-theme&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install numix-icon-theme numix-folders&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install numix-icon-theme-circle&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install numix-icon-theme-square&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Open unity tweak tool&lt;/li&gt;
+      &lt;li&gt;Select &lt;strong&gt;Appearance &amp;gt; Theme and Icons&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install R and RStudio
+    &lt;blockquote&gt;
+      &lt;p&gt;I love R since it’s amazing tool for statistics and learning mathematical background of most algorithms. Also Rstudio is really high quality interpreter for R.&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo echo &quot;deb http://cran.rstudio.com/bin/linux/ubuntu xenial/&quot; | sudo tee -a /etc/apt/sources.list&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gpg -a --export E084DAB9 | sudo apt-key add -&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get update&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install r-base r-base-dev&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install gdebi-core&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wget https://download1.rstudio.org/rstudio-xenial-1.0.153-amd64.deb&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo gdebi -n rstudio-xenial-1.0.153-amd64.deb&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rm rstudio-xenial-1.0.153-amd64.deb&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install Mendeley Desktop
+    &lt;blockquote&gt;
+      &lt;p&gt;Mendeley is a beautiful way to keep track of papers.&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wget https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo dpkg -i mendeleydesktop&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get update&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo rm mendeleydesktop&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install Redshift (Night Shift software)
+    &lt;blockquote&gt;
+      &lt;p&gt;Since I usually work at night and the light from the screen is too much, so I use redshift and configure it.&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install redshift gtk-redshift geoclue&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vim ~/.config/redshift.conf&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Copy and Paste the following in the vim:&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-BASH&quot;&gt;; Global settings for redshift
+[redshift]
+; Set the day and night screen temperatures
+temp-day=4500
+temp-night=3500
+
+; Enable/Disable a smooth transition between day and night
+; 0 will cause a direct change from day to night screen temperature.
+; 1 will gradually increase or decrease the screen temperature
+transition=1
+
+; Set the screen brightness. Default is 1.0
+;brightness=0.8
+; It is also possible to use different settings for day and night since version
+; 1.8.
+brightness-day=0.9
+brightness-night=0.7
+; Set the screen gamma (for all colors, or each color channel individually)
+gamma=0.8
+;gamma=0.8:0.7:0.8
+
+; Set the location-provider. Type 'redshift -l list' to see possible values.
+; The location provider settings are in a different section.
+location-provider=geoclue2
+
+; Set the adjustment-method: 'randr', 'vidmode'
+; type 'redshift -m list' to see all possible values
+; 'randr' is the preferred method, 'vidmode' is an older API
+; but works in some cases when 'randr' does not.
+; The adjustment method settings are in a different section.
+adjustment-method=randr
+
+; Configuration of the location-provider:
+; type 'redshift -l PROVIDER:help' to see the settings
+; ex: 'redshift -l manual:help'
+[manual]
+; set these values if you've set the location-provider to manual instead of
+; geoclue
+;lat=51.522698
+;lon=-0.085358
+
+; Configuration of the adjustment-method
+; type 'redshift -m METHOD:help' to see the settings
+; ex: 'redshift -m randr:help'
+
+[randr]
+screen=0
+
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install GIMP for image editing
+    &lt;blockquote&gt;
+      &lt;p&gt;This is a similar software like Photoshop for linux&lt;/p&gt;
+    &lt;/blockquote&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt update &amp;amp;&amp;amp; sudo apt install gimp gimp-gmic&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install VLC for Video
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt install vlc&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install GooglePlayMusic Desktop Player
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://www.googleplaymusicdesktopplayer.com&quot;&gt;Link to Installer Website&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Install it with Gdebi installer&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install BleachBit
+    &lt;blockquote&gt;
+      &lt;p&gt;To keep things neat and clean&lt;/p&gt;
+    &lt;/blockquote&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://www.bleachbit.org/download/file/t?file=bleachbit_1.12_all_ubuntu1604.deb&quot;&gt;Link to Installer&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Install it with Gdebi installer&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install PomoDoneApp
+    &lt;blockquote&gt;
+      &lt;p&gt;This is the time tracking app that I’ve integrated with Trello&lt;/p&gt;
+    &lt;/blockquote&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://app.pomodoneapp.com/installers/PomoDoneApp-1.5.1084.deb&quot;&gt;Link to Installer&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Install it with Gdebi installer&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;Hey do you know there is a comment section below that you can share your ideas with me?&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;Until next time, be safe…&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/Software_Guide_Ubuntu/&quot;&gt;Software Guide of Ubuntu 16.04 for my Research&lt;/a&gt; was originally published by Enes Kemal Ergin at &lt;a href=&quot;http://localhost:4000&quot;&gt;Enes Kemal Ergin's Blog&lt;/a&gt; on September 14, 2017.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[The Healthy Habit Revolution]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/personal/healthy_habit_development/" />
+  <id>http://localhost:4000/personal/healthy_habit_development</id>
+  <published>2017-08-27T00:00:00-04:00</published>
+  <updated>2017-08-27T00:00:00-04:00</updated>
+  <author>
+    <name>Enes Kemal Ergin</name>
+    <uri>http://localhost:4000</uri>
+    <email>eneskemalergin@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;a href=&quot;https://www.amazon.com/Healthy-Habit-Revolution-Blueprint-Minutes-ebook/dp/B00RIONNPU&quot;&gt;&lt;strong&gt;The Healthy Habit Revolution&lt;/strong&gt;&lt;/a&gt; by Derek Doepker, is a laconic guide to the Habit development. Even though the book is designed to give reader 21 days to read, I read through it like I read all Personal Development book, while taking notes.&lt;/p&gt;
+
+&lt;h3 id=&quot;day-1-why-you-cant-change-habits-until-you-change-this-first&quot;&gt;&lt;strong&gt;Day 1: Why You Can’t Change Habits Until You Change This First:&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;We typically only see, and therefore recognize, the end result and not the mundane things that were behind achieving it.&lt;/li&gt;
+  &lt;li&gt;In today’s society a person is more likely to be congratulated for losing 50 pounds rather than eating salad everyday to achieve 50 pound weight loss.&lt;/li&gt;
+  &lt;li&gt;We need to enjoy the process of practicing(there is a really nice book I’ve read some time ago called Practicing Mind.)&lt;/li&gt;
+  &lt;li&gt;Another reason is to have hard time starting a healthy habit is a fear of failure.&lt;/li&gt;
+  &lt;li&gt;The focusing on only results will distract you, which ultimately keep you away from achieving the result.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;day-2-the-seed-of-transformation&quot;&gt;&lt;strong&gt;Day 2: The Seed of Transformation:&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The most natural way to feel the need of habit change happens when your identity changes a little (Expand here in the blog post)&lt;/li&gt;
+  &lt;li&gt;To believe that change is possible for oneself is also a must&lt;/li&gt;
+  &lt;li&gt;Outside feelings like anger, which might lead to “I will prove all of you wrong” idea, could be a good push&lt;/li&gt;
+  &lt;li&gt;Changing the identity, will change your behaviors, and vice-verse.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&quot;day-3-how-your-habits-work&quot;&gt;&lt;strong&gt;Day 3: How Your Habits Work:&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Habit development (as a cycle) consists of 3 steps, which is introduced in Charles Duhigg’s The Power of Habit:
+    &lt;ul&gt;
+      &lt;li&gt;The Cue, what triggers the habit
+        &lt;ul&gt;
+          &lt;li&gt;The Routine, habitual behavior&lt;/li&gt;
+          &lt;li&gt;The reward, pleasure get, that makes you want to repeat the habit&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Behavior can have different emotional impacts on different people.&lt;/li&gt;
+  &lt;li&gt;There are six human needs, which are really important because they are the reason we feel rewarded by something emotional.
+    &lt;ul&gt;
+      &lt;li&gt;Certainty (comfort)&lt;/li&gt;
+      &lt;li&gt;Variety (excitement, entertainment)&lt;/li&gt;
+      &lt;li&gt;Connection&lt;/li&gt;
+      &lt;li&gt;Significance&lt;/li&gt;
+      &lt;li&gt;Growth&lt;/li&gt;
+      &lt;li&gt;Contribution&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Old/Bad habits are easy to remove because they hit one of the 6 needs mentioned above.&lt;/li&gt;
+  &lt;li&gt;Our target is to replace them with healthier ones, using those 6 needs. New habits should be stable if not, the old habits will be replaced with another bad habit.&lt;/li&gt;
+  &lt;li&gt;The habits stay programmed in the brain, it’s near impossible to get rid of a bad habit entirely, but replace it with a better/healthier alternative habit that meets the same emotional need is possible.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&quot;day-4-what-will-upgrade-your-life&quot;&gt;&lt;strong&gt;Day 4: What Will Upgrade Your Life?:&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Keystone habits are the ones create a chain of events for positive change in person’s life, such as eating healthy, sleeping early and waking up early.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;day-5-why-dont-need-much-motivation-to-succeed&quot;&gt;&lt;strong&gt;Day 5: Why Don’t Need Much Motivation to Succeed:&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Even the easiest of tasks could seem overwhelming at first, if one doesn’t  know where to begin.&lt;/li&gt;
+  &lt;li&gt;Getting a perfect plan is not necessary, also most of the time impossible.&lt;/li&gt;
+  &lt;li&gt;Find a first step to start acting, that’s all what it takes.&lt;/li&gt;
+  &lt;li&gt;Start with a small action that you can do every day.&lt;/li&gt;
+  &lt;li&gt;In order to develop a habit, find an extremely small target to hit each day.&lt;/li&gt;
+  &lt;li&gt;Momentum creates Motivation.&lt;/li&gt;
+  &lt;li&gt;“Get obsessed with consistency.”  Amir Siddiqui&lt;/li&gt;
+  &lt;li&gt;You often won’t feel motivated until after you get started. Momentum creates motivation.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;day-6-remembering-your-habit&quot;&gt;&lt;strong&gt;Day 6: Remembering Your Habit&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Remember your habit by having a visual cue.&lt;/li&gt;
+  &lt;li&gt;Need cue to trigger a new habit, which could be visual or auditory reminder, a prior action in your routine, or a time of a day.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;day-7-the-right-and-wrong-types-of-rewards&quot;&gt;&lt;strong&gt;Day 7: The Right and Wrong Types of Rewards&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Extrinsic motivation includes external rewards like prices and money on the other hand, in intrinsic motivation, the motivation or rewards comes from within yourself.&lt;/li&gt;
+  &lt;li&gt;The feeling of accomplishing something that require some effort creates a positivity that motivates you, like in case of gamers, this could be applied to the habit development process.&lt;/li&gt;
+  &lt;li&gt;Positive self-talk after completing a task can be a good motivator reward.&lt;/li&gt;
+  &lt;li&gt;Negative self-talk is on the other hand is a saboteur of the motivation.&lt;/li&gt;
+  &lt;li&gt;Immediate gratification when tap into intrinsic motivation. (Self-talk and self-recognition)
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;day-8-guaranteed-long-term-success&quot;&gt;&lt;strong&gt;Day 8: Guaranteed Long-Term Success&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Slip-ups will happen sooner or later, what matters is to get back on track fast! (Ask what can I learn from this.)&lt;/li&gt;
+  &lt;li&gt;Slip-ups could be an opportunity to learn how to make habits life-proof.&lt;/li&gt;
+  &lt;li&gt;Overcompensation is a trap that people might fall into, which leads to burnouts.
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;day-9-its-your-life-do-what-you-want&quot;&gt;&lt;strong&gt;Day 9: It’s Your Life, Do What You Want&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;To please other people drain more energy that just try to please yourself. (Be yourself???)&lt;/li&gt;
+  &lt;li&gt;Bossing yourself around using language like “you must” and “you should” creates resentment and potentially drains willpower.&lt;/li&gt;
+  &lt;li&gt;Use language that reflects you are making a conscious choice because of the positive benefits.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&quot;day-10-the-overlooked-key-to-healthy-habits&quot;&gt;&lt;strong&gt;Day 10: The Overlooked Key to Healthy Habits&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The desire to avoid pain is a stronger motivator than the desire to gain pleasure.&lt;/li&gt;
+  &lt;li&gt;Motivator will keep you focused. (Punishment)&lt;/li&gt;
+  &lt;li&gt;Having an accountability partner is important because you might need some outside support, and when you told someone about what you are doing, it creates a small pressure on you so that you will be less likely to drop out from your habit.
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;day-11-using-the-force-stronger-than-willpower&quot;&gt;&lt;strong&gt;Day 11: Using the Force Stronger than Willpower&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Environment is stronger than Willpower” Paramahansa Yogananda&lt;/li&gt;
+  &lt;li&gt;Positive environment, lesser willpower, Negative environment, more willpower&lt;/li&gt;
+  &lt;li&gt;Some management of positive environment examples:
+    &lt;ul&gt;
+      &lt;li&gt;Posting inspirational pictures and quotes where they can be readily seen&lt;/li&gt;
+      &lt;li&gt;Getting rid of or hiding temptations such as unhealthy food,&lt;/li&gt;
+      &lt;li&gt;Shutting off or turning phones to airplane mode when doing important tasks,&lt;/li&gt;
+      &lt;li&gt;Blocking distracting websites using softwares&lt;/li&gt;
+      &lt;li&gt;Spending more time with uplifting people and less with poor influences.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Always bring positive influences in your life because getting rid of bad one not always possible.
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;day-12-how-you-can-feel-ridiculously-awesome-on-command&quot;&gt;&lt;strong&gt;Day 12: How you can Feel Ridiculously Awesome on command&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Motivation can go up or down, depending on the mood&lt;/li&gt;
+  &lt;li&gt;You can manage your mood, remembering to manage your state when it’s poor is the real key to success.&lt;/li&gt;
+  &lt;li&gt;Physical movement, music, change of clothes can alter your state.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&quot;day-13-what-crazy-sports-fans-can-teach-you-about-habits&quot;&gt;&lt;strong&gt;Day 13: What Crazy Sports Fans Can Teach You about Habits&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Changing your language can alter your identity, and beliefs&lt;/li&gt;
+  &lt;li&gt;Referring yourself or your things using “My” will create stronger connection with habits&lt;/li&gt;
+  &lt;li&gt;You can look in the mirror and make convincing statements to yourself, this will help reinforce a new identity.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&quot;day-14-escaping-the-black-hole-of-repeated-mistakes&quot;&gt;&lt;strong&gt;Day 14: Escaping the Black Hole of Repeated Mistakes&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Remembering is the most essential part, because we usually know what we do.&lt;/li&gt;
+  &lt;li&gt;Reviewing the day before the sleep like asking; what did you do, what something you can do better, how did the habit helped you today, will help&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;day-15-simpler-is-smarter--true-or-false&quot;&gt;&lt;strong&gt;Day 15: Simpler is Smarter – True or False?&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;To get started faster is easier by subtracting and simplifying the tasks/habits but to grow you have to add and upgrade.&lt;/li&gt;
+  &lt;li&gt;If the things kept too simple, it can stagnate progress&lt;/li&gt;
+  &lt;li&gt;Additions or change is necessary for growth, but addition should be slowly otherwise getting overwhelmed will be inevitable.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&quot;day-16-3-magic-words-to-effortlessly-overcome-overwhelm&quot;&gt;&lt;strong&gt;Day 16: 3 Magic Words to Effortlessly Overcome Overwhelm&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Getting momentum will bring the motivation with it.&lt;/li&gt;
+  &lt;li&gt;If you see all the steps at one it is certain that you will feel overwhelmed, break the task into steps and focus on them one by one.&lt;/li&gt;
+  &lt;li&gt;Being too vague or choose to be inactive is the reason people become overwhelmed in the process of breaking the steps.&lt;/li&gt;
+  &lt;li&gt;Ask yourself, Can I just do this tiny step?, if the answer is no, break it down until something that you could start doing immediately.
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;day-17-why-sacrifice-doesnt-have-to-suck&quot;&gt;&lt;strong&gt;Day 17: Why Sacrifice Doesn’t Have to Suck&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Is what I’m saying ‘yes’ to important enough to say ‘no’ to something else significant in my life?”&lt;/li&gt;
+  &lt;li&gt;If you focus on the short-term pain of the sacrifice, you will miss the long-term gain that it will bring.
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;day-18-handling-the-things-that-hold-you-back&quot;&gt;&lt;strong&gt;Day 18: Handling the Things that Hold You Back&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A hidden cause of sabotage, is worrying about what others will think.&lt;/li&gt;
+  &lt;li&gt;For habits that have a social component, the desire for approval can be a big motivating factor either supporting or hindering your habit development.&lt;/li&gt;
+  &lt;li&gt;It’s possible to worry about what others will think of you after your new habit leads to significant changes in your life.&lt;/li&gt;
+  &lt;li&gt;A person who says “he/she don’t have time” has actually other things they’re prioritizing more than what they say they don’t have time for.&lt;/li&gt;
+  &lt;li&gt;Other problem is that people who say they don’t have resources is usually lack resourcefulness not resources.&lt;/li&gt;
+  &lt;li&gt;Ask questions about what’s possible rather than make statements about what’s impossible.&lt;/li&gt;
+  &lt;li&gt;It’s not about an instant solution, but rather taking steps to get you moving forward.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&quot;day-19-visualizing-20&quot;&gt;&lt;strong&gt;Day 19: Visualizing 2.0&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;To make your habits subconscious choice, there is a genius way to make the subconscious, let’s say we want to be able to wake up early with one alarm only. When you fully awake you practice in bed, just close your eyes and put your alarm for 5 min later, when the alarm goes off take a deep breath and get up out of the bed quickly. Repeating this in different days for some time will develop a subconscious habit of waking up faster and better.&lt;/li&gt;
+  &lt;li&gt;When you visualize yourself doing the habit is the mental form of practice.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&quot;day-20-the-fool-proof-way-to-always-find-your-next-step&quot;&gt;&lt;strong&gt;Day 20: The Fool-Proof Way to Always Find Your Next Step&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How to take little steps to the next level?&lt;/li&gt;
+  &lt;li&gt;Some outsiders perspective help you see your blind spots.&lt;/li&gt;
+  &lt;li&gt;Innovation in habit development is great but try to find something proved is more efficient to develop something new.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&quot;day-21-what-to-do-when-you-want-bigger-better-faster-results&quot;&gt;&lt;strong&gt;Day 21: What to Do When you Want Bigger, Better, Faster Results.&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;To invest and commit more will transfer your life more, and to be able to achieve that, 21-90 day challenges are proven to be the time period of habit development.&lt;/li&gt;
+  &lt;li&gt;When you invest/sacrifice time, money, and/or emotions into something, that is more likely that you will stick to it.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;revealing-the-hidden-lessons&quot;&gt;&lt;strong&gt;Revealing the Hidden Lessons&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Everyone of has have an inner critic, called and ego(?), tells you that you are not good enough, comparing yourself to others.&lt;/li&gt;
+  &lt;li&gt;Getting rid of this inner critic is not possible, but recognizing who that is will help you overcome the negative motivation.&lt;/li&gt;
+  &lt;li&gt;Growth is one of the six human needs and it requires confronting and overcoming what you are not comfortable with, which is the exact same situation that you find yourself into when you overcome the voice of ego.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;“Everything can either serve or enslave you depending on how you respond to it.” Derek Doepker
+ &lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Successful people start moving before seeing the entire path.&lt;/li&gt;
+  &lt;li&gt;We try to see the entire path before even start moving, which makes us stay where we are because to see the entire path
+is not possible. Even if you think you see the entire path, it will change along the way.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Single compromise can create a “what-the-hell” effect (Janet Polivy)&lt;/li&gt;
+  &lt;li&gt;If you let one compromise that will create more, and you will end up saying, “I’ve already messed up my diet today, so I’ll just indulge and start fresh tomorrow.”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Being flexible is not always bad though. Good habits can be destructive when you are so strict about it, that it my destroy other things in your life.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;simple-keystone-habits&quot;&gt;&lt;strong&gt;Simple Keystone Habits&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Meditation&lt;/li&gt;
+  &lt;li&gt;Reading, Studying, and Applying Personal Development&lt;/li&gt;
+  &lt;li&gt;Physical Health Habits&lt;/li&gt;
+  &lt;li&gt;Morning productivity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&quot;failing-with-mini-habits&quot;&gt;&lt;strong&gt;Failing with Mini Habits&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;There could be some reasons of failure when try to build up your habits:
+    &lt;ul&gt;
+      &lt;li&gt;Not taking your habit seriously, which leads to forgetting to do it daily&lt;/li&gt;
+      &lt;li&gt;Setting too many mini habits at once&lt;/li&gt;
+      &lt;li&gt;Not really wanting to have that habit&lt;/li&gt;
+      &lt;li&gt;Setting too small mini-habits for start.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/personal/healthy_habit_development/&quot;&gt;The Healthy Habit Revolution&lt;/a&gt; was originally published by Enes Kemal Ergin at &lt;a href=&quot;http://localhost:4000&quot;&gt;Enes Kemal Ergin's Blog&lt;/a&gt; on August 27, 2017.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Train Your Brain]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/personal/train_your_brain/" />
+  <id>http://localhost:4000/personal/train_your_brain</id>
+  <published>2017-01-09T00:00:00-05:00</published>
+  <updated>2017-01-09T00:00:00-05:00</updated>
+  <author>
+    <name>Enes Kemal Ergin</name>
+    <uri>http://localhost:4000</uri>
+    <email>eneskemalergin@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;The Brain is a very efficient machine which has control over everything in our bodies and especially in terms of regulating the habit/routine mechanism, but sometimes we cannot really do what we wanted to do with our brains. In this blog post I am going to share some points and some daily routines that we can increase our ability the use our brains.&lt;/p&gt;
+
+&lt;p&gt;Technically brain is not a muscle, although it has some muscles. Brain has grey and white matter which have more complex functions than muscles. However training brain like muscle is possible and brain will improve under the specific schedule of intensive workout. &lt;strong&gt;This ability is called plasticity of brain. (Neuroplasticity)&lt;/strong&gt; . After reading some &lt;a href=&quot;http://www.nature.com/nature/journal/v427/n6972/abs/427311a.html&quot;&gt;papers&lt;/a&gt; on Neuroplasticity and brains ability change itself, I wanted to try it to myself. Involuntarily all of us are somehow changing our brains from the very beginning until the end. But I wanted to change it in a very good way so I could use my brain more efficiently. After an extensive research on training brain, increasing processing power, increasing memory power, and other related topics; I came up with 6 points which combines most beneficial techniques and habits for training our brains.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;#keep-brain-busy&quot;&gt;Keep Brain Busy&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#physical-exercise&quot;&gt;Physical Exercise&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#sleep&quot;&gt;Sleep&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#healthy-diet&quot;&gt;Healthy Diet&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#get-help-by-technology&quot;&gt;Get Help by Technology&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#keep-learning&quot;&gt;Keep Learning&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This training is like other trainings, it requires commitment and constant attention. Or we can convert the training into daily routines and make them habits, so until the end of our life, we will be improving our brains. This is my main goals is to select some daily routines that will help me achieve the points above.&lt;/p&gt;
+
+&lt;h2 id=&quot;keep-brain-busy&quot;&gt;Keep Brain Busy&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://lh4.ggpht.com/-Znz5hJUzBTY/Uybe70tmmXI/AAAAAAAAGeI/yweTKyNoUmY/image%25255B2%25255D.png?imgmax=800&quot; alt=&quot;Keep Brain Busy &quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Keeping brain busy sure sounds like something we have already been doing but not necessarily. I am not saying that people are not using their brains, although I believe some people not, but I am saying that what we do is habits throughout the day and they don’t require a lot of processing power. We should always surprise the brain and  challenge it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Playing Smart Games&lt;/strong&gt; like chess, scramble, sudoku, keeps your brain active since you have to think your moves.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Don’t Use GPS&lt;/strong&gt; not never but try to memorize the roads, it will make your brain really active and probably cause headaches at first.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Reading Fiction&lt;/strong&gt; is one of my best, which puts you in a fictional world with fictional characters. When you try to absorb them your brain will definitely have a blast.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Having a Puzzle of the Day&lt;/strong&gt; will give you to challenge your brain in different areas according to what area the puzzles gets into. This puzzle might be a algorithm, math, physics, or logic question.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Producing New Ideas&lt;/strong&gt; everyday means you are pushing your brain forward to produce something new. I recommend you to have a small notebook in you pocket and write the ideas there when they hit you.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Follow the Questions in Your Mind&lt;/strong&gt; and don’t miss them. If you are intrigued by a question try to find an answer immediately, if not possible immediately write it somewhere and look for it later.&lt;/p&gt;
+
+&lt;h2 id=&quot;physical-exercise&quot;&gt;Physical Exercise&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAIOAAAAJGI3M2MzNWVlLTQwMmQtNDlmNi1hZTBlLWNlZTMwZmUwODc1MQ.jpg&quot; alt=&quot;Physical Exercise for Brain &quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;“&lt;em&gt;Exercise affects the brain on multiple fronts. It increases heart rate, which pumps more oxygen to the brain. It also aids the bodily release of a plethora of hormones, all of which participate in aiding and providing a nourishing environment for the growth of brain cells. Exercise stimulates the brain plasticity by stimulating growth of new connections between cells in a wide array of important cortical areas of the brain.&lt;/em&gt;”(&lt;a href=&quot;http://www.brainhq.com/brain-resources/everyday-brain-fitness/physical-exercise&quot;&gt;1&lt;/a&gt;)&lt;/p&gt;
+
+&lt;h2 id=&quot;sleep&quot;&gt;Sleep&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://netparents.org/wp-content/uploads/2014/03/Premature-Baby-Sleeping-Problem-33333.jpg&quot; alt=&quot;Sleep for Brain &quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Healthy sleep puts us in the right state of mind to take in information as we go about the day. In the sleep our brain takes the memories into long term memory. So after you wake up from a great, relaxing, and healthy sleep, your brain is cleaned from the junk information and stored the important information into the long term memory, so new day and better performance.&lt;/p&gt;
+
+&lt;p&gt;I know it is really hard to get a healthy sleep, this is also one of my struggles. I could not get settled with a nice sleep schedule. I will research on this matter more and maybe I could write on this topic too in future. Stay tuned for it.&lt;/p&gt;
+
+&lt;h2 id=&quot;healthy-diet&quot;&gt;Healthy Diet&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://spiritualityhealth.com/sites/default/files/styles/header_image/public/BrainFood_0.jpg?itok=itRRMQ5H&quot; alt=&quot;Diet for Brain&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There are specific diets to help people who are having problem remembering such as Alzheimer patients. But these diets are not for those patient they are for everyone who wants to improve their brain power. I am not going into detail about the diet, but I will point out some foods to eat to be able to increase brain power. If you want more information about MIND diet, check this &lt;a href=&quot;http://www.livescience.com/57132-mind-diet.html&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://thumbs.dreamstime.com/z/brain-foods-focus-adding-good-foods-augment-48214948.jpg&quot; alt=&quot;Brain Foods &quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Whole Grains&lt;/li&gt;
+  &lt;li&gt;Eggs&lt;/li&gt;
+  &lt;li&gt;Nuts&lt;/li&gt;
+  &lt;li&gt;Berries&lt;/li&gt;
+  &lt;li&gt;Seeds&lt;/li&gt;
+  &lt;li&gt;Fish&lt;/li&gt;
+  &lt;li&gt;Avocados&lt;/li&gt;
+  &lt;li&gt;Tomatoes&lt;/li&gt;
+  &lt;li&gt;Red Cabbage&lt;/li&gt;
+  &lt;li&gt;Spinach&lt;/li&gt;
+  &lt;li&gt;Bananas&lt;/li&gt;
+  &lt;li&gt;Dark Chocolate (My Favorite)&lt;/li&gt;
+  &lt;li&gt;Dry Beans&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;get-help-by-technology&quot;&gt;Get Help by Technology&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.tnooz.com/wp-content/uploads/2015/02/brain-technology.jpg&quot; alt=&quot;Technology with Brain &quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Technology is something inseparable from our everyday life. Smart phones, computers, wearable techs, they are everywhere and it seems there is no escape route possible from them. So we should learn how to use them effectively. This is a whole new subject to focus and research about. I want to spend time on this research and write another personal development blog post about it in more detail. For now let’s just focus on simple hacks we can use to improve our brain’s power.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Reading from Knowledge Sources&lt;/strong&gt; is the key for our brain. Funny videos are nice and funny, but consumes your valuable time, more importantly it consumes your brain’s time and space. &lt;strong&gt;Quora, StackOverflow, and Quality Blogs&lt;/strong&gt; are the best sources to read from and learn.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Watching Beneficial Videos&lt;/strong&gt; on YouTube or other video sites. My favorite channels are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/user/bigthink&quot;&gt;Big Think&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/user/scishow&quot;&gt;SciShow&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/user/scishowspace&quot;&gt;SciShow Space&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/user/itsokaytobesmart&quot;&gt;It’s Ok To Be Smart &lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/user/Kurzgesagt&quot;&gt;Kurzgesagt – In a Nutshell&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;keep-learning&quot;&gt;Keep Learning&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://ilifejourney.files.wordpress.com/2012/03/keep-learning-1-m.jpg&quot; alt=&quot;Keep Learning &quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is pretty straight forward. As I mentioned earlier we have to keep our brain busy all the time, we have to give it something new. Following online courses, speaking to smart people, reading informative blogs, or even following news will give you new information knowledge.&lt;/p&gt;
+
+&lt;p&gt;In short, if you want to improve your brain in every way possible you should train it. If you follow the points above you will have a nice set of habits which will keep your brain healthy.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Your input is really valuable, so do not hesitate to leave a comment. I would love to read them and respond to them.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Until next time, be safe…&lt;/p&gt;
+&lt;/blockquote&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/personal/train_your_brain/&quot;&gt;Train Your Brain&lt;/a&gt; was originally published by Enes Kemal Ergin at &lt;a href=&quot;http://localhost:4000&quot;&gt;Enes Kemal Ergin's Blog&lt;/a&gt; on January 09, 2017.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[私は日本を学んでいます 2]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/language/Learning_japanese_2/" />
+  <id>http://localhost:4000/language/Learning_japanese_2</id>
+  <published>2016-10-05T00:00:00-04:00</published>
+  <updated>2016-10-05T00:00:00-04:00</updated>
+  <author>
+    <name>Enes Kemal Ergin</name>
+    <uri>http://localhost:4000</uri>
+    <email>eneskemalergin@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;みな さん, こんにちわ&lt;/p&gt;
+
+&lt;p&gt;Hello everyone, today I will share with you  “Describe Where are you From?”&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-describe-where-are-you-from&quot;&gt;How to Describe Where are you From?&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Example conversation:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Person&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Kana&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Romaji&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;English&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Enes:&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;しゅっしんはとうきょうですか&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;shusshin wa Tōkyō desu ka?&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Are you from Tokyo?&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Aki:&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;はい、そうです。あなたは？しゅっしんはどこですか&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Hai, sō desu. Anata wa? Shusshin wa dokodesu ka?&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Yes, I am. And you, Where are you from?&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Enes:&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;トルコです。&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Toruko desu.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;I am from Turkiye.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Aki:&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;イスタンブール ですか&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Isutanburu desu ka?&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Oh, from Istanbul?&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Enes:&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;いいえ、ちがいます アダナしゅっしんです&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Īe, chigaimasu. Adana shusshin desu.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;No, I am not. I am from Adana&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Vocabulary Focus:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;ふじさん&lt;/strong&gt;(Fuji-san) : &lt;em&gt;Mountain Fuji&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;しゅっしん&lt;/strong&gt;(Shusshin): &lt;em&gt;Place you are from&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;とうきょう&lt;/strong&gt;(tōkyō) : &lt;em&gt;Tokyo&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;あなた&lt;/strong&gt;(Anata): &lt;em&gt;You&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;トルコ&lt;/strong&gt;(Toruko): &lt;em&gt;Turkiye&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;アダナ&lt;/strong&gt;(Adana): &lt;em&gt;Adana&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;アメリカ&lt;/strong&gt;(Amerika): &lt;em&gt;America&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ニューヨーク&lt;/strong&gt;(Nyū Yōku): &lt;em&gt;New York&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;いいえ&lt;/strong&gt;(iie): &lt;em&gt;No&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Sample Sentences:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;ふじさんはあそこにあります。&lt;/strong&gt;(Fuji-san wa asoko ni arimasu.): &lt;em&gt;Mt. Fuji is over there.&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;しゅっしんは アメリカの ハワイです。&lt;/strong&gt;(Shusshin wa Amerika no Hawai desu.): &lt;em&gt;I’m from Hawaii, the US.&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;すみませんが、これは、あなたのですか。&lt;/strong&gt;(Sumimasen ga, kore wa anata no desu ka.): &lt;em&gt;Excuse me, but is this yours?&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;アメリカは大きいです。&lt;/strong&gt;(Amerika wa ōkii desu.): &lt;em&gt;The U.S. is huge.&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ニューヨークは、一時です。&lt;/strong&gt; (Nyū Yōku wa ichi-ji desu.): &lt;em&gt;It’s 1:00 in New York.&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;いいえ、ちがいます。&lt;/strong&gt;(Iie, chigaimasu.): No, that’s wrong.&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/language/Learning_japanese_2/&quot;&gt;私は日本を学んでいます 2&lt;/a&gt; was originally published by Enes Kemal Ergin at &lt;a href=&quot;http://localhost:4000&quot;&gt;Enes Kemal Ergin's Blog&lt;/a&gt; on October 05, 2016.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[私は日本を学んでいます 1]]></title>
+  <link rel="alternate" type="text/html" href="http://localhost:4000/language/Learning_japanese_1/" />
+  <id>http://localhost:4000/language/Learning_japanese_1</id>
+  <published>2016-09-20T00:00:00-04:00</published>
+  <updated>2016-09-20T00:00:00-04:00</updated>
+  <author>
+    <name>Enes Kemal Ergin</name>
+    <uri>http://localhost:4000</uri>
+    <email>eneskemalergin@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;みな さん, こんにちわ&lt;/p&gt;
+
+&lt;p&gt;Hello everyone, with this part of my personal blog I will start sharing my adventure of learning new language. I actually can speak and understand conversations in Japanese already. However I want to improve myself by learning how to read and write Japanese too. It’s quite a challenge for me to learn different script to read rather than the latin alphabet. So here goes my first blog post of “I am learning Japanese” 「私は日本を学んでいます」&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;始めましょう (Let’s start!)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;saying-hello-in-japanese&quot;&gt;Saying Hello in Japanese&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Kana&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Romaji&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;English&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;おはよう&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ohayō&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Morning &lt;em&gt;(Informal)&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;おはよう ございます&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Ohayō gozaimasu&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Good morning (Formal)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;こんにちわ&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Kon’nichiwa&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Hello&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;こんばんわ&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Konban wa&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Good evening&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;introducing-yourself-in-japanese&quot;&gt;Introducing yourself in Japanese&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Example conversation:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Person&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Kana&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Romaji&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;English&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Enes&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;はじめまして。わたしはエネスです。&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Hajimemashite. Watashi wa Enesu desu.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Nice to meet you, My name is Enes.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Aki&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;エネスさん、はじめまして。 あきです&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Enesu-san, Hajimemashite. Aki desu.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Enes, nice to meet you. I am Aki.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Enes&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;よろしく おねがいします。&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Yoroshiku onegai shimasu&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Please threat me well&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Aki&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;よろしく おねがいします。&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Yoroshiku onegai shimasu&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Please threat me well&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Vocabulary Focus:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;すみません&lt;/strong&gt;(Sumimasen) : &lt;em&gt;Excuse me; I am sorry&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;はじめまして&lt;/strong&gt;(Hajimemashite) : &lt;em&gt;Nice to meet you&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;わたし&lt;/strong&gt;(Watashi) : &lt;em&gt;I; Me&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;でも&lt;/strong&gt;(Demo) : &lt;em&gt;But; However&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;もういちど&lt;/strong&gt;(Mō ichi-do) : &lt;em&gt;One more time; Once again&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ゆっくり&lt;/strong&gt;(Yukkuri) : &lt;em&gt;Slowly&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;はい&lt;/strong&gt;(Hai) : &lt;em&gt;Yes&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;おねがいします&lt;/strong&gt;(Onegaishimasu) : &lt;em&gt;Please&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Sample Sentences:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;私は、日本人です。でも、出身はニューヨークです。&lt;/strong&gt;(Watashi wa nihon-jin desu. &lt;em&gt;Demo shusshin wa Nyūyōku desu.) : I’m Japanese, but I’m from New York.&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;もういちど、おねがいします。&lt;/strong&gt; (Mō ichi-do onegaishimasu) : &lt;em&gt;One more time please.&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ゆっくり話して下さい。&lt;/strong&gt; (Yukkuri hanashite kudasai) : &lt;em&gt;Please speak slowly.&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;すみません。質問があります&lt;/strong&gt;(Sumimasen. Shitsumon ga arimasu.) : Excuse me. I have a question&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/language/Learning_japanese_1/&quot;&gt;私は日本を学んでいます 1&lt;/a&gt; was originally published by Enes Kemal Ergin at &lt;a href=&quot;http://localhost:4000&quot;&gt;Enes Kemal Ergin's Blog&lt;/a&gt; on September 20, 2016.&lt;/p&gt;
+  </content>
+</entry>
+
+</feed>

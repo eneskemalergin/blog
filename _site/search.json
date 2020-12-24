@@ -1,0 +1,119 @@
+[
+
+  
+    {
+      "title"			: "Fuzzy Clustering",
+      "link"			: "http://localhost:4000/blog/Fuzzy_Clustering/",
+      "excerpt"		: "In this blogpost I will be covering one of clustering which sometimes called soft clustering. Fuzzy clustering is form of clustering in which each data point can belong to more than one cluster."
+    }
+  
+
+  
+    ,{
+      "title"			: "Fantastic Histone Modifications and How to Find Them",
+      "link"			: "http://localhost:4000/talks/histone_modifications/",
+      "excerpt"		: ""
+    }
+  
+
+  
+    ,{
+      "title"			: "Weapons of Math Destruction",
+      "link"			: "http://localhost:4000/personal/weapons_of_math_destruction/",
+      "excerpt"		: "Weapons of Math Destruction is a book by Cathy O’Neil (also the author of the blog called mathbabe) which I can define in 4 words: captivating, haunting, honest, and enlightening."
+    }
+  
+
+  
+    ,{
+      "title"			: "The Second Machine Age",
+      "link"			: "http://localhost:4000/personal/second_machine_age/",
+      "excerpt"		: "The Second Machine Age was an amazing book that gives informative insights about the advancement of Artificial Intelligence and the automation."
+    }
+  
+
+  
+    ,{
+      "title"			: "Software Guide of Ubuntu 16.04 for my Research",
+      "link"			: "http://localhost:4000/blog/Software_Guide_Ubuntu/",
+      "excerpt"		: "Hello everybody, today I am sharing my first guide which is about building my new research computer. This is a small guide for setting up Ubuntu 16.04 and necessary software for my research."
+    }
+  
+
+  
+    ,{
+      "title"			: "The Healthy Habit Revolution",
+      "link"			: "http://localhost:4000/personal/healthy_habit_development/",
+      "excerpt"		: "The Healthy Habit Revolution by Derek Doepker, is a laconic guide to the Habit development. Even though the book is designed to give reader 21 days to read, I read through it like I read all Personal Development book, while taking notes."
+    }
+  
+
+  
+    ,{
+      "title"			: "Train Your Brain",
+      "link"			: "http://localhost:4000/personal/train_your_brain/",
+      "excerpt"		: "The Brain is a very efficient machine which has control over everything in our bodies and especially in terms of regulating the habit/routine mechanism, but sometimes we cannot really do what we wanted to do with our brains. In this blog post I am going to share some points and some daily routines that we can increase our ability the use our brains."
+    }
+  
+
+  
+    ,{
+      "title"			: "私は日本を学んでいます 2",
+      "link"			: "http://localhost:4000/language/Learning_japanese_2/",
+      "excerpt"		: "みな さん, こんにちわ"
+    }
+  
+
+  
+    ,{
+      "title"			: "私は日本を学んでいます 1",
+      "link"			: "http://localhost:4000/language/Learning_japanese_1/",
+      "excerpt"		: "みな さん, こんにちわ"
+    }
+  
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    ,{
+      "title"			: "My Reading List",
+      "link"			: "http://localhost:4000/reading/",
+      "excerpt"		: "A Place to share my footsteps of Journey to the Knowledge and Wisdom"
+    }
+  
+
+  
+
+  
+
+  
+
+  
+    ,{
+      "title"			: "Welcome to My Place!",
+      "link"			: "http://localhost:4000/about/",
+      "excerpt"		: "A place where you can find information about me."
+    }
+  
+
+  
+
+  
+
+  
+
+  
+
+]

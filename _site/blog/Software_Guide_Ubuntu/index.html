@@ -1,0 +1,597 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Software Guide of Ubuntu 16.04 for my Research &#8211; Enes Kemal Ergin's Blog</title>
+<meta name="description" content="Hello everybody, today I am sharing my first guide which is about building my new research computer. This is a small guide for setting up Ubuntu 16.04 and necessary software for my research.
+
+">
+<meta name="keywords" content="Research, Guide, Ubuntu">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Software Guide of Ubuntu 16.04 for my Research">
+<meta name="twitter:description" content="Hello everybody, today I am sharing my first guide which is about building my new research computer. This is a small guide for setting up Ubuntu 16.04 and necessary software for my research.
+
+">
+<meta name="twitter:site" content="@eneskemalergin">
+<meta name="twitter:creator" content="@eneskemalergin">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/images/EKE-logo-Red.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Software Guide of Ubuntu 16.04 for my Research">
+<meta property="og:description" content="Hello everybody, today I am sharing my first guide which is about building my new research computer. This is a small guide for setting up Ubuntu 16.04 and necessary software for my research.
+
+">
+<meta property="og:url" content="http://localhost:4000/blog/Software_Guide_Ubuntu/">
+<meta property="og:site_name" content="Enes Kemal Ergin's Blog">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/blog/Software_Guide_Ubuntu/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Enes Kemal Ergin's Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="http://localhost:4000/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="http://localhost:4000about/" >About</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000reading/" >Reading</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000blog/" >Blog</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000talks/" >Talks</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000personal/" >Personal</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000language/" >Language</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000tags/" >Tags</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000search/" >Search</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+  		<a href="http://localhost:4000/" class="site-logo" rel="home" title="Enes Kemal Ergin's Blog"><img src="http://localhost:4000/images/EKE-logo-Red.png" width="200" height="200" alt="Enes Kemal Ergin's Blog logo" class="animated fadeInDown"></a>
+      
+      <h1 class="site-title animated fadeIn"><a href="http://localhost:4000/">Enes Kemal Ergin's Blog</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">R | Python | Big Data | Proteomics | Bioinformatics | Machine Learning </h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="http://localhost:4000/tags/#Research" title="Pages tagged Research">Research</a></li><li><a href="http://localhost:4000/tags/#Guide" title="Pages tagged Guide">Guide</a></li><li><a href="http://localhost:4000/tags/#Ubuntu" title="Pages tagged Ubuntu">Ubuntu</a></li>
+        </ul>
+        
+          <h1 class="entry-title">Software Guide of Ubuntu 16.04 for my Research</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="http://localhost:4000/images/me.jpg" class="bio-photo" alt="Enes Kemal Ergin bio photo"></a>
+        
+        <span class="author vcard">By <span class="fn">Enes Kemal Ergin</span></span>
+        <span class="entry-date date published"><time datetime="2017-09-14T00:00:00-04:00"><i class="fa fa-calendar-o"></i> September 14, 2017</time></span>
+        <span class="reading-time" title="Estimated read time">
+  
+  
+    8 mins reading time
+  
+</span>
+
+        
+        <span class="entry-comments"><i class="fa fa-comment-o"></i> <a href="#disqus_thread">Comment</a></span>
+        <span class="social-share-twitter">
+  <a href="https://twitter.com/intent/tweet?hashtags=Research,Guide,Ubuntu&amp;text=Software%20Guide%20of%20Ubuntu%2016.04%20for%20my%20Research&amp;url=http://localhost:4000/blog/Software_Guide_Ubuntu/&amp;via=eneskemalergin" title="Share on Twitter" itemprop="Twitter"><i class="fa fa-twitter-square"></i> Tweet</a>
+</span>
+<span class="social-share-facebook">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/Software_Guide_Ubuntu/" title="Share on Facebook" itemprop="Facebook"><i class="fa fa-facebook-square"></i> Like</a>
+</span>
+<span class="social-share-linkedin">
+  <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/blog/Software_Guide_Ubuntu/" itemprop="LinkedIn"><i class="fa fa-linkedin-square"></i> Share</a>
+</span>
+<span class="social-share-googleplus">
+  <a href="https://plus.google.com/share?url=http://localhost:4000/blog/Software_Guide_Ubuntu/" title="Share on Google Plus" itemprop="GooglePlus"><i class="fa fa-google-plus-square"></i> +1</a>
+</span>
+<!-- /.social-share -->
+
+        
+      </footer>
+      <div class="entry-content">
+        <p>Hello everybody, today I am sharing my first guide which is about building my new research computer. This is a small guide for setting up Ubuntu 16.04 and necessary software for my research.</p>
+
+<h3 id="specs-of-my-computer">Specs of my computer</h3>
+
+<p><strong>Operating System and System type / version:</strong> Ubuntu 16.04.2 LTS</p>
+
+<p><strong>Processor type and speed:</strong> Ryzen 7 1700x, 16 Threat, 3.4 to 3.8 GHz</p>
+
+<p><strong>RAM amount:</strong> 32GB</p>
+
+<p><strong>GPU:</strong> Nvidia 1080 gtx, 8GB</p>
+
+<p><strong>Hard drive size:</strong> 256 GB M.2 SSD, 1 TB SSD, 2TB SATA</p>
+
+<h3 id="steps-to-software-installationconfiguration">Steps to Software Installation/Configuration</h3>
+<ul>
+  <li>Install Nvidia drivers
+    <blockquote>
+      <p>Ubuntu 16.04 Nvidia ppa now has 375 and it seems stable so we will go with that now.</p>
+    </blockquote>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo add-apt-repository ppa:graphics-drivers/ppa</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt update</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install nvidia-375</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo reboot</code> # Restarts your system</li>
+    </ul>
+  </li>
+  <li>
+    <p>Install some required packages:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install openjdk-8-jdk git build-essential libcurl3-dev</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install software-properties-common</code></li>
+    </ul>
+  </li>
+  <li>Installing CUDA
+    <blockquote>
+      <p>We will first install the toolkit Go to <a href="https://developer.nvidia.com/cuda-release-candidate-download">Nvidia CUDA Website</a>. Choose <strong>Linux &gt; x86_64 &gt; Ubuntu &gt; 16.04 &gt; deb(local)</strong></p>
+    </blockquote>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get update</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install cuda</code></li>
+    </ul>
+
+    <blockquote>
+      <p>Then we add the path updates to the .bashrc with the following oneliners.</p>
+    </blockquote>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}</code></li>
+      <li><code class="language-plaintext highlighter-rouge">export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}</code></li>
+    </ul>
+
+    <blockquote>
+      <p>To test the CUDA if it’s working:</p>
+    </blockquote>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">cd /usr/local/cuda-8.0/samples/5_Simulations/nbody</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo make</code></li>
+      <li><code class="language-plaintext highlighter-rouge">./nbody</code></li>
+    </ul>
+  </li>
+  <li>Install cuDNN
+    <blockquote>
+      <p>Go to <a href="https://developer.nvidia.com/cudnn">Nvidia cuDNN website</a> download the latest for CUDA 8.0 and linux  Carefull because we will be using cuDNN v5.1 for our setup.</p>
+    </blockquote>
+
+    <pre><code class="language-BASH">  $ sudo tar -xzvf cudnn-8.0-linux-x64-v5.1.tgz
+  $ sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+  $ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+  $ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+</code></pre>
+  </li>
+  <li>Install Anaconda Python Distribution
+    <blockquote>
+      <p>Anaconda distribution is really easy Python distributor that I can manage my libraries.</p>
+    </blockquote>
+
+    <ul>
+      <li>Download Anaconda Python 3.6 from <a href="https://www.continuum.io/downloads">here</a></li>
+      <li><code class="language-plaintext highlighter-rouge">bash Downloads/Anaconda3-4.3.1-Linux-x86_64.sh</code></li>
+    </ul>
+  </li>
+  <li>Install Jupyter Themes
+    <blockquote>
+      <p>Installing the most updated version of jupyterthemes</p>
+    </blockquote>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">pip install --upgrade jupyterthemes</code></li>
+      <li><code class="language-plaintext highlighter-rouge">jt -t solarizedl -T -N</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>Install Tensorflow</p>
+
+    <ul>
+      <li>For dependencies: <code class="language-plaintext highlighter-rouge">sudo apt-get install libcupti-dev</code></li>
+      <li>Then we install Tensorflow with pip: <code class="language-plaintext highlighter-rouge">pip install tensorflow-gpu</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>Install Chrome</p>
+
+    <pre><code class="language-BASH">wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
+sudo apt-get install -f
+rm google-chrome-stable_current_amd64.deb
+</code></pre>
+    <blockquote>
+      <p><span style="color:red">If chrome lags when you highlight or something just go and unchecked Use ‘Hardware acceleration if available’ in advance settings of chrome settings</span></p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Configure workspaces in Ubuntu</p>
+
+    <ul>
+      <li>system settings &gt; Appearance &gt; Behavior &gt; Check ‘Enable Workspaces’</li>
+      <li>If you want to configure new shortcuts:
+        <ul>
+          <li>System Settings &gt; Keyboard &gt; Shortcuts &gt; Navigation &gt; You can assign new shortcuts</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Install gdebi package manager
+    <blockquote>
+      <p>Gdebi is a better way to install deb files for me.</p>
+    </blockquote>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install gdebi</code></li>
+    </ul>
+  </li>
+  <li>Install vim
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install vim</code></li>
+    </ul>
+  </li>
+  <li>Install git
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install git</code></li>
+      <li><code class="language-plaintext highlighter-rouge">git config --global user.name "name"</code></li>
+      <li><code class="language-plaintext highlighter-rouge">git config --global user.email "email"</code></li>
+    </ul>
+  </li>
+  <li>Install htop
+    <blockquote>
+      <p>It is really nice command line tool to see and control system</p>
+    </blockquote>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install htop</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>Install Atom text editor</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo add-apt-repository ppa:webupd8team/atom</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get update</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install atom</code></li>
+    </ul>
+  </li>
+  <li>Install Restricted Extras for Ubuntu
+    <blockquote>
+      <p>package of several codecs that are not included by default in Ubuntu system, media codecs and Flash Support.</p>
+    </blockquote>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install ubuntu-restricted-extras</code></li>
+    </ul>
+  </li>
+  <li>Install a good Theme for Ubuntu
+    <blockquote>
+      <p>It is really nice to have a new look…</p>
+    </blockquote>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt install unity-tweak-tool</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-add-repository ppa:numix/ppa</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get update</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install numix-gtk-theme</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install numix-icon-theme numix-folders</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install numix-icon-theme-circle</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install numix-icon-theme-square</code></li>
+      <li>Open unity tweak tool</li>
+      <li>Select <strong>Appearance &gt; Theme and Icons</strong></li>
+    </ul>
+  </li>
+  <li>Install R and RStudio
+    <blockquote>
+      <p>I love R since it’s amazing tool for statistics and learning mathematical background of most algorithms. Also Rstudio is really high quality interpreter for R.</p>
+    </blockquote>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list</code></li>
+      <li><code class="language-plaintext highlighter-rouge">gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9</code></li>
+      <li><code class="language-plaintext highlighter-rouge">gpg -a --export E084DAB9 | sudo apt-key add -</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get update</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install r-base r-base-dev</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install gdebi-core</code></li>
+      <li><code class="language-plaintext highlighter-rouge">wget https://download1.rstudio.org/rstudio-xenial-1.0.153-amd64.deb</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo gdebi -n rstudio-xenial-1.0.153-amd64.deb</code></li>
+      <li><code class="language-plaintext highlighter-rouge">rm rstudio-xenial-1.0.153-amd64.deb</code></li>
+    </ul>
+  </li>
+  <li>Install Mendeley Desktop
+    <blockquote>
+      <p>Mendeley is a beautiful way to keep track of papers.</p>
+    </blockquote>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">wget https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo dpkg -i mendeleydesktop</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get update</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo rm mendeleydesktop</code></li>
+    </ul>
+  </li>
+  <li>Install Redshift (Night Shift software)
+    <blockquote>
+      <p>Since I usually work at night and the light from the screen is too much, so I use redshift and configure it.</p>
+    </blockquote>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt-get install redshift gtk-redshift geoclue</code></li>
+      <li><code class="language-plaintext highlighter-rouge">vim ~/.config/redshift.conf</code></li>
+      <li>Copy and Paste the following in the vim:</li>
+    </ul>
+
+    <pre><code class="language-BASH">; Global settings for redshift
+[redshift]
+; Set the day and night screen temperatures
+temp-day=4500
+temp-night=3500
+
+; Enable/Disable a smooth transition between day and night
+; 0 will cause a direct change from day to night screen temperature.
+; 1 will gradually increase or decrease the screen temperature
+transition=1
+
+; Set the screen brightness. Default is 1.0
+;brightness=0.8
+; It is also possible to use different settings for day and night since version
+; 1.8.
+brightness-day=0.9
+brightness-night=0.7
+; Set the screen gamma (for all colors, or each color channel individually)
+gamma=0.8
+;gamma=0.8:0.7:0.8
+
+; Set the location-provider. Type 'redshift -l list' to see possible values.
+; The location provider settings are in a different section.
+location-provider=geoclue2
+
+; Set the adjustment-method: 'randr', 'vidmode'
+; type 'redshift -m list' to see all possible values
+; 'randr' is the preferred method, 'vidmode' is an older API
+; but works in some cases when 'randr' does not.
+; The adjustment method settings are in a different section.
+adjustment-method=randr
+
+; Configuration of the location-provider:
+; type 'redshift -l PROVIDER:help' to see the settings
+; ex: 'redshift -l manual:help'
+[manual]
+; set these values if you've set the location-provider to manual instead of
+; geoclue
+;lat=51.522698
+;lon=-0.085358
+
+; Configuration of the adjustment-method
+; type 'redshift -m METHOD:help' to see the settings
+; ex: 'redshift -m randr:help'
+
+[randr]
+screen=0
+
+</code></pre>
+  </li>
+  <li>Install GIMP for image editing
+    <blockquote>
+      <p>This is a similar software like Photoshop for linux</p>
+    </blockquote>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge</code></li>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt update &amp;&amp; sudo apt install gimp gimp-gmic</code></li>
+    </ul>
+  </li>
+  <li>Install VLC for Video
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">sudo apt install vlc</code></li>
+    </ul>
+  </li>
+  <li>Install GooglePlayMusic Desktop Player
+    <ul>
+      <li><a href="https://www.googleplaymusicdesktopplayer.com">Link to Installer Website</a></li>
+      <li>Install it with Gdebi installer</li>
+    </ul>
+  </li>
+  <li>Install BleachBit
+    <blockquote>
+      <p>To keep things neat and clean</p>
+    </blockquote>
+    <ul>
+      <li><a href="https://www.bleachbit.org/download/file/t?file=bleachbit_1.12_all_ubuntu1604.deb">Link to Installer</a></li>
+      <li>Install it with Gdebi installer</li>
+    </ul>
+  </li>
+  <li>Install PomoDoneApp
+    <blockquote>
+      <p>This is the time tracking app that I’ve integrated with Trello</p>
+    </blockquote>
+    <ul>
+      <li><a href="https://app.pomodoneapp.com/installers/PomoDoneApp-1.5.1084.deb">Link to Installer</a></li>
+      <li>Install it with Gdebi installer</li>
+    </ul>
+
+    <blockquote>
+      <p>Hey do you know there is a comment section below that you can share your ideas with me?</p>
+    </blockquote>
+
+    <blockquote>
+      <p>Until next time, be safe…</p>
+    </blockquote>
+  </li>
+</ul>
+
+        
+          <div id="disqus_thread"></div><!-- /#disqus_thread -->
+          
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'eneskemalergin'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://localhost:4000/personal/healthy_habit_development/" class="btn" title="The Healthy Habit Revolution">Previous</a>
+      
+      
+        <a href="http://localhost:4000/personal/second_machine_age/" class="btn" title="The Second Machine Age">Next</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2020 Enes Kemal Ergin</span>
+<div class="social-icons">
+	<a href="https://twitter.com/eneskemalergin" title="Enes Kemal Ergin on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/eneskemalergin" title="Enes Kemal Ergin on LinkedIn" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+	
+	<a href="https://instagram.com/ekemalergin" title="Enes Kemal Ergin on Instagram" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+	
+	<a href="https://github.com/eneskemalergin" title="Enes Kemal Ergin on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'http://localhost:4000';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ 'https://www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-118768066-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = 'https://stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+</body>
+</html>
