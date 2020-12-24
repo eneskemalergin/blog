@@ -13,7 +13,8 @@ This is my Reading list I started record Books that I've read or listened. You w
 ---
 
 
-- [The History Book: Big Ideas Simply Explained](https://www.goodreads.com/book/show/29776992-the-history-book) __by R.G. Grant__
+- [Welcome to the Universe: An Astrophysical Tour](https://www.goodreads.com/book/show/30009088-welcome-to-the-universe) __by Neil deGrasse Tyson__
+- [Make It Stick: The Science of Successful Learning](https://www.goodreads.com/book/show/18770267-make-it-stick) __by Peter C. Brown, Henry L. Roediger III and Mark A. McDaniel__
 
 
 ---
@@ -23,6 +24,7 @@ This is my Reading list I started record Books that I've read or listened. You w
 
 
 1. [Finish What You Start: The Art of Following Through, Taking Action, Executing, & Self-Discipline](https://www.goodreads.com/book/show/39322175-finish-what-you-start) __by Peter Hollins__ <span style="color:#C70025">Rating: 3.0 </span>, ([My GoodReads Review](#))
+2. [The History Book: Big Ideas Simply Explained](https://www.goodreads.com/book/show/29776992-the-history-book) __by R.G. Grant__ <span style="color:#C70025">Rating: 3.5 </span>, ([My GoodReads Review](#))
 
 
 ---
