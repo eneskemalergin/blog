@@ -14,7 +14,7 @@ This is my Reading list I started record Books that I've read or listened. You w
 
 
 - [Make It Stick: The Science of Successful Learning](https://www.goodreads.com/book/show/18770267-make-it-stick) __by Peter C. Brown, Henry L. Roediger III and Mark A. McDaniel__
-- [Star Wars: Thrawn](https://www.goodreads.com/book/show/31140332-thrawn) __by Timothy Zahn__
+- [Star Wars: Thrawn - Alliances](https://www.goodreads.com/book/show/36385830-thrawn) __by Timothy Zahn__
 
 
 ---
@@ -22,6 +22,8 @@ This is my Reading list I started record Books that I've read or listened. You w
 ## 2021
 
 1. [Welcome to the Universe: An Astrophysical Tour](https://www.goodreads.com/book/show/30009088-welcome-to-the-universe) __by Neil deGrasse Tyson__ <span style="color:#C70025">Rating: 5.0 </span>, ([My GoodReads Review](#))
+2. [Star Wars: Thrawn](https://www.goodreads.com/book/show/31140332-thrawn) __by Timothy Zahn__ <span style="color:#C70025">Rating: 5.0 </span>, ([My GoodReads Review](#))
+
 
 ---
 
