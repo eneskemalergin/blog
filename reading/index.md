@@ -14,6 +14,8 @@ This is my Reading list I started record Books that I've read or listened. You w
 
 
 - [Star Wars: Thrawn - Alliances](https://www.goodreads.com/book/show/36385830-thrawn) __by Timothy Zahn__
+- [Sunguroğlu I](https://www.goodreads.com/book/show/12371702-sunguro-lu-i) __by Yavuz Bahadıroğlu__
+- [How to Survive Your PhD](https://www.goodreads.com/book/show/6436504-how-to-survive-your-phd) __by Jason Karp__
 
 
 ---
