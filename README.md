@@ -23,9 +23,6 @@ This is my blog part of my personal website. I am sharing about everything that 
 
 
 
-
-
-
 ## Large-scale Series to Work on
 
 ### 1. Survival for Bioinformatics Series

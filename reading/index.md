@@ -13,10 +13,9 @@ This is my Reading list I started record Books that I've read or listened. You w
 ---
 
 
-- [Sunguroğlu II](https://www.goodreads.com/book/show/12371713-sunguro-lu-ii) __by Yavuz Bahadıroğlu__
-- [Sunguroğlu III](https://www.goodreads.com/book/show/12371713-sunguro-lu-ii) __by Yavuz Bahadıroğlu__
+
 - [Star Wars: Thrawn - Alliances](https://www.goodreads.com/book/show/36385830-thrawn) __by Timothy Zahn__
-- [How to Survive Your PhD](https://www.goodreads.com/book/show/6436504-how-to-survive-your-phd) __by Jason Karp__
+- [Doctor Aphra - Audiobook](https://www.goodreads.com/book/show/53254068-doctor-aphra) __by Sarah Kuhn__
 - [Grit: The Power of Passion and Perseverance](https://www.goodreads.com/book/show/27213329-grit) __by Angela Duckworth__
 
 
@@ -28,6 +27,13 @@ This is my Reading list I started record Books that I've read or listened. You w
 2. [Star Wars: Thrawn](https://www.goodreads.com/book/show/31140332-thrawn) __by Timothy Zahn__ <span style="color:#C70025">Rating: 5.0 </span>, ([My GoodReads Review](#))
 3. [Make It Stick: The Science of Successful Learning](https://www.goodreads.com/book/show/18770267-make-it-stick) __by Peter C. Brown, Henry L. Roediger III and Mark A. McDaniel__ <span style="color:#C70025">Rating: 4.5 </span>, ([My GoodReads Review](#))
 4. [Sunguroğlu I](https://www.goodreads.com/book/show/12371702-sunguro-lu-i) __by Yavuz Bahadıroğlu__ <span style="color:#C70025">Rating: 4.5 </span>, ([My GoodReads Review](#))
+5. [Sunguroğlu II](https://www.goodreads.com/book/show/12371713-sunguro-lu-ii) __by Yavuz Bahadıroğlu__ <span style="color:#C70025">Rating: 3.5 </span>, ([My GoodReads Review](#))
+6. [Sunguroğlu III](https://www.goodreads.com/book/show/12371725-sunguro-lu-iii) __by Yavuz Bahadıroğlu__ <span style="color:#C70025">Rating: 4.0 </span>, ([My GoodReads Review](#))
+7. [Sunguroğlu IV](https://www.goodreads.com/book/show/28950056-gemide-i-syan) __by Yavuz Bahadıroğlu__ <span style="color:#C70025">Rating: 4.5 </span>, ([My GoodReads Review](#))
+8. [Sunguroğlu V](https://www.goodreads.com/book/show/44128729-sunguroglu-calinan-hazine) __by Yavuz Bahadıroğlu__ <span style="color:#C70025">Rating: 5 </span>, ([My GoodReads Review](#))
+9. [Sunguroğlu VI](https://www.goodreads.com/book/show/29054992-sunguro-lu-ka-r-lan-prenses) __by Yavuz Bahadıroğlu__ <span style="color:#C70025">Rating: 4.5 </span>, ([My GoodReads Review](#))
+10. [How to Survive Your PhD](https://www.goodreads.com/book/show/6436504-how-to-survive-your-phd) __by Jason Karp__ <span style="color:#C70025">Rating: 3.0 </span>, ([My GoodReads Review](#))
+
 
 ---
 
