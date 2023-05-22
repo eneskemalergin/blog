@@ -56,19 +56,19 @@ owner:
   name: Enes Kemal Ergin
   avatar: me.jpg
   email: eneskemalergin@gmail.com
-  disqus-shortname: eneskemalergin
+  disqus-shortname: #username
   twitter: eneskemalergin
-  facebook: #eneskemalergin
+  facebook: #username
   github: eneskemalergin
   stackexchange: #http://stackoverflow.com/users/123456/username
   linkedin: eneskemalergin
-  instagram: ekemalergin
+  instagram: #username
   flickr: #username
   tumblr: #username
   pinterest: #username
   weibo: #userid
   google:
-    plus: # eneskemalergin
+    plus: #username
     analytics: UA-118768066-1
     verify:
     ad-client:
